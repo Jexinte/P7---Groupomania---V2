@@ -4,12 +4,27 @@
   "description": "Allow to manage data users depending on their requests",
   "main": "app.js",
   "scripts": {
-    "test": "start"
+    "start": "nodemon app.js"
   },
   "keywords": [
     "user",
     "articles"
   ],
   "author": "Jexinte",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mariadb": "^3.0.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.19",
+    "password-validator": "^5.3.0",
+    "sequelize": "^6.21.6"
+  },
+  "dependencies": {
+    "express-mysql-session": "^2.1.8"
+  }
 }

@@ -1,0 +1,35 @@
+/* LATO REGULAR 400 , BOLD 700 , BLACK 900 */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+:root {
+
+  /* POLICES */
+    --lato : 'Lato',sans-serif;
+
+  /* COULEURS  */
+
+    --rouge : #FD2D01;
+    --roseClair : #FFD7D7;
+    --grisFoncé : #4E5166
+
+  /* FONT WEIGHT */ 
+
+    --400 : 400;
+    --700 : 700;
+    --900 : 900
+}
+
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: var(--lato);
+}
+
+a{
+  text-decoration: none;
+}
+a:visited{
+  color:black;
+}

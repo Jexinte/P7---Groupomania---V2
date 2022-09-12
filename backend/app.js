@@ -1,0 +1,10 @@
+const express = require('express')
+const morgan = require('morgan')
+const sequelize = require('./db/sequelize')
+const UsersRoutes = require('./routes/user')
+const app = express ()
+const port = 3000
+app.use(morgan('dev'))
+app.use('/api/auth',UsersRoutes)
+sequelize.INITIALISATIONDELABASEDEDONNEES()
+app.listen(port,() => console.log(`Le serveur a bien démarrer sur le port ${port}`))
