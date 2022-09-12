@@ -1,0 +1,15 @@
+{
+  "name": "api-groupomania",
+  "version": "1.0.0",
+  "description": "Allow to manage data users depending on their requests",
+  "main": "app.js",
+  "scripts": {
+    "test": "start"
+  },
+  "keywords": [
+    "user",
+    "articles"
+  ],
+  "author": "Jexinte",
+  "license": "ISC"
+}
