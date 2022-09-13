@@ -38,12 +38,15 @@
               <input type="password" id="motdepasse" name="motdepasse" v-model="motDePasse" >
               
             </label>
-            <p @click="permettreALutilisateurDeVoirLeMotDePasseTaper">
             
-              <img id="voirmotdepasse" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
-            </p>
-        
-          <p id="motdepasseerrormsg" class="erreurmsg"></p>
+            <div class="verification-motdepasse">
+
+<p @click="permettreALutilisateurDeVoirLeMotDePasseTaper">
+
+  <img id="voirmotdepasse" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
+</p>
+<p id="motdepasseerrormsg" class="erreurmsg"></p>
+</div>
 
 
             <input type="submit" value="Envoyer" id="submit">
@@ -57,7 +60,7 @@
 
 <script>
  
-  import Utilisateur from '@/services/inscription.js'
+  import Utilisateur from '@/services/Inscription.js'
   import Erreur from '@/components/Erreur.vue'
 
   const UTILISATEUR = new Utilisateur()
@@ -132,7 +135,7 @@
 .inscription {
   width: 80%;
   margin:0 auto 5em;
-
+  font-family: var(--lato);
 }
 
   /* MENU */
@@ -173,6 +176,7 @@
 
   .inscription-form label {
     line-height: 2.1em;
+    font-weight: var(--900);
   
   }
 
@@ -191,6 +195,10 @@
 
   .erreurmsg{
     font-weight: var(--700);
+  }
+
+  #voirmotdepasse{
+    cursor: pointer;
   }
 
   @media screen and (max-width:340px){

@@ -20,7 +20,7 @@
         
           <!-- FORMULAIRE -->
 
-          <form action="/connexion" method="post" enctype="multipart/form-data" class="inscription-form" @submit.prevent="verificationDesChampsDeFormulaire">
+          <form action="/connexion" method="post" enctype="multipart/form-data" class="connexion-form" @submit.prevent="verificationDesChampsDeFormulaire">
           
             <label for="mail"> 
               Adresse électronique  <br>
@@ -33,15 +33,18 @@
               <input type="password" id="motdepasse" name="motdepasse" v-model="motDePasse" >
               
             </label>
-            <p @click="permettreALutilisateurDeVoirLeMotDePasseTaper">
-            
-              <img id="voirmotdepasse" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
-            </p>
+            <div class="verification-motdepasse">
+
+              <p @click="permettreALutilisateurDeVoirLeMotDePasseTaper">
+              
+                <img id="voirmotdepasse" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
+              </p>
+              <p id="motdepasseerrormsg" class="erreurmsg"></p>
+            </div>
         
-          <p id="motdepasseerrormsg" class="erreurmsg"></p>
 
 
-            <input type="submit" value="Connexion" id="submit">
+            <input type="submit" value="Connexion" id="submit" @click="connexion">
             <Erreur id="erreur"></Erreur>
           </form>
         </div>
@@ -54,8 +57,8 @@
  
 
   import Erreur from '@/components/Erreur.vue'
-
-
+  import Connexion from '@/services/Connexion';
+  const UTILISATEUR = new Connexion()
   
   export default {
 
@@ -66,9 +69,7 @@
         }
     },
 
-    mounted: function () {
-
-    },
+  
     
     methods: {
         verificationDesChampsDeFormulaire(e) {
@@ -78,8 +79,9 @@
   
 
             if (this.adresseElectronique === "") {
-                ERREURSURLEMAIL.textContent = "Le champ ne peut être vide";
-                ERREURSURLEMAIL.style.color = "red";
+              ERREURSURLEMAIL.textContent = "Le champ ne peut être vide";
+              ERREURSURLEMAIL.style.color = "red";
+   
             }
 
             else {
@@ -88,8 +90,9 @@
 
             
             if (this.motDePasse === "") {
-                ERREURSURLEMOTDEPASSE.textContent = "Le champ ne peut être vide";
-                ERREURSURLEMOTDEPASSE.style.color = "red";
+              ERREURSURLEMOTDEPASSE.textContent = "Le champ ne peut être vide";
+              ERREURSURLEMOTDEPASSE.style.color = "red";
+            
             }
             else {
                 ERREURSURLEMOTDEPASSE.textContent = "";
@@ -105,6 +108,10 @@
               CHAMPMOTDEPASSE.type = "text"
           else
               CHAMPMOTDEPASSE.type="password"
+        },
+
+        connexion(){
+          UTILISATEUR.connexion()
         }
     },
     components: { Erreur }
@@ -146,21 +153,22 @@
    
     height: 342px;
     width: 347px;
-    /* border: 1px solid black; */
+   
   }
-  .inscription-form {
+  .connexion-form {
     display: flex;
     flex-direction: column;
     gap:1.5em;   
-    padding-top:1.5em
+    padding-top:1.5em;
+    
   }
 
-  .inscription-form label {
+  .connexion-form label {
     line-height: 2.1em;
-  
+    font-weight: var(--900);
   }
 
-  .inscription-form input {
+  .connexion-form input {
     width: 100%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 13px;
@@ -177,6 +185,14 @@
     font-weight: var(--700);
   }
 
+  .verification-motdepasse{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #voirmotdepasse{
+    cursor: pointer;
+  }
   @media screen and (max-width:340px){
     .banner img {
    

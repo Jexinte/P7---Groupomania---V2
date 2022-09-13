@@ -54,7 +54,7 @@ exports.connexion = (req,res) => {
   USER.findOne({where:{email:adresseMailDeLutilisateurQuiSeConnecte}}).then(utilisateur => {
 
     if(!utilisateur)
-      return res.status(404).json({message:`Cet utilisateur n'existe pas`})
+      return res.status(401).json({message:`Cet utilisateur n'existe pas`})
     
     bcrypt.compare(req.body.motdepasse , utilisateur.motdepasse).then(motDePasseNonvalide => {
       
@@ -66,7 +66,7 @@ exports.connexion = (req,res) => {
 
     })
     
-    .catch(() =>res.status(500).json({message:`Veuillez vérifiez que vos informations sont bien correctes !`}))
+    .catch(error =>res.status(500).json({message:error}))
 
   })
 
