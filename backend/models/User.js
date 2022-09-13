@@ -16,14 +16,10 @@ module.exports = (sequelize,DataTypes) => {
       } ,
 
       validate : {
-        notEmpty : {
-          args:true,
-          msg : `Ce champ ne peut être vide`
-        },
 
         is: {
-          args:/^[A-Z][a-z]{3,10}$/,
-          msg :`Le nom d'utilisateur doit commencer par une lettre majuscule et ne peut-être inférieur à 3 caractères`
+          args:/^[A-Z]{1}[a-z]{0,9}$/,
+          msg :`Le nom d'utilisateur doit commencer par une lettre majuscule , ne peut contenir de chiffres et ne doit pas excéder 10 caractères`
         }
       }
     },
@@ -64,7 +60,7 @@ module.exports = (sequelize,DataTypes) => {
 
     type : {
       type : DataTypes.STRING,
-      defaultValue: "Employé"
+      defaultValue: "EMPLOYÉ"
     }
   },
   {
