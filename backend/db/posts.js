@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes} = require('sequelize')
 const postModel = require('../models/posts')
+const fauxPost = require('../db/fauxposts')
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -22,7 +23,17 @@ const POSTS = postModel(sequelize,DataTypes)
 
 const initTablePost = () => {
 
-  sequelize.sync({force:true}).then(_ => console.log('La table des posts a bien été créée'))
+  sequelize.sync({force:true}).then(_ => {
+    fauxPost.map(post => {
+      POSTS.create({
+        utilisateurId:post.utilisateurId,
+        titre:post.titre,
+        imageUrl:post.imageUrl,
+        contenu:post.contenu,
+        auteur:post.auteur
+      })
+    })
+  })
 }
 
 module.exports = {

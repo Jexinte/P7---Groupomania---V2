@@ -59,13 +59,14 @@ exports.connexion = (req,res) => {
     if(!utilisateur)
       return res.status(401).json({message:`Cet utilisateur n'existe pas`})
     
+      //* On ajoute le nom de l'utilisateur ainsi que son identifiant afin de pouvoir s'en servir dans les requêtes pour les posts
     bcrypt.compare(req.body.motdepasse , utilisateur.motdepasse).then(motDePasseNonvalide => {
       session.userId = utilisateur.id
       session.utilisateur = utilisateur.utilisateur
       if(!motDePasseNonvalide) 
       return res.status(401).json({message:`Le mot de passe est incorrect`})
        
-      if(session.id && session.userId)
+   
       return res.status(200).json({message:`L'utilisateur ${utilisateur.utilisateur} est bien connecté !`,idSession:session.id,identifiantUtilisateur:session.userId})
       
 

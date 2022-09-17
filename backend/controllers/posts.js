@@ -1,6 +1,13 @@
 const {POSTS} = require('../db/posts')
 const {SESSION} = require('../db/session')
 const {USER} = require('../db/sequelize')
+
+exports.afficheLesPost = (req,res) => {
+
+        POSTS.findAll().then(post => res.status(200).json({message:post}))
+      
+}
+
 exports.creationDunPost = (req,res) => {
   
 
@@ -16,19 +23,30 @@ exports.creationDunPost = (req,res) => {
           const idUser = correspondance.dataValues['id']
            POSTS.create({
              utilisateurId:idUser,
-             titre : 'Test',
-             imageUrl :'....',
-             contenu : `Lorem ipsum.....`,
+             titre : req.body.titre,
+             imageUrl :`${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+             contenu : req.body.contenu,
              auteur:sessionData.utilisateur
            })
            .then(post => {
-             return res.status(201).json({data:post})
+       
+              return res.status(201).json({data:post})
+            
+           })
+
+           .catch(error => {
+          
+            res.status(404).json({message:error})
+           
            })
 
          
         }
       })
+
+      .catch(() => {
+         res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
+      })
     })
-  
   
 }
