@@ -31,7 +31,13 @@ const POSTS = new ListeDesPosts()
 </script>
 
 <style>
+a:visited {
+  color:black;
+}
 
+a{
+  color:black;
+}
   .container {
     width: 80%;
     margin: 0 auto;
