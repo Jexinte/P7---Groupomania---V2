@@ -12,6 +12,17 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
  - On frontend folder "npm run serve"
 
 
+# Screenshot 
+
+## Inscription 
+![inscription_page](https://user-images.githubusercontent.com/88725081/190871206-d7b4dd3f-a5ad-4c92-8b87-bdb14a312122.PNG)
+
+## Connexion 
+![connexion_page](https://user-images.githubusercontent.com/88725081/190871204-e93898d5-b051-44af-a11e-f2f5096e998d.PNG)
+
+
+
+
 # What I learned
 
  - Express middleware
