@@ -20,6 +20,8 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 ## Connexion 
 ![connexion_page](https://user-images.githubusercontent.com/88725081/190871204-e93898d5-b051-44af-a11e-f2f5096e998d.PNG)
 
+## Création de post
+![creation_post](https://user-images.githubusercontent.com/88725081/190871354-56b35847-b768-4ed5-8862-789419eea229.PNG)
 
 
 
