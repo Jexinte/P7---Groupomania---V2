@@ -1,3 +1,4 @@
+import router from '@/router'
 
 const AXIOS = require('axios')
 

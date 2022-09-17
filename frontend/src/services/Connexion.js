@@ -11,7 +11,9 @@ export default class Connexion {
     AXIOS({
       url:'http://localhost:3000/api/auth/connexion',
       method:'post',
-      data : new FormData(FORM)
+      data : new FormData(FORM),
+
+
     })
 
 
@@ -20,7 +22,10 @@ export default class Connexion {
       if(res.status === 200){
         ERREURBOX.style.display="none"
         ERREURBOXMSG.textContent = ""
-        router.push('/accueil')
+        //! Cette redirection est temporaire le temps de faire des test 
+        document.cookie=`idSession=${res.data['idSession']};`
+   
+         router.push('/accueil')
       }
     
     })
