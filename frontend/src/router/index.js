@@ -3,6 +3,7 @@ import Inscription from '../views/Inscription.vue'
 import Connexion from '../views/Connexion.vue'
 import Contact from '../views/Contact.vue'
 import Accueil from '../views/Accueil.vue'
+import CréationPost from '../views/CréationPost.vue'
 const routes = [
   {
     path: '/',
@@ -25,6 +26,12 @@ const routes = [
     path: '/accueil',
     name: 'accueil',
     component: Accueil
+  },
+
+  {
+    path: '/creationpost',
+    name: 'création de post',
+    component: CréationPost
   }
 ]
 

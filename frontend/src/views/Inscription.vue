@@ -4,12 +4,8 @@
 
         <div class="inscription">
 
-          <header>
-            <nav>
-              <router-link to="/connexion" >Connexion</router-link>
-              <router-link to="/contact">Contact</router-link>
-            </nav>
-          </header>
+        <!-- MENU -->
+        <Menu_Inscription></Menu_Inscription>
 
           <!-- BANNER -->
 
@@ -62,6 +58,7 @@
  
   import Utilisateur from '@/services/Inscription.js'
   import Erreur from '@/components/Erreur.vue'
+import Menu_Inscription from '@/components/Menu_Inscription.vue'
 
   const UTILISATEUR = new Utilisateur()
   
@@ -126,7 +123,7 @@
               CHAMPMOTDEPASSE.type="password"
         }
     },
-    components: { Erreur }
+    components: { Erreur, Menu_Inscription }
 }
 
 </script>
@@ -138,18 +135,7 @@
   font-family: var(--lato);
 }
 
-  /* MENU */
-  nav {
-    display: flex;
-    justify-content: flex-end;
-  }
 
-  nav a {
-    padding-right:2em;
-    padding-top: 2em;
-    font-weight: var(--700);
-    color:black
-  }
 
 
   /* BANNIERE */
@@ -209,9 +195,5 @@
 
  }
 
- nav a {
-  position: relative;
-  left:9px;
- }
   }
 </style>

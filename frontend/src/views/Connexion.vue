@@ -4,12 +4,7 @@
 
         <div class="connexion">
 
-          <header>
-            <nav>
-              <router-link to="/" >Inscription</router-link>
-              <router-link to="/contact">Contact</router-link>
-            </nav>
-          </header>
+     <Menu_Connexion></Menu_Connexion>
 
           <!-- BANNER -->
 
@@ -58,6 +53,7 @@
 
   import Erreur from '@/components/Erreur.vue'
   import Connexion from '@/services/Connexion';
+import Menu_Connexion from '@/components/Menu_Connexion.vue';
   const UTILISATEUR = new Connexion()
   
   export default {
@@ -114,7 +110,7 @@
           UTILISATEUR.connexion()
         }
     },
-    components: { Erreur }
+    components: { Erreur, Menu_Connexion }
 }
 
 </script>
@@ -126,18 +122,6 @@
 
 }
 
-  /* MENU */
-  nav {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  nav a {
-    padding-right:2em;
-    padding-top: 2em;
-    font-weight: var(--700);
-    color:black
-  }
 
 
   /* BANNIERE */
@@ -201,9 +185,5 @@
 
  }
 
- nav a {
-  position: relative;
-  left:9px;
- }
   }
 </style>
