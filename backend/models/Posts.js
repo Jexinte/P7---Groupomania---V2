@@ -1,4 +1,3 @@
-
 module.exports = (sequelize,DataTypes) => {
   return sequelize.define('post',{
     id: {
@@ -21,6 +20,12 @@ module.exports = (sequelize,DataTypes) => {
     imageUrl : {
       type : DataTypes.STRING,
       allowNull:false,
+      validate : {
+        notEmpty : {
+          args:true,
+          msg:'Wesh ?!'
+        }
+      }
       
     },
 

@@ -3,6 +3,10 @@ const router = express.Router()
 const dotenv = require('dotenv')
 dotenv.config()
 const cors = require('cors')
+const corsOptions = {
+  credentials:true,
+  origin:true
+}
 const multer = require('../middleware/multerConfig')
 const UsersControllers = require('../controllers/user')
 const contrôleDuMotDePasse = require('../middleware/passwordValidator')
@@ -29,9 +33,10 @@ router.use(session({
   saveUninitialized:false
 }))
 router.use(cookieParser())
-router.use(cors())
+router.use(cors(corsOptions))
+
 
 router.post('/inscription',multer,contrôleDuMotDePasse,UsersControllers.inscription)
 router.post('/connexion',multer,UsersControllers.connexion)
-router.post('/deconnexion',UsersControllers.déconnexion)
+router.delete('/deconnexion',UsersControllers.déconnexion)
 module.exports = router

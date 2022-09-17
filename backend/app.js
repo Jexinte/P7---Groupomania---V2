@@ -10,6 +10,7 @@ const port = 3000
 app.use(morgan('dev'))
 app.use('/api/auth',UsersRoutes)
 app.use('/api/posts',PostsRoutes)
+app.use('/images',express.static('images'))
 sequelize.INITIALISATIONDELABASEDEDONNEES()
 sequelizeSession.initTableSession()
 sequelizePosts.initTablePost()

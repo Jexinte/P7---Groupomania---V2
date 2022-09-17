@@ -1,23 +1,23 @@
 module.exports = (req,res,next) => {
   const { SESSION } = require('../db/session')
-  const { USER } = require('../db/sequelize')
+
+  const cookieContent = req.headers.cookie
+  const cookie =Object.fromEntries(cookieContent.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
+
+//* Comparaison de l'identifiant de session de la base de données avec celui sauvegardé dans le cookie crée dans le front
+  SESSION.findOne({where:{session_id:cookie.idSession}})
+  .then(correspondance => {
+
+    if(!correspondance)
+    return res.status(403).json({message:`Vous n'êtes pas autorisé à accéder à ce contenu !`})
+
+    else
+      next()
+    
+  })
   
-  SESSION.findAll()
-  .then(session => {
-    const sessionDataChampDeTable = JSON.parse(session[0].dataValues['data'])
-    const sessionIdChampDeTable = session[0].dataValues['session_id']
-
-    //* On vérifie que l'identifiant et le nom de l'utilisateur de la session correspondent bien à l'utilisateur qui effectue l'action
-    USER.findOne({where:{id:sessionDataChampDeTable.userId}},{where:{utilisateur:sessionDataChampDeTable.utilisateur}})
-
-    .then(correspondance => {
-      if(sessionIdChampDeTable && correspondance)
-        next() 
-    })
- 
-  })
-
   .catch(() => {
-    return res.status(403).json({message:`Vous n'êtes pas autorisé à accéder à ce contenu ! `})
-  })
+
+    return res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
+})
 }
