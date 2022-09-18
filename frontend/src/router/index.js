@@ -4,6 +4,7 @@ import Connexion from '../views/Connexion.vue'
 import Contact from '../views/Contact.vue'
 import Accueil from '../views/Accueil.vue'
 import CréationPost from '../views/CréationPost.vue'
+import AfficheUnPost from '../views/AfficheUnPost.vue'
 const routes = [
   {
     path: '/',
@@ -24,7 +25,7 @@ const routes = [
 
   {
     path: '/accueil',
-    name: 'accueil',
+    name: 'accueil de l\'ensemble des posts',
     component: Accueil
   },
 
@@ -32,6 +33,12 @@ const routes = [
     path: '/creationpost',
     name: 'création de post',
     component: CréationPost
+  },
+
+  {
+    path: '/post',
+    name: 'Affiche un post',
+    component: AfficheUnPost
   }
 ]
 

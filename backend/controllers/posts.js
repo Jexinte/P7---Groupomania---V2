@@ -8,6 +8,13 @@ exports.afficheLesPost = (req,res) => {
       
 }
 
+exports.afficheLePost = (req,res) => {
+  const { id } = req.params
+  
+
+  POSTS.findByPk(id).then(post => res.status(200).json({data:post}))
+}
+
 exports.creationDunPost = (req,res) => {
   
 

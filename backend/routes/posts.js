@@ -14,6 +14,7 @@ router.use(cors(corsOptions))
 router.use(express.json())
 
 router.get('/listeposts',authSession,multer,PostsController.afficheLesPost)
+router.get('/post/:id',authSession,multer,PostsController.afficheLePost)
 router.post('/creation',authSession,multer,PostsController.creationDunPost)
 
 module.exports = router
