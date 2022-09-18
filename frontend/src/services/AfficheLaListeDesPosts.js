@@ -16,7 +16,7 @@ export default class ListeDesPosts{
       res.data['message'].map(post => {
         const POSTBOX = document.createElement('a')
         POSTBOX.className = "touslesposts-box"
-        POSTBOX.href=`/modifierpost/id=${post.id}&utilisateurId=${post.utilisateurId}`
+        POSTBOX.href=`/modifierpost/id=${post.id}`
         CONTAINERTOUSLESPOSTS.append(POSTBOX)
      
         const H2 = document.createElement('h2')
