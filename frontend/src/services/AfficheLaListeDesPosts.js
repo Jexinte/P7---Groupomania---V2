@@ -16,11 +16,8 @@ export default class ListeDesPosts{
       res.data['message'].map(post => {
         const POSTBOX = document.createElement('a')
         POSTBOX.className = "touslesposts-box"
-<<<<<<< Updated upstream
-        POSTBOX.href=`/modifierpost/id=${post.id}`
-=======
         POSTBOX.href=`/post?id=${post.id}`
->>>>>>> Stashed changes
+
         CONTAINERTOUSLESPOSTS.append(POSTBOX)
      
         const H2 = document.createElement('h2')
