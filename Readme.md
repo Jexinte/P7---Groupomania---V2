@@ -20,8 +20,15 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 ## Connexion 
 ![connexion_page](https://user-images.githubusercontent.com/88725081/190871204-e93898d5-b051-44af-a11e-f2f5096e998d.PNG)
 
+## Accueil
+![accueil](https://user-images.githubusercontent.com/88725081/190905037-e97bdd0d-3806-4da9-ab8f-75a61b80a2bb.PNG)
+
 ## Création de post
 ![creation_post](https://user-images.githubusercontent.com/88725081/190871354-56b35847-b768-4ed5-8862-789419eea229.PNG)
+
+## Affichage d'un post ( My scrren is too wide to show them correctly)
+![post pt1](https://user-images.githubusercontent.com/88725081/190905038-56439faa-6df8-4751-bdbe-d6045d364b3b.PNG)
+![post pt2](https://user-images.githubusercontent.com/88725081/190905039-73f11aae-f645-4d34-a917-fb370dde393c.PNG)
 
 
 
