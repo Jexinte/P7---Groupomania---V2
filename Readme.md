@@ -1,6 +1,6 @@
 # Description
 
-For a many weeks now I train my self to re-learning nodejs and vuejs through many frontendmentor challenges , create few api to be used to those 2 Frameworks and here now I'm able to dive in this one which gonna be a full-stack website with a simple goal "Allow users to create post , read , modify , like and delete it and at same time allow some moderation on posts"
+For a many weeks now I train my self to re-learning nodejs and vuejs through many frontendmentor challenges , create few api to be used on those 2 Frameworks and here now I'm able to dive in this final project which gonna be a full-stack website with a simple goal "Allow users to create post , read , modify , like and delete it and at same time allow some moderation on posts"
 
 
 # How to use it
