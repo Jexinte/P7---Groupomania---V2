@@ -27,7 +27,7 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 ![creation_post](https://user-images.githubusercontent.com/88725081/190871354-56b35847-b768-4ed5-8862-789419eea229.PNG)
 
 ## Affichage d'un post
-![Affichage post](https://user-images.githubusercontent.com/88725081/191079976-c95209e3-e74b-40be-85a9-d1df187b2541.png)
+![Affichage post ](https://user-images.githubusercontent.com/88725081/191080561-13b2f27b-1fe7-473d-bcab-00518008611e.png)
 
 ## Commentaires
 ![Commentaires](https://user-images.githubusercontent.com/88725081/191079956-d12e2e12-7c2a-4158-b9f1-59a289551070.png)
