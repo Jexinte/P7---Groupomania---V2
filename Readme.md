@@ -26,10 +26,11 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 ## Création de post
 ![creation_post](https://user-images.githubusercontent.com/88725081/190871354-56b35847-b768-4ed5-8862-789419eea229.PNG)
 
-## Affichage d'un post ( My scrren is too wide to show them correctly)
-![post pt1](https://user-images.githubusercontent.com/88725081/190905038-56439faa-6df8-4751-bdbe-d6045d364b3b.PNG)
-![post pt2](https://user-images.githubusercontent.com/88725081/190905039-73f11aae-f645-4d34-a917-fb370dde393c.PNG)
+## Affichage d'un post
+![Affichage post](https://user-images.githubusercontent.com/88725081/191079976-c95209e3-e74b-40be-85a9-d1df187b2541.png)
 
+## Commentaires
+![Commentaires](https://user-images.githubusercontent.com/88725081/191079956-d12e2e12-7c2a-4158-b9f1-59a289551070.png)
 
 
 # What I learned
