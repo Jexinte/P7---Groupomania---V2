@@ -74,6 +74,11 @@ module.exports = (sequelize,DataTypes) => {
       // A la création de cette donnée elle sera transformé en une chaîne de caractères de l'API vers la base de données ['donnée','donnée'] = 'donnée','donnée'
       this.setDataValue('types', utilisateurQuiNonPasAimés.join())
     },
+  } ,
+
+  dateDePublication : {
+    type:DataTypes.DATE,
+    defaultValue:DataTypes.NOW
   }
   },
   {

@@ -7,7 +7,7 @@ export default class PostViaIdentifiant {
     const CONTAINERPOST = document.querySelector('.post')
     AXIOS({
       method:'get',
-      url:`http://localhost:3000/api/posts/post/${IDENTIFIANTDUPOST}`,
+      url:`http://localhost:3000/api/posts/affichepost/${IDENTIFIANTDUPOST}`,
       withCredentials:true
     })
 
@@ -27,7 +27,21 @@ export default class PostViaIdentifiant {
          CONTENU.className = "contenu-post"
          CONTAINERPOST.append(CONTENU)
          CONTENU.textContent = res.data['data'].contenu
+        const AUTEURBOX = document.createElement('div')
+        AUTEURBOX.className = "auteurbox"
+        CONTAINERPOST.append(AUTEURBOX)
+         const AUTEUR = document.createElement('p')
+         AUTEUR.className = "auteur-post"
+         AUTEURBOX.append(AUTEUR)
+         AUTEUR.textContent = `Publié par ${res.data['data'].auteur}, le`
 
+         const DATE = document.createElement('p')
+         DATE.className = "date-post"
+         AUTEURBOX.append(DATE)
+         const DATEFORMAT = new Date(res.data['data'].dateDePublication)
+         const DATEFRANÇAISE = DATEFORMAT.toLocaleDateString('fr')   
+        
+         DATE.textContent = `  ${DATEFRANÇAISE}`
 
       })
  

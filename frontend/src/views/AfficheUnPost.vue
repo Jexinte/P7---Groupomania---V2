@@ -9,6 +9,10 @@
     <div class="post">
       
     </div>
+    <div class="commentaires-informations">
+      <Commentaire></Commentaire>
+      <AfficheCommentaires></AfficheCommentaires>
+    </div>
   </div>
 </template>
 
@@ -16,12 +20,18 @@
 <script>
   import PostViaIdentifiant from '@/services/AfficheUnPost';
 import Menu_Deconnexion from '../components/Menu_Deconnexion.vue';
+
+
+import Commentaire from '@/components/CréationCommentaires.vue';
+import AfficheCommentaires from '@/components/AfficheCommentaires.vue';
   const POST = new PostViaIdentifiant()
+
   export default {
     mounted: function () {
         POST.afficheLePost();
+
     },
-    components: { Menu_Deconnexion }
+    components: { Menu_Deconnexion, Commentaire, AfficheCommentaires }
 }
 </script>
 
@@ -66,4 +76,15 @@ import Menu_Deconnexion from '../components/Menu_Deconnexion.vue';
     padding-bottom: 2em;
     border-bottom: 3px solid black;
   }
+
+  .auteurbox {
+    display: flex;
+
+  justify-content: flex-end;
+}
+
+.commentaires-informations{
+  padding-top:10em;
+}
+  
 </style>

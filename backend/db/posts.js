@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes} = require('sequelize')
 const postModel = require('../models/posts')
+const commentairesModel = require('../models/Commentaires')
 const fauxPost = require('../db/fauxposts')
 const dotenv = require('dotenv')
 dotenv.config()
@@ -20,7 +21,7 @@ const sequelize = new Sequelize (
 )
 
 const POSTS = postModel(sequelize,DataTypes)
-
+const COMMENTAIRES = commentairesModel(sequelize,DataTypes)
 const initTablePost = () => {
 
   sequelize.sync({force:true}).then(_ => {
@@ -37,5 +38,5 @@ const initTablePost = () => {
 }
 
 module.exports = {
-  initTablePost,POSTS
+  initTablePost,POSTS,COMMENTAIRES
 }

@@ -14,7 +14,9 @@ router.use(cors(corsOptions))
 router.use(express.json())
 
 router.get('/listeposts',authSession,multer,PostsController.afficheLesPost)
-router.get('/post/:id',authSession,multer,PostsController.afficheLePost)
+router.get('/affichepost/:id',authSession,multer,PostsController.afficheLePost)
+router.get('/affichescommentaires',authSession,multer,PostsController.afficheLesCommentaires)
 router.post('/creation',authSession,multer,PostsController.creationDunPost)
+router.post('/creationcommentaire/:id',authSession,multer,PostsController.creationCommentaire)
 
 module.exports = router

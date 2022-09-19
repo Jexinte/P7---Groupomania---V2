@@ -68,7 +68,7 @@ import Menu_Connexion from '@/components/Menu_Connexion.vue';
   
     
     methods: {
-        verificationDesChampsDeFormulaire(e) {
+        verificationDesChampsDeFormulaire() {
            
             const ERREURSURLEMAIL = document.getElementById("mailerrormsg");
             const ERREURSURLEMOTDEPASSE = document.getElementById("motdepasseerrormsg");
