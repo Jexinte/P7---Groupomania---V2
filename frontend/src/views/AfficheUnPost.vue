@@ -86,5 +86,18 @@ import AfficheCommentaires from '@/components/AfficheCommentaires.vue';
 .commentaires-informations{
   padding-top:10em;
 }
-  
+
+.affichecommentairesbox{
+  display: flex;
+flex-direction: column;
+gap: 1.2em;
+padding-top: 1.5em;
+}
+.auteur {
+  font-weight: var(--900);
+}
+
+.date-commentaires {
+  font-weight: normal;
+}
 </style>

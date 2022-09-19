@@ -60,7 +60,6 @@ exports.creationDunPost = (req,res) => {
 }
 
 
-// const { POSTS }  = require('../db/posts')
 
 exports.creationCommentaire = (req,res) => {
 

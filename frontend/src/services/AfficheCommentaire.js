@@ -26,7 +26,7 @@ export default class AfficheCommentaires {
           
           const AUTEURPARAGRAPH = document.createElement('p')
                 AUTEURPARAGRAPH.className = "auteur"
-                AUTEURPARAGRAPH.textContent =`${commentaire.auteur} le , `
+                AUTEURPARAGRAPH.textContent =`${commentaire.auteur}, `
                 AFFICHESCOMMENTAIREBOX.append(AUTEURPARAGRAPH)
 
           const DATE = document.createElement('span')
@@ -34,17 +34,17 @@ export default class AfficheCommentaires {
                 const DATEFORMAT = new Date(commentaire.dateDePublication)
                 const DATEFRANÇAISE = DATEFORMAT.toLocaleDateString('fr')
                 AUTEURPARAGRAPH.append(DATE)
-                DATE.textContent = `${DATEFRANÇAISE} : `
+                DATE.textContent = ` le ${DATEFRANÇAISE} : `
 
           // const AUTEUR = document.createElement('p')
           //       AUTEUR.className = "auteur-commentaires"
           //       AFFICHESCOMMENTAIREBOX.append(AUTEUR)
           //       AUTEUR.textContent = `${commentaire.auteur} a écrit : `
          
-          // const CONTENU = document.createElement('p')
-          //       CONTENU.className = "contenu-commentaires"
-          //       AFFICHESCOMMENTAIREBOX.append(CONTENU)
-          //       CONTENU.textContent = `${commentaire.commentaires} `
+           const CONTENU = document.createElement('p')
+                 CONTENU.className = "contenu-commentaires"
+                 AFFICHESCOMMENTAIREBOX.append(CONTENU)
+                 CONTENU.textContent = `${commentaire.commentaires} `
           
           
         }
