@@ -93,15 +93,83 @@ COMMENTAIRES.create({
 }
 
 exports.afficheLesCommentaires = (req,res) => {
-  const id = req.params.id
-const idParse = parseInt(id)
-
-// COMMENTAIRES.findOne({where:{id_post:idParse}}).then(response => {
-//   res.status(200).json({data1:response})
-// })
 
 COMMENTAIRES.findAll().then(response => {
   res.status(200).json({data1:response})
 })
+}
+
+exports.likesSystem = (req,res) => {
+  
+  const  {likes}  = req.body
+  const likesParsed = JSON.parse(likes)
+  const { id } = req.params
+  
+  SESSION.findAll().then(session => {
+    
+    
+      //* 1  - Récupération de l'identifiant de session de l'utilisateur actuellement connecté 
+    const dataCookie =  session[0].dataValues['data']
+
+ //* 2 - On récupère le post que l'utilisateur est sur le point de noter
+ POSTS.findOne({where:{id:id}}).then(post => {
+   
+
+  //* 3 - Contient les données du cookie de session ayant le nom de l'utilisateur connecté 
+   const utilisateur = JSON.parse(dataCookie) 
+   let tableauDesUtilisateursQuiOntAimés = []
+
+  
+   //! Si l'utilisateur n'est pas dans le tableau correspondant 
+   if(!post.utilisateurQuiOntAimés.includes(utilisateur.utilisateur) && likesParsed === 1) {
+
+    //* 4 -  On incrémente le compteur  de 1
+     POSTS.increment({likes:1},{where:{id:id}})
+     .then(() => 
+     {
+      //* On ajoute l'utilisateur dans le tableau
+tableauDesUtilisateursQuiOntAimés.push(utilisateur.utilisateur)
+
+    
+            //* 5 - Mise à jour la colonne correspondante
+                    POSTS.update({utilisateurQuiOntAimés:tableauDesUtilisateursQuiOntAimés},{
+                      where : {
+                        id:id
+                      }
+                    })
+            //* 6 -  Puis on récupère les données du post afin de vérifier que l'ajout s'est bien fait
+                    .then(_ => {
+                      POSTS.findByPk(id).then(post=> res.status(200).json(post))
+                    })
+                    
+              
+      })
+            
+    .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
+            
+            
+}
+          // 7 - Si l'utlisateur essaye d'aimer un post alors qu'il est déjà dans le tableau correspondant
+          else{
+           res.status(400).json({message:`Un utilisateur ne peut aimer qu'un post à la fois !`})
+          
+         }
+
+        //  else if(post.utilisateurQuiOntAimés.includes(utilisateur.userId) && likesParsed === 0) {
+          
+        //  }
+       
+      })
+
+      .catch(err => res.status(500).json({message:err}))
+  })
+
+  .catch(err => res.status(500).json({message:err}))
+
+
+
+
+  
+
 
 }

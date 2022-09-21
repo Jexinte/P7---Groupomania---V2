@@ -7,7 +7,7 @@
       
     </div>
     <div class="post">
-      
+      <Likes id="likes"></Likes>
     </div>
     <div class="commentaires-informations">
       <Commentaire></Commentaire>
@@ -18,20 +18,30 @@
 
 
 <script>
-  import PostViaIdentifiant from '@/services/AfficheUnPost';
+import PostViaIdentifiant from '@/services/AfficheUnPost';
 import Menu_Deconnexion from '../components/Menu_Deconnexion.vue';
-
-
 import Commentaire from '@/components/CréationCommentaires.vue';
 import AfficheCommentaires from '@/components/AfficheCommentaires.vue';
+import Likes from '@/components/Likes.vue'
+
   const POST = new PostViaIdentifiant()
 
   export default {
     mounted: function () {
-        POST.afficheLePost();
+        POST.afficheLePost(),
+        this.auteur()
 
     },
-    components: { Menu_Deconnexion, Commentaire, AfficheCommentaires }
+
+    methods : {
+      auteur(){
+        const auteurBox = document.querySelector('.auteurbox')
+        
+        // const likes = document.getElementById('likes')
+        // auteurBox.appendChild(likes)
+      }
+    },
+    components: { Menu_Deconnexion, Commentaire, AfficheCommentaires, Likes }
 }
 </script>
 

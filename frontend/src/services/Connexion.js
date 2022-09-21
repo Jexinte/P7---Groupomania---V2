@@ -24,6 +24,7 @@ export default class Connexion {
         ERREURBOXMSG.textContent = ""
         //! Cette redirection est temporaire le temps de faire des test 
         document.cookie=`idSession=${res.data['idSession']};`
+        document.cookie=`idUtilisateur=${res.data['identifiantUtilisateur']};`
    
          router.push('/accueil')
       }

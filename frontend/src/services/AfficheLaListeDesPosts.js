@@ -39,8 +39,8 @@ export default class ListeDesPosts{
     })
 
     .catch(error => {
-      if(error.response['status'] === 403 || 500)
-      return window.location.href="/connexion"
+      // if(error.response['status'] === 403 || 500)
+      // return window.location.href="/connexion"
     })
   }
 }

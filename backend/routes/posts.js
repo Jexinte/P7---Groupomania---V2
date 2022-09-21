@@ -16,7 +16,9 @@ router.use(express.json())
 router.get('/listeposts',authSession,multer,PostsController.afficheLesPost)
 router.get('/affichepost/:id',authSession,multer,PostsController.afficheLePost)
 router.get('/affichescommentaires',authSession,multer,PostsController.afficheLesCommentaires)
+
 router.post('/creation',authSession,multer,PostsController.creationDunPost)
 router.post('/creationcommentaire/:id',authSession,multer,PostsController.creationCommentaire)
+router.put('/affichepost/:id',authSession,multer,PostsController.likesSystem)
 
 module.exports = router

@@ -51,29 +51,21 @@ module.exports = (sequelize,DataTypes) => {
 
   utilisateurQuiOntAimés : {
     type : DataTypes.STRING,
-    defaultValue:'',
+    defaultValue:'King,La',
     get() {
       // Permet de récupérer les informations de la propriété "Types" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
       return this.getDataValue('utilisateurQuiOntAimés').split(',')
     },
+      set(value){
+        this.setDataValue('utilisateurQuiontAimés',value.join())
+      }
 
-    // Setter
-    set(utilisateurQuiOntAimés) {
-      // A la création de cette donnée elle sera transformé en une chaîne de caractères de l'API vers la base de données ['donnée','donnée'] = 'donnée','donnée'
-      this.setDataValue('types', utilisateurQuiOntAimés.join())
-    },
   },
 
   utilisateurQuiNontPasAimés : {
     type : DataTypes.STRING,
     defaultValue:'',
 
-
-    // Setter
-    set(utilisateurQuiNonPasAimés) {
-      // A la création de cette donnée elle sera transformé en une chaîne de caractères de l'API vers la base de données ['donnée','donnée'] = 'donnée','donnée'
-      this.setDataValue('types', utilisateurQuiNonPasAimés.join())
-    },
   } ,
 
   dateDePublication : {

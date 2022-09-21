@@ -11,6 +11,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-library.add(faArrowLeft)
+import { faArrowLeft,faThumbsUp,faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+library.add(faArrowLeft,faThumbsDown,faThumbsUp)
 createApp(App).use(store).use(router).component('font-awesome-icon',FontAwesomeIcon).mount('#app')

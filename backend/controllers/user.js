@@ -85,9 +85,17 @@ exports.déconnexion = (req,res) => {
   //* Vérification de la correspondances des identifiants de session avant déconnexion
   SESSION.findOne({where:{session_id:session.id}})
   .then(correspondance => {
-    if(correspondance)
+   
+    if(correspondance) {
+
       session.destroy()
       res.status(200).json({message:`Vous avez bien été déconnectez et allez être redirigez vers la page d'accueil`})
+    }
+
+    else{
+
+      res.status(500).json({message:'Ok'})
+    }
   })
 
   .catch(() => {
