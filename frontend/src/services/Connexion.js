@@ -1,17 +1,17 @@
 import router from '@/router'
 
-const AXIOS = require('axios')
+const axios = require('axios')
 
 export default class Connexion {
   connexion(){
- const FORM = document.querySelector('.connexion-form')
- const ERREURBOX = document.getElementById('erreur')
- const ERREURBOXMSG = document.getElementById('erreur-msg')
+ const form = document.querySelector('.connexion-form')
+ const erreurBox = document.getElementById('erreur')
+ const erreurBoxMsg = document.getElementById('erreur-msg')
 
-    AXIOS({
+    axios({
       url:'http://localhost:3000/api/auth/connexion',
       method:'post',
-      data : new FormData(FORM),
+      data : new FormData(form),
 
 
     })
@@ -20,8 +20,8 @@ export default class Connexion {
     .then(res => {
 
       if(res.status === 200){
-        ERREURBOX.style.display="none"
-        ERREURBOXMSG.textContent = ""
+        erreurBox.style.display="none"
+        erreurBoxMsg.textContent = ""
         //! Cette redirection est temporaire le temps de faire des test 
         document.cookie=`idSession=${res.data['idSession']};`
         document.cookie=`idUtilisateur=${res.data['identifiantUtilisateur']};`
@@ -35,8 +35,8 @@ export default class Connexion {
 
       if(error.response.status)
       {
-        ERREURBOX.style.display="block"
-        ERREURBOXMSG.textContent = error.response['data'].message.replace('Validation error:','')
+        erreurBox.style.display="block"
+        erreurBoxMsg.textContent = error.response['data'].message.replace('Validation error:','')
       }
 
     })

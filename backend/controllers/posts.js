@@ -3,18 +3,22 @@ const {SESSION} = require('../db/session')
 const {USER} = require('../db/sequelize')
 const { COMMENTAIRES } = require('../db/posts')
 const { ValidationError } = require('sequelize')
+
 exports.afficheLesPost = (req,res) => {
 
         POSTS.findAll().then(post => res.status(200).json({message:post}))
       
 }
 
+
+
 exports.afficheLePost = (req,res) => {
   const { id } = req.params
   
-
   POSTS.findByPk(id).then(post => res.status(200).json({data:post}))
 }
+
+
 
 exports.creationDunPost = (req,res) => {
   
@@ -64,15 +68,15 @@ exports.creationDunPost = (req,res) => {
 exports.creationCommentaire = (req,res) => {
 
 
-const id = req.params.id
-const idParse = parseInt(id)
+const { id } = req.params
+// const idParse = parseInt(id)
 
 //* Il est nécessaire de récuperer les identifiants des posts afin de les faire correspondre avec l'identifiant en paramètre puis associé la réponse au champ "id_post" de la table commentaires
 
 //* MISE A JOUR UNE BONNE PARTIE DU TRAVAIL A ETE EFFECTUEE 
 
 //* V2 : LA CREATION DE COMMENTAIRE FONCTIONNE AU 19/09/2022 côté front et back
-POSTS.findOne({where:{id:idParse}}).then(response => {
+POSTS.findOne({where:{id:id}}).then(response => {
 COMMENTAIRES.create({
   id_post:response.id,
   auteur:req.body.auteur,
@@ -100,9 +104,9 @@ COMMENTAIRES.findAll().then(response => {
 }
 
 exports.likesSystem = (req,res) => {
-  /* TEST*/
+
   const  {likes}  = req.body
-  const likesParsed = JSON.parse(likes)
+  const likesStatus = JSON.parse(likes)
   const { id } = req.params
   
   SESSION.findAll().then(session => {
@@ -123,7 +127,7 @@ exports.likesSystem = (req,res) => {
   let tableauDesUtilisateursQuiNontPasAimés = post.utilisateursQuiNontPasAimés
 
   //! Si l'utilisateur n'est pas dans le tableau correspondant et qu'il aime la sauce  
-  if(!tableauDesUtilisateursQuiOntAimés.includes(utilisateur.utilisateur) && likesParsed === 1) {
+  if(!tableauDesUtilisateursQuiOntAimés.includes(utilisateur.utilisateur) && likesStatus === 1) {
 
     tableauDesUtilisateursQuiOntAimés.push(utilisateur.utilisateur)
 
@@ -154,7 +158,7 @@ exports.likesSystem = (req,res) => {
 
 
 //! Si l'utilisateur n'aime plus la sauce et qu'il est déjà présent dans le tableau
-else if(tableauDesUtilisateursQuiOntAimés.includes(utilisateur.utilisateur) && likesParsed === 0) {
+else if(tableauDesUtilisateursQuiOntAimés.includes(utilisateur.utilisateur) && likesStatus === 0) {
 
   //* 1- On recherche d'abord l'utilisateur qui retire son like 
   const correspondance = tableauDesUtilisateursQuiOntAimés.find(utilisateurs => utilisateurs === utilisateur.utilisateur)
@@ -200,7 +204,7 @@ else if(tableauDesUtilisateursQuiOntAimés.includes(utilisateur.utilisateur) && 
 }
 
 //! Si l'utilisateur décide de retirer son dislike alors 
-else if(tableauDesUtilisateursQuiNontPasAimés.includes(utilisateur.utilisateur) && likesParsed === 0) {
+else if(tableauDesUtilisateursQuiNontPasAimés.includes(utilisateur.utilisateur) && likesStatus === 0) {
 
   //* 1- On recherche d'abord l'utilisateur qui retire son like 
   const correspondance = tableauDesUtilisateursQuiNontPasAimés.find(utilisateurs => utilisateurs === utilisateur.utilisateur)
@@ -246,7 +250,7 @@ else if(tableauDesUtilisateursQuiNontPasAimés.includes(utilisateur.utilisateur)
 }
 
 //! Si l'utilisateur n'aime pas la sauce et qu'il n'est pas dans le tableau
- else if(!tableauDesUtilisateursQuiNontPasAimés.includes(utilisateur.utilisateur) && likesParsed === -1) {
+ else if(!tableauDesUtilisateursQuiNontPasAimés.includes(utilisateur.utilisateur) && likesStatus === -1) {
 
   tableauDesUtilisateursQuiNontPasAimés.push(utilisateur.utilisateur)
 

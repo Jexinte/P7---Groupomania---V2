@@ -1,47 +1,47 @@
-const AXIOS = require('axios')
+const axios = require('axios')
 
 export default class PostViaIdentifiant {
   afficheLePost(){
-    const SEARCH_PARAMS = new URLSearchParams(window.location.search)
-    const IDENTIFIANTDUPOST = parseInt(SEARCH_PARAMS.get('id'))
-    const CONTAINERPOST = document.querySelector('.post')
-    AXIOS({
+    const searchParams = new URLSearchParams(window.location.search)
+    const identifiantDuPost = parseInt(searchParams.get('id'))
+    const containerPost = document.querySelector('.post')
+    axios({
       method:'get',
-      url:`http://localhost:3000/api/posts/affichepost/${IDENTIFIANTDUPOST}`,
+      url:`http://localhost:3000/api/posts/affichepost/${identifiantDuPost}`,
       withCredentials:true
     })
 
     .then(res =>{
 
-         const POSTBOX = document.createElement('h2')
-         POSTBOX.className = "h2-post"
-        POSTBOX.textContent = res.data['data'].titre
-         CONTAINERPOST.append(POSTBOX)
+         const postBox = document.createElement('h2')
+         postBox.className = "h2-post"
+        postBox.textContent = res.data['data'].titre
+         containerPost.append(postBox)
      
-         const IMAGE = document.createElement('img')
-         IMAGE.className="image-post"
-         CONTAINERPOST.append(IMAGE)
-         IMAGE.src= res.data['data'].imageUrl
+         const image = document.createElement('img')
+         image.className="image-post"
+         containerPost.append(image)
+         image.src= res.data['data'].imageUrl
         
-         const CONTENU = document.createElement('p')
-         CONTENU.className = "contenu-post"
-         CONTAINERPOST.append(CONTENU)
-         CONTENU.textContent = res.data['data'].contenu
-        const AUTEURBOX = document.createElement('div')
-        AUTEURBOX.className = "auteurbox"
-        CONTAINERPOST.append(AUTEURBOX)
+         const contneu = document.createElement('p')
+         contneu.className = "contenu-post"
+         containerPost.append(contneu)
+         contneu.textContent = res.data['data'].contenu
+        const auteurBox = document.createElement('div')
+        auteurBox.className = "auteurbox"
+        containerPost.append(auteurBox)
          const AUTEUR = document.createElement('p')
          AUTEUR.className = "auteur-post"
-         AUTEURBOX.append(AUTEUR)
+         auteurBox.append(AUTEUR)
          AUTEUR.textContent = `Publié par ${res.data['data'].auteur}, le`
 
-         const DATE = document.createElement('p')
-         DATE.className = "date-post"
-         AUTEURBOX.append(DATE)
-         const DATEFORMAT = new Date(res.data['data'].dateDePublication)
-         const DATEFRANÇAISE = DATEFORMAT.toLocaleDateString('fr')   
+         const date = document.createElement('p')
+         date.className = "date-post"
+         auteurBox.append(date)
+         const dateFormat = new Date(res.data['data'].dateDePublication)
+         const dateFrançaise = dateFormat.toLocaleDateString('fr')   
         
-         DATE.textContent = `  ${DATEFRANÇAISE}`
+         date.textContent = `  ${dateFrançaise}`
 
       })
  

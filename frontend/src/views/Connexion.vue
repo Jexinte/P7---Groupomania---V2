@@ -54,7 +54,7 @@
   import Erreur from '@/components/Erreur.vue'
   import Connexion from '@/services/Connexion';
 import Menu_Connexion from '@/components/Menu_Connexion.vue';
-  const UTILISATEUR = new Connexion()
+  const utilisateur = new Connexion()
   
   export default {
 
@@ -70,44 +70,44 @@ import Menu_Connexion from '@/components/Menu_Connexion.vue';
     methods: {
         verificationDesChampsDeFormulaire() {
            
-            const ERREURSURLEMAIL = document.getElementById("mailerrormsg");
-            const ERREURSURLEMOTDEPASSE = document.getElementById("motdepasseerrormsg");
+            const erreurSurLeMail = document.getElementById("mailerrormsg");
+            const erreurSurLeMotDePasse = document.getElementById("motdepasseerrormsg");
   
 
             if (this.adresseElectronique === "") {
-              ERREURSURLEMAIL.textContent = "Le champ ne peut être vide";
-              ERREURSURLEMAIL.style.color = "red";
+              erreurSurLeMail.textContent = "Le champ ne peut être vide";
+              erreurSurLeMail.style.color = "red";
    
             }
 
             else {
-                ERREURSURLEMAIL.textContent = "";
+                erreurSurLeMail.textContent = "";
             }
 
             
             if (this.motDePasse === "") {
-              ERREURSURLEMOTDEPASSE.textContent = "Le champ ne peut être vide";
-              ERREURSURLEMOTDEPASSE.style.color = "red";
+              erreurSurLeMotDePasse.textContent = "Le champ ne peut être vide";
+              erreurSurLeMotDePasse.style.color = "red";
             
             }
             else {
-                ERREURSURLEMOTDEPASSE.textContent = "";
+                erreurSurLeMotDePasse.textContent = "";
             }
 
         },
 
         permettreALutilisateurDeVoirLeMotDePasseTaper(){
 
-          const CHAMPMOTDEPASSE = document.getElementById('motdepasse')
+          const champMotDePasse = document.getElementById('motdepasse')
 
-          if(CHAMPMOTDEPASSE.type === "password")
-              CHAMPMOTDEPASSE.type = "text"
+          if(champMotDePasse.type === "password")
+              champMotDePasse.type = "text"
           else
-              CHAMPMOTDEPASSE.type="password"
+              champMotDePasse.type="password"
         },
 
         connexion(){
-          UTILISATEUR.connexion()
+          utilisateur.connexion()
         }
     },
     components: { Erreur, Menu_Connexion }

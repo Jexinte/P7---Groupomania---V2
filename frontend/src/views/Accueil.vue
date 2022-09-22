@@ -15,7 +15,7 @@
 <script>
 import Menu_Accueil from '@/components/Menu_Accueil.vue'
 import ListeDesPosts from '@/services/AfficheLaListeDesPosts'
-const POSTS = new ListeDesPosts()
+const posts = new ListeDesPosts()
   export default {
     mounted:function(){
       this.posts()
@@ -23,7 +23,7 @@ const POSTS = new ListeDesPosts()
 
     methods : {
       posts(){
-        POSTS.listeposts()
+        posts.listeposts()
       }
     },
     components: { Menu_Accueil }

@@ -1,16 +1,16 @@
 import router from '@/router'
 
-const AXIOS = require('axios')
+const axios = require('axios')
 
 export default class Post {
   creationDePost(){
-    const FORM = document.querySelector('form')
-    FORM.addEventListener('submit',() => {
+    const form = document.querySelector('form')
+    form.addEventListener('submit',() => {
       
-     AXIOS({
+     axios({
       method:'post',
       url:'http://localhost:3000/api/posts/creation',
-      data : new FormData(FORM),
+      data : new FormData(form),
       // headers : {
       //   Cookie:document.cookie
       // },

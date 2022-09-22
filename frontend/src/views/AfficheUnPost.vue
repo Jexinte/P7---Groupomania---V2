@@ -24,11 +24,11 @@ import Commentaire from '@/components/CréationCommentaires.vue';
 import AfficheCommentaires from '@/components/AfficheCommentaires.vue';
 import Likes from '@/components/Likes.vue'
 
-  const POST = new PostViaIdentifiant()
+  const post = new PostViaIdentifiant()
 
   export default {
     mounted: function () {
-        POST.afficheLePost(),
+        post.afficheLePost(),
         this.auteur()
 
     },

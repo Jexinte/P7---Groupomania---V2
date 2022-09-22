@@ -1,12 +1,12 @@
 
 
-const AXIOS = require('axios')
+const axios = require('axios')
 
 export default class ListeDesPosts{
   listeposts(){
     
-    const CONTAINERTOUSLESPOSTS = document.querySelector('.touslesposts')
-    AXIOS({
+    const containerTousLesPosts = document.querySelector('.touslesposts')
+    axios({
       method:'get',
       url:'http://localhost:3000/api/posts/listeposts',
       withCredentials:true
@@ -14,24 +14,24 @@ export default class ListeDesPosts{
     
     .then(res => {
       res.data['message'].map(post => {
-        const POSTBOX = document.createElement('a')
-        POSTBOX.className = "touslesposts-box"
-        POSTBOX.href=`/post?id=${post.id}`
+        const postBox = document.createElement('a')
+        postBox.className = "touslesposts-box"
+        postBox.href=`/post?id=${post.id}`
 
-        CONTAINERTOUSLESPOSTS.append(POSTBOX)
+        containerTousLesPosts.append(postBox)
      
-        const H2 = document.createElement('h2')
-        POSTBOX.append(H2)
-        H2.textContent = post.titre
-        const IMAGE = document.createElement('img')
-        IMAGE.className ="image"
-        POSTBOX.append(IMAGE)
-        IMAGE.src= post.imageUrl
+        const h2 = document.createElement('h2')
+        postBox.append(h2)
+        h2.textContent = post.titre
+        const image = document.createElement('img')
+        image.className ="image"
+        postBox.append(image)
+        image.src= post.imageUrl
         
-        const CONTENU = document.createElement('p')
-        CONTENU.className = "touslesposts__paragraphe"
-        POSTBOX.append(CONTENU)
-        CONTENU.textContent = post.contenu
+        const contenu = document.createElement('p')
+        contenu.className = "touslesposts__paragraphe"
+        postBox.append(contenu)
+        contenu.textContent = post.contenu
 
 
       })

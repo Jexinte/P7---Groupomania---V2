@@ -60,7 +60,7 @@
   import Erreur from '@/components/Erreur.vue'
 import Menu_Inscription from '@/components/Menu_Inscription.vue'
 
-  const UTILISATEUR = new Utilisateur()
+  const utilisateur = new Utilisateur()
   
   export default {
 
@@ -74,53 +74,53 @@ import Menu_Inscription from '@/components/Menu_Inscription.vue'
     },
 
     mounted: function () {
-        UTILISATEUR.inscription();
+        utilisateur.inscription();
     },
 
     methods: {
         verificationDesChampsDeFormulaire(e) {
-            const ERREURSURLUTILISATEUR = document.getElementById("utilisateurerrormsg");
-            const ERREURSURLEMAIL = document.getElementById("mailerrormsg");
-            const ERREURSURLEMOTDEPASSE = document.getElementById("motdepasseerrormsg");
+            const erreurSurLutilisateur = document.getElementById("utilisateurerrormsg");
+            const erreurSurLemail = document.getElementById("mailerrormsg");
+            const erreurSurLeMotDePasse = document.getElementById("motdepasseerrormsg");
    
         
             if (this.utilisateur === "") {
-                ERREURSURLUTILISATEUR.textContent = "Le champ ne peut être vide";
-                ERREURSURLUTILISATEUR.style.color = "red";
+                erreurSurLutilisateur.textContent = "Le champ ne peut être vide";
+                erreurSurLutilisateur.style.color = "red";
                 e.preventDefault();
             }
             else {
-                ERREURSURLUTILISATEUR.textContent = "";
+                erreurSurLutilisateur.textContent = "";
             }
 
             if (this.adresseElectronique === "") {
-                ERREURSURLEMAIL.textContent = "Le champ ne peut être vide";
-                ERREURSURLEMAIL.style.color = "red";
+                erreurSurLemail.textContent = "Le champ ne peut être vide";
+                erreurSurLemail.style.color = "red";
             }
 
             else {
-                ERREURSURLEMAIL.textContent = "";
+                erreurSurLemail.textContent = "";
             }
 
             
             if (this.motDePasse === "") {
-                ERREURSURLEMOTDEPASSE.textContent = "Le champ ne peut être vide";
-                ERREURSURLEMOTDEPASSE.style.color = "red";
+                erreurSurLeMotDePasse.textContent = "Le champ ne peut être vide";
+                erreurSurLeMotDePasse.style.color = "red";
             }
             else {
-                ERREURSURLEMOTDEPASSE.textContent = "";
+                erreurSurLeMotDePasse.textContent = "";
             }
 
         },
 
         permettreALutilisateurDeVoirLeMotDePasseTaper(){
 
-          const CHAMPMOTDEPASSE = document.getElementById('motdepasse')
+          const champMotDePasse = document.getElementById('motdepasse')
 
-          if(CHAMPMOTDEPASSE.type === "password")
-              CHAMPMOTDEPASSE.type = "text"
+          if(champMotDePasse.type === "password")
+              champMotDePasse.type = "text"
           else
-              CHAMPMOTDEPASSE.type="password"
+              champMotDePasse.type="password"
         }
     },
     components: { Erreur, Menu_Inscription }

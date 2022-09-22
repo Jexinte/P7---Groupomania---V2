@@ -1,30 +1,30 @@
 import router from '@/router'
 
-const AXIOS = require('axios')
+const axios = require('axios')
 
 export default class Utilisateur {
 
     inscription(){
 
     
-      const ERREURBOX = document.getElementById('erreur')
-      const ERREURBOXMSG = document.getElementById('erreur-msg')
-      const FORM = document.querySelector('form')
+      const erreurBox = document.getElementById('erreur')
+      const erreurBoxMsg = document.getElementById('erreur-msg')
+      const form = document.querySelector('form')
 
-      FORM.addEventListener('submit',(e) => {
+      form.addEventListener('submit',(e) => {
       
         
-        AXIOS({
+        axios({
           method:'post',
           url:'http://localhost:3000/api/auth/inscription',
-          data: new FormData(FORM)
+          data: new FormData(form)
         })
         
         .then(res => {
 
           if(res.status === 201){
-            ERREURBOX.style.display="none"
-            ERREURBOXMSG.textContent = ""
+            erreurBox.style.display="none"
+            erreurBoxMsg.textContent = ""
             router.push('/connexion')
           }
         
@@ -34,8 +34,8 @@ export default class Utilisateur {
 
           if(error.response.status)
           {
-            ERREURBOX.style.display="block"
-            ERREURBOXMSG.textContent = error.response['data'].message.replace('Validation error:','')
+            erreurBox.style.display="block"
+            erreurBoxMsg.textContent = error.response['data'].message.replace('Validation error:','')
           }
 
         })

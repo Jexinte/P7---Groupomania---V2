@@ -1,9 +1,9 @@
-const AXIOS = require('axios')
+const axios = require('axios')
 
 export default class Deconnexion {
   deconnexion_utilisateur(){
     
-    AXIOS({
+    axios({
       method:'delete',
       url:'http://localhost:3000/api/auth/deconnexion',
       withCredentials:true

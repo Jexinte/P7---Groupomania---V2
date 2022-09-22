@@ -1,19 +1,19 @@
-const AXIOS = require('axios')
+const axios = require('axios')
 import router from '@/router'
 export default class Commentaires {
   créationCommentaires(){
-    const FORM = document.querySelector('.commentaires-form')
-    const SEARCH_PARAMS = new URLSearchParams(window.location.search) 
-    const SEARCH_PARAMS_POST_ID =  SEARCH_PARAMS.get('id')
-    const IDPOSTPOURLECOMMENTAIRE = parseInt(SEARCH_PARAMS_POST_ID)
-    const ERREURBOX = document.getElementById('erreur')
-    const ERREURBOXMSG = document.getElementById('erreur-msg')
+    const form = document.querySelector('.commentaires-form')
+    const searchParams = new URLSearchParams(window.location.search) 
+    const searchParamsPostId =  searchParams.get('id')
+    const idPostPourLeCommentaire = parseInt(searchParamsPostId)
+    const erreurBox = document.getElementById('erreur')
+    const erreurBoxMsg = document.getElementById('erreur-msg')
 
-    FORM.addEventListener('submit',() => {
-      AXIOS({
+    form.addEventListener('submit',() => {
+      axios({
         method:'post',
-        url:`http://localhost:3000/api/posts/creationcommentaire/${IDPOSTPOURLECOMMENTAIRE}`,
-        data:new FormData(FORM),
+        url:`http://localhost:3000/api/posts/creationcommentaire/${idPostPourLeCommentaire}`,
+        data:new FormData(form),
         withCredentials:true
       })
 

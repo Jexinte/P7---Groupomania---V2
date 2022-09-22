@@ -52,11 +52,11 @@
 <script>
 import Menu_CreationPost from "../components/Menu_CreationPost.vue"
 import Post from "@/services/CréationPost"
-const POST = new Post()
+const post = new Post()
 
   export default {
     mounted:function(){
-      POST.creationDePost()
+      post.creationDePost()
     },
     data(){
       return {
