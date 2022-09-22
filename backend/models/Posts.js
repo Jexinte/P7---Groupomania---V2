@@ -49,22 +49,43 @@ module.exports = (sequelize,DataTypes) => {
       defaultValue : 0
   } ,
 
-  utilisateurQuiOntAimés : {
+  utilisateursQuiOntAimés : {
     type : DataTypes.STRING,
-    defaultValue:'King,La',
     get() {
-      // Permet de récupérer les informations de la propriété "Types" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
-      return this.getDataValue('utilisateurQuiOntAimés').split(',')
+      if (!this.getDataValue('utilisateursQuiOntAimés')) {
+        return [];
+      } else {
+        // Permet de récupérer les informations de la propriété "utilisateursQuiOntAimés" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
+        return this.getDataValue('utilisateursQuiOntAimés').split(',');
+      }
+    
     },
       set(value){
-        this.setDataValue('utilisateurQuiontAimés',value.join())
+     
+          this.setDataValue('utilisateursQuiontAimés',value.join())
+       
+        
       }
 
   },
 
-  utilisateurQuiNontPasAimés : {
+  utilisateursQuiNontPasAimés : {
     type : DataTypes.STRING,
-    defaultValue:'',
+    get() {
+      if (!this.getDataValue('utilisateursQuiNontPasAimés')) {
+        return [];
+      } else {
+        // Permet de récupérer les informations de la propriété "utilisateursQuiNontPasAimés" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
+        return this.getDataValue('utilisateursQuiNontPasAimés').split(',');
+      }
+    
+    },
+      set(value){
+     
+          this.setDataValue('utilisateursQuiNontPasAimés',value.join())
+       
+        
+      }
 
   } ,
 

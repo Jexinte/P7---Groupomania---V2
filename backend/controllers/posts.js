@@ -116,55 +116,180 @@ exports.likesSystem = (req,res) => {
    
 
   //* 3 - Contient les données du cookie de session ayant le nom de l'utilisateur connecté 
-   const utilisateur = JSON.parse(dataCookie) 
-   let tableauDesUtilisateursQuiOntAimés = []
-
   
-   //! Si l'utilisateur n'est pas dans le tableau correspondant 
-   if(!post.utilisateurQuiOntAimés.includes(utilisateur.utilisateur) && likesParsed === 1) {
+  
+  let utilisateur = JSON.parse(dataCookie) 
+  let tableauDesUtilisateursQuiOntAimés = post.utilisateursQuiOntAimés
+  let tableauDesUtilisateursQuiNontPasAimés = post.utilisateursQuiNontPasAimés
 
-    //* 4 -  On incrémente le compteur  de 1
-     POSTS.increment({likes:1},{where:{id:id}})
-     .then(() => 
-     {
-      //* On ajoute l'utilisateur dans le tableau
-tableauDesUtilisateursQuiOntAimés.push(utilisateur.utilisateur)
+  //! Si l'utilisateur n'est pas dans le tableau correspondant et qu'il aime la sauce  
+  if(!tableauDesUtilisateursQuiOntAimés.includes(utilisateur.utilisateur) && likesParsed === 1) {
 
-    
-            //* 5 - Mise à jour la colonne correspondante
-                    POSTS.update({utilisateurQuiOntAimés:tableauDesUtilisateursQuiOntAimés},{
-                      where : {
-                        id:id
-                      }
-                    })
-            //* 6 -  Puis on récupère les données du post afin de vérifier que l'ajout s'est bien fait
-                    .then(_ => {
-                      POSTS.findByPk(id).then(post=> res.status(200).json(post))
-                    })
-                    
-              
-      })
+    tableauDesUtilisateursQuiOntAimés.push(utilisateur.utilisateur)
+
+             //* 5 - Mise à jour la colonne correspondante
+             POSTS.update({utilisateursQuiOntAimés:tableauDesUtilisateursQuiOntAimés},{ where : { id:id }})
+    //* 6 -  Puis on récupère les données du post afin de vérifier que l'ajout s'est bien fait
+            .then(_ => {
+
+                  POSTS.increment({likes:1},{where:{id:id}})
+                      .then(() => 
+                      {
+                  //       //* On ajoute l'utilisateur dans le tableau
+                  
+                    res.status(200).json({message:'La note a bien été prise en compte'})        
+                  })
+
+                  .catch(() => res.status(404).json({message:'Vous n\'êtes pas autorisé à noter plus'}))
+             
+            })
+
+            .catch(error => res.status(404).json({message:error}))
+           
+    //     //* 4 -  On incrémente le compteur  de 1
+         
             
-    .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
-            
-            
+        
 }
-          // 7 - Si l'utlisateur essaye d'aimer un post alors qu'il est déjà dans le tableau correspondant
-          else{
-           res.status(400).json({message:`Un utilisateur ne peut aimer qu'un post à la fois !`})
-          
-         }
 
-        //  else if(post.utilisateurQuiOntAimés.includes(utilisateur.userId) && likesParsed === 0) {
+
+//! Si l'utilisateur n'aime plus la sauce et qu'il est déjà présent dans le tableau
+else if(tableauDesUtilisateursQuiOntAimés.includes(utilisateur.utilisateur) && likesParsed === 0) {
+
+  //* 1- On recherche d'abord l'utilisateur qui retire son like 
+  const correspondance = tableauDesUtilisateursQuiOntAimés.find(utilisateurs => utilisateurs === utilisateur.utilisateur)
+
+  //*2 - Si on a une correspondance on récupère
+  if(correspondance){
+    const indexDeLutilisateurEnCoursDeSuppression = tableauDesUtilisateursQuiOntAimés.findIndex(tableau => {
+      return tableau === utilisateur.utilisateur
+    })
+
+    tableauDesUtilisateursQuiOntAimés.splice(indexDeLutilisateurEnCoursDeSuppression,1)
+    
+  }
+ 
+
+           //* 5 - Mise à jour la colonne correspondante
+           POSTS.update({utilisateursQuiOntAimés:tableauDesUtilisateursQuiOntAimés},{
+            where : {
+              id:id
+            }
+          })
+  //* 6 -  Puis on récupère les données du post afin de vérifier que l'ajout s'est bien fait
+          .then(_ => {
+
+            POSTS.increment({likes:-1},{where:{id:id}})
+                .then(() => 
+                {
+            //       //* On ajoute l'utilisateur dans le tableau
+            
+            POSTS.findByPk(id).then(post=> res.status(200).json(post))
           
-        //  }
+                    
+            })
+              
+       .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
+           
+          })
+         
+  //     //* 4 -  On incrémente le compteur  de 1
+       
+          
+      
+}
+
+//! Si l'utilisateur décide de retirer son dislike alors 
+else if(tableauDesUtilisateursQuiNontPasAimés.includes(utilisateur.utilisateur) && likesParsed === 0) {
+
+  //* 1- On recherche d'abord l'utilisateur qui retire son like 
+  const correspondance = tableauDesUtilisateursQuiNontPasAimés.find(utilisateurs => utilisateurs === utilisateur.utilisateur)
+
+  //*2 - Si on a une correspondance on récupère
+  if(correspondance){
+    const indexDeLutilisateurEnCoursDeSuppression = tableauDesUtilisateursQuiNontPasAimés.findIndex(tableau => {
+      return tableau === utilisateur.utilisateur
+    })
+
+    tableauDesUtilisateursQuiNontPasAimés.splice(indexDeLutilisateurEnCoursDeSuppression,1)
+    
+  }
+ 
+
+           //* 5 - Mise à jour la colonne correspondante
+           POSTS.update({utilisateursQuiNontPasAimés:tableauDesUtilisateursQuiNontPasAimés},{
+            where : {
+              id:id
+            }
+          })
+  //* 6 -  Puis on récupère les données du post afin de vérifier que l'ajout s'est bien fait
+          .then(_ => {
+
+            POSTS.increment({dislikes:-1},{where:{id:id}})
+                .then(() => 
+                {
+            //       //* On ajoute l'utilisateur dans le tableau
+            
+            POSTS.findByPk(id).then(post=> res.status(200).json(post))
+          
+                    
+            })
+              
+       .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
+           
+          })
+         
+  //     //* 4 -  On incrémente le compteur  de 1
+       
+          
+      
+}
+
+//! Si l'utilisateur n'aime pas la sauce et qu'il n'est pas dans le tableau
+ else if(!tableauDesUtilisateursQuiNontPasAimés.includes(utilisateur.utilisateur) && likesParsed === -1) {
+
+  tableauDesUtilisateursQuiNontPasAimés.push(utilisateur.utilisateur)
+
+           //* 5 - Mise à jour la colonne correspondante
+           POSTS.update({utilisateursQuiNontPasAimés:tableauDesUtilisateursQuiNontPasAimés},{
+            where : {
+              id:id
+            }
+          })
+  //* 6 -  Puis on récupère les données du post afin de vérifier que l'ajout s'est bien fait
+          .then(_ => {
+
+            POSTS.increment({dislikes:1},{where:{id:id}})
+                .then(() => 
+                {
+
+            
+            POSTS.findByPk(id).then(post=> res.status(200).json(post))
+          
+                    
+            })
+              
+       .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
+           
+          })
+         
+  //     //* 4 -  On incrémente le compteur  de 1
+       
+          
+      
+}
+
+else {
+  res.status(404).json({message:'Non'})
+}
+      
        
       })
 
-      .catch(err => res.status(500).json({message:err}))
+       .catch(err => res.status(500).json({message:err}))
   })
 
-  .catch(err => res.status(500).json({message:err}))
+   .catch(err => res.status(500).json({message:err}))
 
 
 
