@@ -100,7 +100,7 @@ COMMENTAIRES.findAll().then(response => {
 }
 
 exports.likesSystem = (req,res) => {
-  
+  /* TEST*/
   const  {likes}  = req.body
   const likesParsed = JSON.parse(likes)
   const { id } = req.params
