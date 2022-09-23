@@ -8,6 +8,8 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
  - Type "npm install" on frontend and backend folder
  - You have to get phpmyadmin or any other tools using mysql and mariadb dialect
  - There is an env example file for logs
+ - On frontend folder go on the services folder and replace "inscription.js" by "Inscription.js" ( Don't know why I have an error when cloning the project)
+ - You have to install font awesome for vuejs on frontend without it vuejs won't compile 
  - On backend folder "npm start or nodemon"
  - On frontend folder "npm run serve"
 
