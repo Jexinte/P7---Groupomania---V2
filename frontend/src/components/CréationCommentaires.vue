@@ -3,7 +3,7 @@
   <div class="commentaires-avant-propos">
     <h3>Ajouter un commentaire</h3>
   </div>
-    <form action="/commentaires" method="post" enctype="multipart/form-data" class="commentaires-form" @submit.prevent="verificationDesChampsDeFormulaire">
+    <form action="/commentaires" method="post" enctype="multipart/form-data" class="commentaires-form" @submit.prevent>
       <label for="auteur">
         Auteur <br>
         <input type="text" v-model="auteur" name="auteur" id="auteur" placeholder="John" class="input"> <br>
@@ -40,6 +40,7 @@
     },
 
     methods : {
+      // ITS BROKEN ILL FIX IT LATER
       verificationDesChampsDeFormulaire() {
            
            const ERREURSURLAUTEUR = document.getElementById("erreurauteur");

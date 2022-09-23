@@ -27,6 +27,7 @@
   box-sizing: border-box;
   font-family: var(--lato);
   font-size: 18px;
+  outline:none;
 }
 
 a{
