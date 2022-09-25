@@ -29,12 +29,13 @@ exports.createPost = (req,res) => {
       .then(match => {
         if(match){
           const idUser = match.dataValues['id']
+  
            POSTS.create({
-             utilisateurId:idUser,
-             titre : req.body.title,
+             userId:idUser,
+             title : req.body.title,
              imageUrl :`${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-             contenu : req.body.content,
-             auteur:sessionData.utilisateur
+             content : req.body.content,
+             author:sessionData.user
            })
            .then(post => {
        

@@ -53,6 +53,7 @@ exports.login = (req,res) => {
   let mailOfUserLogin = req.body.mail
    session = req.session
    session.id = req.session.id
+   
 
   //* Permet de retrouver l'adresse mail de l'utilisateur qui se connecte avec celui dans la base de données
   USER.findOne({where:{email:mailOfUserLogin}}).then(user => {
@@ -62,7 +63,7 @@ exports.login = (req,res) => {
     
       //* On ajoute le nom de l'utilisateur ainsi que son identifiant afin de pouvoir s'en servir dans les requêtes pour les posts
     bcrypt.compare(req.body.password , user.password).then(password => {
-      // session.userId = utilisateur.id
+      session.userId = user.id
       session.user= user.user
       if(!password) 
       return res.status(401).json({message:`Le mot de passe est incorrect`})

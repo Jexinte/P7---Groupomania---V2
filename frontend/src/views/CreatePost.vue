@@ -40,7 +40,7 @@
   <!-- DES CHOSES SERONT A CHANGER CE JEUDI -->
       <div class="preview_post">
         <h2 class="preview_title">Aperçu</h2>
-        <h3 class="preview_secondtitle">{{titre}}</h3>
+        <h3 class="preview_secondtitle">{{title}}</h3>
         <img id="output2" :src="previewUrl" >
         <p class="content_preview">{{content}}</p>
       </div>
