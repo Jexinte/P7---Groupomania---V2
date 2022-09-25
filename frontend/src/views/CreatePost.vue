@@ -51,7 +51,7 @@
   </template>
   <script>
   import Menu_CreatePost from "../components/Menu_CreatePost.vue"
-  import CreatePost from "@/services/CreatePost.vue"
+  import CreatePost from "@/services/Posts.vue"
   const user = new CreatePost()
   
     export default {

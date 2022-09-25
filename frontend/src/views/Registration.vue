@@ -56,7 +56,7 @@
 
 <script>
  
-  import Registration from '@/services/Registration.vue'
+  import Registration from '@/services/Auth.vue'
   import Error from '@/components/Error.vue'
 import Menu_Registration from '@/components/Menu_Registration.vue'
 

@@ -14,8 +14,8 @@
 
 <script>
 import Menu_Homepage from '@/components/Menu_Homepage.vue'
-import ListOfPosts from '@/services/DisplayPosts.vue'
-const posts = new ListOfPosts()
+import ListOfPosts from '@/services/Posts.vue'
+const user = new ListOfPosts()
   export default {
     mounted:function(){
       this.posts()
@@ -23,7 +23,7 @@ const posts = new ListOfPosts()
 
     methods : {
       posts(){
-        posts.listeposts()
+        user.listsposts()
       }
     },
     components: { Menu_Homepage }
@@ -88,85 +88,8 @@ a{
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   .banner img {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
     height: 342px;
     width: 347px;
    

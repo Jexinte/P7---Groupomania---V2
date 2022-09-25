@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import Logout from '@/services/Logout.vue';
+  import Logout from '@/services/Auth.vue';
   const user = new Logout()
   export default {
     methods : {

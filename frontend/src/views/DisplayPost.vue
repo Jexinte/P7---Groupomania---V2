@@ -19,17 +19,17 @@
 
 
 <script>
-import PostThroughId from '@/services/DisplayPost.vue';
+import PostThroughId from '@/services/Posts.vue';
 import Menu_Logout from '../components/Menu_Logout.vue';
 import CreateComments from '@/components/CreateComments.vue';
 import DisplayComments from '@/components/DisplayComments.vue';
 import Likes from '@/components/Likes.vue'
 
-  const POST = new PostThroughId()
+  const user = new PostThroughId()
 
   export default {
     mounted: function () {
-        POST.showThePost()
+        user.showThePost()
 
     },
 

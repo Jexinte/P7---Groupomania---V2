@@ -6,13 +6,13 @@
 </template>
 
 <script>
-  import DisplayComments from '@/services/DisplayComments.vue'
+  import DisplayComments from '@/services/Comments.vue'
 
-  const users = new DisplayComments()
+  const user = new DisplayComments()
   export default {
 
     mounted:function(){
-      users.DisplaysComments()
+      user.displayComments()
     }
   }
 </script>

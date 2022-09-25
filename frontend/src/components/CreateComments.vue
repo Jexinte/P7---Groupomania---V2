@@ -24,13 +24,13 @@
 
 
 <script>
-  import Comments from '@/services/CreateComments.vue';
- const comments = new Comments()
+  import Comments from '@/services/Comments.vue';
+ const user = new Comments()
 
   export default{
 
     mounted:function(){
-      comments.createComments()
+      user.createComments()
     },
     data(){
       return {

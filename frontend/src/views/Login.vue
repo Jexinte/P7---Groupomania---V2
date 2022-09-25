@@ -52,7 +52,7 @@
  
 
   import Error from '@/components/Error.vue'
-  import Login from '@/services/Login.vue';
+  import Login from '@/services/Auth.vue';
 import Menu_Login from '@/components/Menu_Login.vue';
   const user = new Login()
   
