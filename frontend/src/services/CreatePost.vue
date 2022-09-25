@@ -11,7 +11,7 @@ export default class CreatePost {
       
       axios({
       method:'post',
-      url:'http://localhost:3000/api/posts/creation',
+      url:'http://localhost:3000/api/posts/createpost',
       data : new FormData(form),
         withCredentials:true
       })

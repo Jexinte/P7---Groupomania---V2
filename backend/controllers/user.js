@@ -3,25 +3,26 @@ const { SESSION } = require('../db/session')
 const bcrypt = require('bcrypt')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 let session
-exports.inscription = (req,res) => {
 
-  let adresseMailDeLutilisateurQuiSinscrit = req.body.mail
-  let nomDeLutilisateurQuiSinscrit = req.body.utilisateur
+exports.registration = (req,res) => {
+
+  let mailOfUserRegistrating = req.body.mail
+  let nameOfUserRegistrating = req.body.user
   let regexMail = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
 
-  bcrypt.hash(req.body.motdepasse,10).then(hash => {
+  bcrypt.hash(req.body.password,10).then(hash => {
 
-    let motDePasseHaché = hash
+    let passwordHash = hash
 
-    if(regexMail.test(adresseMailDeLutilisateurQuiSinscrit)){
+    if(regexMail.test(mailOfUserRegistrating)){
 
         USER.create({
-          utilisateur : nomDeLutilisateurQuiSinscrit,
-          email : adresseMailDeLutilisateurQuiSinscrit,
-          motdepasse : motDePasseHaché
+          user : nameOfUserRegistrating,
+          email : mailOfUserRegistrating,
+          password : passwordHash
         })
         
-        .then(utilisateur => res.status(201).json({message:`L'utilisateur ${utilisateur.utilisateur} a bien été créé`}))
+        .then(user => res.status(201).json({message:`L'utilisateur ${user.user} a bien été créé`}))
 
         .catch(error => {
           if(error instanceof ValidationError){
@@ -47,27 +48,27 @@ exports.inscription = (req,res) => {
   })
 }
 
-exports.connexion = (req,res) => {
+exports.login = (req,res) => {
 
-  let adresseMailDeLutilisateurQuiSeConnecte = req.body.mail
+  let mailOfUserLogin = req.body.mail
    session = req.session
    session.id = req.session.id
 
   //* Permet de retrouver l'adresse mail de l'utilisateur qui se connecte avec celui dans la base de données
-  USER.findOne({where:{email:adresseMailDeLutilisateurQuiSeConnecte}}).then(utilisateur => {
+  USER.findOne({where:{email:mailOfUserLogin}}).then(user => {
 
-    if(!utilisateur)
+    if(!user)
       return res.status(401).json({message:`Cet utilisateur n'existe pas`})
     
       //* On ajoute le nom de l'utilisateur ainsi que son identifiant afin de pouvoir s'en servir dans les requêtes pour les posts
-    bcrypt.compare(req.body.motdepasse , utilisateur.motdepasse).then(motDePasseNonvalide => {
-      session.userId = utilisateur.id
-      session.utilisateur = utilisateur.utilisateur
-      if(!motDePasseNonvalide) 
+    bcrypt.compare(req.body.password , user.password).then(password => {
+      // session.userId = utilisateur.id
+      session.user= user.user
+      if(!password) 
       return res.status(401).json({message:`Le mot de passe est incorrect`})
        
    
-      return res.status(200).json({message:`L'utilisateur ${utilisateur.utilisateur} est bien connecté !`,idSession:session.id,identifiantUtilisateur:session.userId})
+      return res.status(200).json({message:`L'utilisateur ${user.user} est bien connecté !`,idSession:session.id,user:session.user})
       
 
     })
@@ -79,14 +80,14 @@ exports.connexion = (req,res) => {
   .catch(() => res.status(500).json({message:`Veuillez réessayez dans quelques instants`}))
 }
 
-exports.déconnexion = (req,res) => {
+exports.logout = (req,res) => {
   session.id = req.session.id
 
   //* Vérification de la correspondances des identifiants de session avant déconnexion
   SESSION.findOne({where:{session_id:session.id}})
-  .then(correspondance => {
+  .then(match => {
    
-    if(correspondance) {
+    if(match) {
 
       session.destroy()
       res.status(200).json({message:`Vous avez bien été déconnectez et allez être redirigez vers la page d'accueil`})

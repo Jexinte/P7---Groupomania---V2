@@ -9,7 +9,7 @@ const corsOptions = {
 }
 const multer = require('../middleware/multerConfig')
 const UsersControllers = require('../controllers/user')
-const contrôleDuMotDePasse = require('../middleware/passwordValidator')
+const checkPassword = require('../middleware/passwordValidator')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const MySQLStore = require('express-mysql-session')(session)
@@ -36,7 +36,7 @@ router.use(cookieParser())
 router.use(cors(corsOptions))
 
 
-router.post('/inscription',multer,contrôleDuMotDePasse,UsersControllers.inscription)
-router.post('/connexion',multer,UsersControllers.connexion)
-router.delete('/deconnexion',UsersControllers.déconnexion)
+router.post('/registration',multer,checkPassword,UsersControllers.registration)
+router.post('/login',multer,UsersControllers.login)
+router.delete('/logout',UsersControllers.logout)
 module.exports = router

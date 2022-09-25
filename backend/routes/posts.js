@@ -13,12 +13,12 @@ const PostsController = require('../controllers/posts')
 router.use(cors(corsOptions))
 router.use(express.json())
 
-router.get('/listeposts',authSession,multer,PostsController.afficheLesPost)
-router.get('/affichepost/:id',authSession,multer,PostsController.afficheLePost)
-router.get('/affichescommentaires',authSession,multer,PostsController.afficheLesCommentaires)
+router.get('/listsposts',authSession,multer,PostsController.displayPosts)
+router.get('/displaypost/:id',authSession,multer,PostsController.displayPost)
+router.get('/displaycomments',authSession,multer,PostsController.displayComments)
 
-router.post('/creation',authSession,multer,PostsController.creationDunPost)
-router.post('/creationcommentaire/:id',authSession,multer,PostsController.creationCommentaire)
-router.put('/affichepost/:id',authSession,multer,PostsController.likesSystem)
+router.post('/createpost',authSession,multer,PostsController.createPost)
+router.post('/createcomments/:id',authSession,multer,PostsController.createComments)
+router.put('/displaypost/like/:id',authSession,multer,PostsController.likeSystem)
 
 module.exports = router

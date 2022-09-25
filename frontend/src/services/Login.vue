@@ -11,7 +11,7 @@
       const errorBoxMsg = document.getElementById('error-msg')
       
       axios({
-        url:'http://localhost:3000/api/auth/connexion',
+        url:'http://localhost:3000/api/auth/login',
         method:'post',
         data : new FormData(form),
         

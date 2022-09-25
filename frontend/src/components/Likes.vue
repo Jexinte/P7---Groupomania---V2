@@ -39,12 +39,12 @@
 
         axios({
           method:'get',
-          url:`http://localhost:3000/api/posts/affichepost/${id}`,
+          url:`http://localhost:3000/api/posts/displaypost/${id}`,
           withCredentials:true
         })
 
         .then(res => {
-  
+          console.log(res)
           totalLikes.textContent = ` ${res.data['data'].likes}`
 
         })
@@ -58,12 +58,12 @@
         form.addEventListener('submit',() => {
           axios({
             method:'PUT',
-            url:`http://localhost:3000/api/posts/affichepost/${id}`,
+            url:`http://localhost:3000/api/posts/displaypost/like/${id}`,
             data:new FormData(form),
             withCredentials:true
 
           })
-          .then(res => totalLikes.textContent = ` ${res.data['message']}`)
+          .then(res => totalLikes.textContent = ` ${res.data['like']}`)
 
       
         })

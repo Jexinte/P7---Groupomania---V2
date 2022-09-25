@@ -2,9 +2,9 @@
 
   <div class="container">
 
-        <div class="connexion">
+        <div class="login">
 
-     <Menu_Connexion></Menu_Connexion>
+     <Menu_Login></Menu_Login>
 
           <!-- BANNER -->
 
@@ -15,32 +15,32 @@
         
           <!-- FORMULAIRE -->
 
-          <form action="/connexion" method="post" enctype="multipart/form-data" class="connexion-form" @submit.prevent="verificationDesChampsDeFormulaire">
+          <form action="/connexion" method="post" enctype="multipart/form-data" class="login-form" @submit.prevent="checkEmptyData">
           
             <label for="mail"> 
               Adresse électronique  <br>
-              <input type="email" id="mail" name="mail" v-model="adresseElectronique" placeholder="adalovelace@groupomania.fr">
+              <input type="email" id="mail" name="mail" v-model="mail" placeholder="adalovelace@groupomania.fr">
             </label>
-            <p id="mailerrormsg" class="erreurmsg"></p>
+            <p id="mailerrormsg" class="errormsg"></p>
 
-            <label for="motdepasse">
+            <label for="password">
               Mot de passe   <br>
-              <input type="password" id="motdepasse" name="motdepasse" v-model="motDePasse" >
+              <input type="password" id="password" name="password" v-model="password" >
               
             </label>
-            <div class="verification-motdepasse">
+            <div class="verification-password">
 
               <p @click="permettreALutilisateurDeVoirLeMotDePasseTaper">
               
-                <img id="voirmotdepasse" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
+                <img id="seepassword" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
               </p>
-              <p id="motdepasseerrormsg" class="erreurmsg"></p>
+              <p id="passworderrormsg" class="errormsg"></p>
             </div>
         
 
 
-            <input type="submit" value="Connexion" id="submit" @click="connexion">
-            <Erreur id="erreur"></Erreur>
+            <input type="submit" value="Connexion" id="submit" @click="login">
+            <Error id="error"></Error>
           </form>
         </div>
   </div>
@@ -51,72 +51,72 @@
 <script>
  
 
-  import Erreur from '@/components/Error.vue'
-  import Connexion from '@/services/Login.vue';
-import Menu_Connexion from '@/components/Menu_Login.vue';
-  const utilisateur = new Connexion()
+  import Error from '@/components/Error.vue'
+  import Login from '@/services/Login.vue';
+import Menu_Login from '@/components/Menu_Login.vue';
+  const user = new Login()
   
   export default {
 
     data() {
         return {
-            adresseElectronique: "",
-            motDePasse: "",
+            mail: "",
+            password: "",
         }
     },
 
   
     
     methods: {
-        verificationDesChampsDeFormulaire() {
+        checkEmptyData() {
            
-            const erreurSurLeMail = document.getElementById("mailerrormsg");
-            const erreurSurLeMotDePasse = document.getElementById("motdepasseerrormsg");
+            const errorOnMail = document.getElementById("mailerrormsg");
+            const errorOnPassword = document.getElementById("passworderrormsg");
   
 
-            if (this.adresseElectronique === "") {
-              erreurSurLeMail.textContent = "Le champ ne peut être vide";
-              erreurSurLeMail.style.color = "red";
+            if (this.mail === "") {
+              errorOnMail.textContent = "Le champ ne peut être vide";
+              errorOnMail.style.color = "red";
    
             }
 
             else {
-                erreurSurLeMail.textContent = "";
+                errorOnMail.textContent = "";
             }
 
             
-            if (this.motDePasse === "") {
-              erreurSurLeMotDePasse.textContent = "Le champ ne peut être vide";
-              erreurSurLeMotDePasse.style.color = "red";
+            if (this.password === "") {
+              errorOnPassword.textContent = "Le champ ne peut être vide";
+              errorOnPassword.style.color = "red";
             
             }
             else {
-                erreurSurLeMotDePasse.textContent = "";
+                errorOnPassword.textContent = "";
             }
 
         },
 
         permettreALutilisateurDeVoirLeMotDePasseTaper(){
 
-          const champMotDePasse = document.getElementById('motdepasse')
+          const passwordField = document.getElementById('password')
 
-          if(champMotDePasse.type === "password")
-              champMotDePasse.type = "text"
+          if(passwordField.type === "password")
+              passwordField.type = "text"
           else
-              champMotDePasse.type="password"
+              passwordField.type="password"
         },
 
-        connexion(){
-          utilisateur.connexion()
+        login(){
+          user.login()
         }
     },
-    components: { Erreur, Menu_Connexion }
+    components: { Error, Menu_Login }
 }
 
 </script>
 <style scoped>
   
-.connexion {
+.login {
   width: 80%;
   margin:0 auto 5em;
 
@@ -139,7 +139,7 @@ import Menu_Connexion from '@/components/Menu_Login.vue';
     width: 347px;
    
   }
-  .connexion-form {
+  .login-form {
     display: flex;
     flex-direction: column;
     gap:1.5em;   
@@ -147,12 +147,12 @@ import Menu_Connexion from '@/components/Menu_Login.vue';
     
   }
 
-  .connexion-form label {
+  .login-form label {
     line-height: 2.1em;
     font-weight: var(--900);
   }
 
-  .connexion-form input {
+  .login-form input {
     width: 100%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 13px;
@@ -165,16 +165,16 @@ import Menu_Connexion from '@/components/Menu_Login.vue';
     cursor: pointer;
   }
 
-  .erreurmsg{
+  .errormsg{
     font-weight: var(--700);
   }
 
-  .verification-motdepasse{
+  .verification-password{
     display: flex;
     flex-direction: column;
   }
 
-  #voirmotdepasse{
+  #seepassword{
     cursor: pointer;
   }
   @media screen and (max-width:340px){

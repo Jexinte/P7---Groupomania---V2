@@ -14,12 +14,12 @@ const sequelize = new Sequelize(
 )
 
 const SESSION = SessionModel(sequelize,DataTypes)
-const initTableSession = () => {
+const initDbSession = () => {
 
 
   sequelize.sync({force:true}).then(() => console.log(`Les données de session ont bien été rénitialisées !`))
 }
 
 module.exports = {
-  initTableSession,SESSION
+  initDbSession,SESSION
 }

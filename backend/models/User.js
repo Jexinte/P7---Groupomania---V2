@@ -7,7 +7,7 @@ module.exports = (sequelize,DataTypes) => {
         autoIncrement:true
     },
 
-    utilisateur : {
+    user : {
       type:DataTypes.CHAR,
       allowNull:false,
       unique : {
@@ -47,7 +47,7 @@ module.exports = (sequelize,DataTypes) => {
 
    
     },
-    motdepasse : {
+  password : {
       type:DataTypes.CHAR,
       allowNull:false,
       validate : {

@@ -9,7 +9,7 @@ export default class ListOfPosts{
     const containerEveryPosts = document.querySelector('.everyposts')
     axios({
       method:'get',
-      url:'http://localhost:3000/api/posts/listeposts',
+      url:'http://localhost:3000/api/posts/listsposts',
       withCredentials:true
     })
     
@@ -23,7 +23,7 @@ export default class ListOfPosts{
         
         const h2 = document.createElement('h2')
         postBox.append(h2)
-        h2.textContent = post.titre
+        h2.textContent = post.title
         const image = document.createElement('img')
         image.className ="image"
         postBox.append(image)
@@ -32,7 +32,7 @@ export default class ListOfPosts{
         const content = document.createElement('p')
         content.className = "everyposts__paragraph"
         postBox.append(content)
-        content.textContent = post.contenu
+        content.textContent = post.content
         
         
       })

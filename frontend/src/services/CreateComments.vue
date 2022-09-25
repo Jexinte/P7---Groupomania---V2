@@ -13,7 +13,7 @@ export default class Comments {
     form.addEventListener('submit',() => {
       axios({
         method:'post',
-        url:`http://localhost:3000/api/posts/creationcommentaire/${idPostForTheComment}`,
+        url:`http://localhost:3000/api/posts/createcomments/${idPostForTheComment}`,
         data:new FormData(form),
         withCredentials:true
       })

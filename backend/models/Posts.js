@@ -6,12 +6,12 @@ module.exports = (sequelize,DataTypes) => {
       autoIncrement:true
     },
 
-    utilisateurId : {
+    userId : {
       type : DataTypes.STRING,
       allowNull:false
     },
 
-    titre : {
+    title : {
       type : DataTypes.CHAR,
       allowNull:false,
   
@@ -29,12 +29,12 @@ module.exports = (sequelize,DataTypes) => {
       
     },
 
-    contenu : {
+    content : {
       type:DataTypes.TEXT,
       allowNull:false
     },
 
-    auteur : {
+    author : {
       type:DataTypes.CHAR,
       allowNull:false,
     },
@@ -44,52 +44,29 @@ module.exports = (sequelize,DataTypes) => {
         defaultValue : 0
     },
 
-    dislikes : {
-      type:DataTypes.INTEGER,
-      defaultValue : 0
-  } ,
 
-  utilisateursQuiOntAimés : {
+  UsersWhoLovedThePost : {
     type : DataTypes.STRING,
     get() {
-      if (!this.getDataValue('utilisateursQuiOntAimés')) {
+      if (!this.getDataValue('UsersWhoLovedThePost')) {
         return [];
       } else {
-        // Permet de récupérer les informations de la propriété "utilisateursQuiOntAimés" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
-        return this.getDataValue('utilisateursQuiOntAimés').split(',');
+        // Permet de récupérer les informations de la propriété "Types" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
+        return this.getDataValue('UsersWhoLovedThePost').split(',');
       }
     
     },
       set(value){
      
-          this.setDataValue('utilisateursQuiontAimés',value.join())
+          this.setDataValue('UsersWhoLovedThePost',value.join())
        
         
       }
 
   },
 
-  utilisateursQuiNontPasAimés : {
-    type : DataTypes.STRING,
-    get() {
-      if (!this.getDataValue('utilisateursQuiNontPasAimés')) {
-        return [];
-      } else {
-        // Permet de récupérer les informations de la propriété "utilisateursQuiNontPasAimés" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
-        return this.getDataValue('utilisateursQuiNontPasAimés').split(',');
-      }
-    
-    },
-      set(value){
-     
-          this.setDataValue('utilisateursQuiNontPasAimés',value.join())
-       
-        
-      }
-
-  } ,
-
-  dateDePublication : {
+ 
+  dateOfPublication : {
     type:DataTypes.DATE,
     defaultValue:DataTypes.NOW
   }

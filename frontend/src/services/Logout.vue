@@ -7,7 +7,7 @@ export default class Logout {
     
     axios({
       method:'delete',
-      url:'http://localhost:3000/api/auth/deconnexion',
+      url:'http://localhost:3000/api/auth/logout',
       withCredentials:true
     })
     

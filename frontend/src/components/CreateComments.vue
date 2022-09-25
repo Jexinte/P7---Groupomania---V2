@@ -11,7 +11,7 @@
       </label>
       <label for="comments">
         Commentaires : <br>
-        <textarea name="comments" id="comments" v-model="comments" cols="30" rows="10"></textarea>
+        <textarea name="comment" id="comments" v-model="comments" cols="30" rows="10"></textarea>
       
       </label>
       <br>

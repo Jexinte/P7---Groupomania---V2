@@ -11,7 +11,7 @@ module.exports = (sequelize,DataTypes) => {
       allowNull:false
     },
 
-    auteur : {
+    author : {
       type:DataTypes.CHAR,
       allowNull:false,
       validate : {
@@ -22,7 +22,7 @@ module.exports = (sequelize,DataTypes) => {
       }
     },
 
-    commentaires : {
+    comment : {
       type:DataTypes.TEXT,
       allowNull:false,
       validate : {
@@ -33,7 +33,7 @@ module.exports = (sequelize,DataTypes) => {
       }
     },
 
-    dateDePublication : {
+    dateOfPublication : {
       type:DataTypes.DATE,
       defaultValue:DataTypes.NOW
     }

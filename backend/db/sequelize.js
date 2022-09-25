@@ -21,13 +21,13 @@ const sequelize = new Sequelize (
 
 const USER = UserModel(sequelize,DataTypes)
 
-const INITIALISATIONDELABASEDEDONNEES = () => {
+const initDbUser = () => {
 
   sequelize.sync({force:true}).then(_ => bcrypt.hash('Mandalorian89000#',10).then(hash => {
     USER.create({
-      utilisateur:'Test',
+      user:'Test',
       email:'test@live.fr',
-      motdepasse:hash
+      password:hash
     })
 
     .then(user => console.log(user.toJSON()))
@@ -35,5 +35,5 @@ const INITIALISATIONDELABASEDEDONNEES = () => {
 }
 
 module.exports = {
-  INITIALISATIONDELABASEDEDONNEES,USER
+  initDbUser,USER
 }

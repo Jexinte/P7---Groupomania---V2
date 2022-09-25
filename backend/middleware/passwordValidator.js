@@ -16,7 +16,7 @@ passwordSchema
 
 
 module.exports = (req,res,next) => {
-  if(passwordSchema.validate(req.body.motdepasse))
+  if(passwordSchema.validate(req.body.password))
       next()
     
   else

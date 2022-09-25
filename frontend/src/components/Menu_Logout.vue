@@ -2,18 +2,18 @@
   <header>
         <nav>
           <router-link to="/accueil" ><font-awesome-icon icon="fa-solid fa-arrow-left" /></router-link>
-          <router-link to="/" @click="deconnexion">Déconnexion</router-link>
+          <router-link to="/" @click="logout">Déconnexion</router-link>
         </nav>
       </header>
 </template>
 
 <script>
-  import Deconnexion from '@/services/Logout.vue';
-  const UTILISATEUR = new Deconnexion()
+import Logout from '@/services/Logout.vue';
+  const user = new Logout()
   export default {
     methods : {
-      deconnexion() {
-        UTILISATEUR.deconnexion_utilisateur()
+      logout() {
+        user.logout()
       }
     }
   }

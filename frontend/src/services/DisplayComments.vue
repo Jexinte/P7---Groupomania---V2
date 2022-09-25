@@ -11,7 +11,7 @@ export default class DisplayComments {
     const idPost = parseInt(searchParamsPostId)
     axios({
       method:'get',
-      url:`http://localhost:3000/api/posts/affichescommentaires`,
+      url:`http://localhost:3000/api/posts/displaycomments`,
       withCredentials:true
     })
     
@@ -27,12 +27,12 @@ export default class DisplayComments {
           
           const authorParagrah = document.createElement('p')
                 authorParagrah.className = "author"
-                authorParagrah.textContent =`${commentaire.auteur}, `
+                authorParagrah.textContent =`${commentaire.author}, `
                 displayCommentsBox.append(authorParagrah)
                 
                 const date = document.createElement('span')
                 date.className = "date-comments"
-                const dateFormat = new Date(commentaire.dateDePublication)
+                const dateFormat = new Date(commentaire.dateOfPublication)
                 const dateFrench = dateFormat.toLocaleDateString('fr')
                 authorParagrah.append(date)
                 date.textContent = ` le ${dateFrench} : `
@@ -40,7 +40,7 @@ export default class DisplayComments {
                 const content = document.createElement('p')
                 content.className = "content-comments"
                 displayCommentsBox.append(content)
-                content.textContent = `${commentaire.commentaires} `
+                content.textContent = `${commentaire.comment} `
                 
                 
               }

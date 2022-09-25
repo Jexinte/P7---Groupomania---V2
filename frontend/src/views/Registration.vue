@@ -35,7 +35,7 @@
               
             </label>
             
-            <div class="verificaiton-password">
+            <div class="verification-password">
 
 <p @click="allowUserToSeeWrittenPassword">
 

@@ -18,7 +18,7 @@ export default class User {
       
       axios({
         method:'post',
-        url:'http://localhost:3000/api/auth/inscription',
+        url:'http://localhost:3000/api/auth/registration',
         data: new FormData(form)
       })
       
