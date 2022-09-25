@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import Deconnexion from '@/services/Déconnexion';
+  import Deconnexion from '@/services/Logout.vue';
   const UTILISATEUR = new Deconnexion()
   export default {
     methods : {

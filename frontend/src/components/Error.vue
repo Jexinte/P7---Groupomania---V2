@@ -1,15 +1,15 @@
 <template>
-  <div id="erreur">
+  <div id="error">
 
     <img src="@/assets/images/erreur_croix.jpg" alt=""> 
-  <p id="erreur-msg"></p>
+  <p id="error-msg"></p>
   </div>
 </template>
 
 
 <style scoped>
 
-  #erreur {
+  #error {
     width: 200px;
     background: white;
     display: none;
@@ -19,7 +19,7 @@
     margin: 0 auto;
   }
 
-  #erreur img {
+  #error img {
     width: 100%;
   }
 

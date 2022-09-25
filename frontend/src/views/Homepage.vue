@@ -1,21 +1,21 @@
 <template>
   <div class="container">
 
-    <Menu_Accueil></Menu_Accueil>
+    <Menu_Homepage></Menu_Homepage>
     <div class="banner">
       <img class="banner-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
      
     </div>
-    <div class="touslesposts">
+    <div class="everyposts">
       <h1>Derniers posts publiés récemments</h1>
     </div>    
   </div>
 </template>
 
 <script>
-import Menu_Accueil from '@/components/Menu_Accueil.vue'
-import ListeDesPosts from '@/services/AfficheLaListeDesPosts'
-const posts = new ListeDesPosts()
+import Menu_Homepage from '@/components/Menu_Homepage.vue'
+import ListOfPosts from '@/services/DisplayPosts.vue'
+const posts = new ListOfPosts()
   export default {
     mounted:function(){
       this.posts()
@@ -26,7 +26,7 @@ const posts = new ListeDesPosts()
         posts.listeposts()
       }
     },
-    components: { Menu_Accueil }
+    components: { Menu_Homepage }
 }
 </script>
 
@@ -44,36 +44,36 @@ a{
     padding-bottom:3em;
   }
 
-  .touslesposts{
+  .everyposts{
     display: flex;
     flex-direction: column;
     gap:8.5em;
   }
   
-  .touslesposts h1 {
+  .everyposts h1 {
     font-size: 2.5em;
     font-weight: var(--900);
   }
-  .touslesposts-box{
+  .everyposts-box{
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap:1.5em;
   }
 
-  .touslesposts-box h2 {
+  .everyposts-box h2 {
     text-align: center;
     font-size: 2em;
     text-decoration: underline;
     text-decoration-color:red ;
   }
-  .touslesposts-box
+  .everyposts-box
    img{
     width: 100%;
   }
 
 
-  .touslesposts__paragraphe{
+  .everyposts__paragraph{
     width: 600px;
     text-overflow: ellipsis;
     overflow:hidden;
@@ -87,7 +87,85 @@ a{
     /* border-bottom: 5px solid red; */
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   .banner img {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
     height: 342px;
     width: 347px;
@@ -95,11 +173,11 @@ a{
   }
 
   @media screen and (max-width:992px){
-    .touslesposts__paragraphe{
+    .everyposts__paragraphe{
       display: none;
     }
 
-    .touslesposts h1 {
+    .everyposts h1 {
       text-align: center;
     }
   }

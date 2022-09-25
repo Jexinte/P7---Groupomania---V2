@@ -2,10 +2,9 @@
 
   <div class="container">
 
-        <div class="inscription">
+        <div class="connexion">
 
-        <!-- MENU -->
-        <Menu_Inscription></Menu_Inscription>
+     <Menu_Connexion></Menu_Connexion>
 
           <!-- BANNER -->
 
@@ -16,13 +15,8 @@
         
           <!-- FORMULAIRE -->
 
-          <form action="/inscription" method="post" enctype="multipart/form-data" class="inscription-form" @submit.prevent="verificationDesChampsDeFormulaire">
-            <label for="utilisateur">
-              Utilisateur  <br>
-              <input type="text" id="utilisateur" name="utilisateur" v-model="utilisateur" placeholder="Ada Lovelace">
-            </label>
-            <p id="utilisateurerrormsg" class="erreurmsg"></p>
-
+          <form action="/connexion" method="post" enctype="multipart/form-data" class="connexion-form" @submit.prevent="verificationDesChampsDeFormulaire">
+          
             <label for="mail"> 
               Adresse électronique  <br>
               <input type="email" id="mail" name="mail" v-model="adresseElectronique" placeholder="adalovelace@groupomania.fr">
@@ -34,18 +28,18 @@
               <input type="password" id="motdepasse" name="motdepasse" v-model="motDePasse" >
               
             </label>
-            
             <div class="verification-motdepasse">
 
-<p @click="permettreALutilisateurDeVoirLeMotDePasseTaper">
+              <p @click="permettreALutilisateurDeVoirLeMotDePasseTaper">
+              
+                <img id="voirmotdepasse" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
+              </p>
+              <p id="motdepasseerrormsg" class="erreurmsg"></p>
+            </div>
+        
 
-  <img id="voirmotdepasse" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
-</p>
-<p id="motdepasseerrormsg" class="erreurmsg"></p>
-</div>
 
-
-            <input type="submit" value="Envoyer" id="submit">
+            <input type="submit" value="Connexion" id="submit" @click="connexion">
             <Erreur id="erreur"></Erreur>
           </form>
         </div>
@@ -56,56 +50,45 @@
 
 <script>
  
-  import Utilisateur from '@/services/Inscription.js'
-  import Erreur from '@/components/Erreur.vue'
-import Menu_Inscription from '@/components/Menu_Inscription.vue'
 
-  const utilisateur = new Utilisateur()
+  import Erreur from '@/components/Error.vue'
+  import Connexion from '@/services/Login.vue';
+import Menu_Connexion from '@/components/Menu_Login.vue';
+  const utilisateur = new Connexion()
   
   export default {
 
     data() {
         return {
-            utilisateur: "",
             adresseElectronique: "",
             motDePasse: "",
-            
         }
     },
 
-    mounted: function () {
-        utilisateur.inscription();
-    },
-
+  
+    
     methods: {
-        verificationDesChampsDeFormulaire(e) {
-            const erreurSurLutilisateur = document.getElementById("utilisateurerrormsg");
-            const erreurSurLemail = document.getElementById("mailerrormsg");
+        verificationDesChampsDeFormulaire() {
+           
+            const erreurSurLeMail = document.getElementById("mailerrormsg");
             const erreurSurLeMotDePasse = document.getElementById("motdepasseerrormsg");
-   
-        
-            if (this.utilisateur === "") {
-                erreurSurLutilisateur.textContent = "Le champ ne peut être vide";
-                erreurSurLutilisateur.style.color = "red";
-                e.preventDefault();
-            }
-            else {
-                erreurSurLutilisateur.textContent = "";
-            }
+  
 
             if (this.adresseElectronique === "") {
-                erreurSurLemail.textContent = "Le champ ne peut être vide";
-                erreurSurLemail.style.color = "red";
+              erreurSurLeMail.textContent = "Le champ ne peut être vide";
+              erreurSurLeMail.style.color = "red";
+   
             }
 
             else {
-                erreurSurLemail.textContent = "";
+                erreurSurLeMail.textContent = "";
             }
 
             
             if (this.motDePasse === "") {
-                erreurSurLeMotDePasse.textContent = "Le champ ne peut être vide";
-                erreurSurLeMotDePasse.style.color = "red";
+              erreurSurLeMotDePasse.textContent = "Le champ ne peut être vide";
+              erreurSurLeMotDePasse.style.color = "red";
+            
             }
             else {
                 erreurSurLeMotDePasse.textContent = "";
@@ -121,20 +104,23 @@ import Menu_Inscription from '@/components/Menu_Inscription.vue'
               champMotDePasse.type = "text"
           else
               champMotDePasse.type="password"
+        },
+
+        connexion(){
+          utilisateur.connexion()
         }
     },
-    components: { Erreur, Menu_Inscription }
+    components: { Erreur, Menu_Connexion }
 }
 
 </script>
 <style scoped>
   
-.inscription {
+.connexion {
   width: 80%;
   margin:0 auto 5em;
-  font-family: var(--lato);
-}
 
+}
 
 
 
@@ -151,22 +137,22 @@ import Menu_Inscription from '@/components/Menu_Inscription.vue'
    
     height: 342px;
     width: 347px;
-    /* border: 1px solid black; */
+   
   }
-  .inscription-form {
+  .connexion-form {
     display: flex;
     flex-direction: column;
     gap:1.5em;   
-    padding-top:1.5em
+    padding-top:1.5em;
+    
   }
 
-  .inscription-form label {
+  .connexion-form label {
     line-height: 2.1em;
     font-weight: var(--900);
-  
   }
 
-  .inscription-form input {
+  .connexion-form input {
     width: 100%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 13px;
@@ -183,10 +169,14 @@ import Menu_Inscription from '@/components/Menu_Inscription.vue'
     font-weight: var(--700);
   }
 
+  .verification-motdepasse{
+    display: flex;
+    flex-direction: column;
+  }
+
   #voirmotdepasse{
     cursor: pointer;
   }
-
   @media screen and (max-width:340px){
     .banner img {
    

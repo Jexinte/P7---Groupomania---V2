@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="informations-importantes">
+    <div class="informations-importants">
       <p id="copyright">© Copyright 2022 - Tous droits réservés</p>
     </div>
   </footer>
@@ -12,7 +12,7 @@ footer{
   font-weight: var(--700);
 }
 
-.informations-importantes {
+.informations-importants {
   display: flex;
   gap:1em;
   padding:2em;
