@@ -2,11 +2,14 @@
   import router from '@/router'
 
   const axios = require('axios')
+  const searchParams = new URLSearchParams(window.location.search)
+  const idPost = parseInt(searchParams.get('id'))
 
 export default class Posts {
   showThePost(){
-        const searchParams = new URLSearchParams(window.location.search)
-        const idPost = parseInt(searchParams.get('id'))
+   
+        const updateLink = document.getElementById('update')
+
         const containerPost = document.querySelector('.post')
         axios({
               method:'get',
@@ -44,6 +47,8 @@ export default class Posts {
               author.className = "author-post"
               authorBox.append(author)
               author.textContent = `Publié par ${res.data['data'].author}, le ${dateFrenchFormat}`
+
+              updateLink.href=`modifierpost/?idpost=${res.data['data'].id}`
               
         })
         
@@ -112,5 +117,40 @@ form.addEventListener('submit',() => {
   })
 })
 }
+
+updatePost(){
+
+  const form = document.querySelector('.update-form')
+  const idPostUpdate = parseInt(searchParams.get('idpost'))
+
+  form.addEventListener('submit',() => {
+    axios({
+      method:'PUT',
+      url:`http://localhost:3000/api/posts/updatepost/${idPostUpdate}`,
+      data:new FormData(form),
+      withCredentials:true
+    })
+
+    .then( res => console.log(res.data))
+  
+  })
+
+
+  
+}
+
+deletePost(){
+
+  axios({
+    method:'DELETE',
+    url:`http://localhost:3000/api/posts/deletepost/${idPost}`,
+    withCredentials:true
+  })
+
+  .then(() => 
+    router.push('/accueil')
+  )
+}
+
 }
 </script>

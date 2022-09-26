@@ -27,6 +27,7 @@
           //! Cette redirection est temporaire le temps de faire des test 
           document.cookie=`idSession=${res.data['idSession']};`
           document.cookie=`user=${res.data['user']};`
+          document.cookie=`userId=${res.data['userId']};`
           
           router.push('/accueil')
         }
@@ -87,7 +88,7 @@
       logout(){
       
       axios({
-        method:'delete',
+        method:'post',
         url:'http://localhost:3000/api/auth/logout',
         withCredentials:true
       })

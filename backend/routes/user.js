@@ -38,5 +38,5 @@ router.use(cors(corsOptions))
 
 router.post('/registration',multer,checkPassword,UsersControllers.registration)
 router.post('/login',multer,UsersControllers.login)
-router.delete('/logout',UsersControllers.logout)
+router.post('/logout',UsersControllers.logout)
 module.exports = router

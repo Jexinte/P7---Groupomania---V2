@@ -69,7 +69,7 @@ exports.login = (req,res) => {
       return res.status(401).json({message:`Le mot de passe est incorrect`})
        
    
-      return res.status(200).json({message:`L'utilisateur ${user.user} est bien connecté !`,idSession:session.id,user:session.user})
+      return res.status(200).json({idSession:session.id,user:session.user,userId:session.userId})
       
 
     })

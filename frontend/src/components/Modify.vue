@@ -16,7 +16,7 @@
     <!-- FORMULAIRE -->
     <div class="post">
   
-      <form action="/posts" method="post" enctype="multipart/form-data" class="registration-form" @submit.prevent="checkEmptyData">
+      <form action="/updatepost" _method="put" enctype="multipart/form-data" class="update-form" @submit.prevent="checkEmptyData">
         <label for="title">
           Titre <br>
           <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !">
@@ -51,12 +51,12 @@
   </template>
   <script>
   import Menu_CreatePost from "../components/Menu_CreatePost.vue"
-  import CreatePost from "@/services/Posts.vue"
-  const user = new CreatePost()
+  import UpdatePost from "@/services/Posts.vue"
+  const user = new UpdatePost()
   
     export default {
       mounted:function(){
-        user.createPost()
+        user.updatePost()
       },
       data(){
         return {
@@ -120,21 +120,21 @@
       width: 347px;
       /* border: 1px solid black; */
     }
-    .registration-form {
+    .update-form {
       display: flex;
       flex-direction: column;
       gap:1.5em;   
       padding-top:1.5em
     }
   
-    .registration-form label {
+    .update-form label {
       line-height: 2.1em;
       font-weight: var(--900);
     
     }
   
   
-    .registration-form input {
+    .update-form input {
       width: 100%;
       box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
       padding: 13px;

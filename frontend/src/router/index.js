@@ -7,6 +7,7 @@ import CreatePost from '../views/CreatePost.vue'
 import DisplayPost from '../views/DisplayPost.vue'
 import DisplayComments from '../components/DisplayComments.vue'
 import CreateComments from '../components/CreateComments.vue'
+import ModifyPost from '../components/Modify.vue'
 const routes = [
   {
     path: '/',
@@ -44,15 +45,20 @@ const routes = [
   },
 
   {
-    path:'/t',
+    path:'/creationCommentaire',
     name:'Espace pour créer les commentaires',
     component:CreateComments
   },
 
   {
-    path:'/t',
+    path:'/affichageCommentaire',
     name:'Espace pour afficher les commentaires',
     component: DisplayComments
+  },
+  {
+    path:'/modifierpost',
+    name:'modification de post',
+    component: ModifyPost
   }
 ]
 

@@ -3,6 +3,7 @@ const {SESSION} = require('../db/session')
 const {USER} = require('../db/sequelize')
 const { COMMENTS } = require('../db/posts')
 const { ValidationError } = require('sequelize')
+const fs = require('fs')
 exports.displayPosts = (req,res) => {
 
         POSTS.findAll().then(post => res.status(200).json({message:post}))
@@ -29,7 +30,7 @@ exports.createPost = (req,res) => {
       .then(match => {
         if(match){
           const idUser = match.dataValues['id']
-  
+        
            POSTS.create({
              userId:idUser,
              title : req.body.title,
@@ -58,6 +59,88 @@ exports.createPost = (req,res) => {
       })
     })
   
+}
+
+//* Permettre la mise à jour d'un post en fonction de l'identifiant utilisateur lié
+exports.updatePost = (req,res) => {
+
+  const {id} = req.params
+
+   
+    POSTS.findByPk(id).then(post => 
+      {
+        SESSION.findAll().then(session => {
+
+          const sessionData =JSON.parse(session[0].dataValues['data'])
+
+          if(sessionData.userId === post.userId)
+          {   
+              //* On met au format json le contenu de la requête
+              const postData = JSON.stringify(req.body)
+              const post = JSON.parse(postData)
+              
+              // On vérifie ici si le contenu de la requête contient des fichiers ou uniquement du texte
+              const postObject = req.file ?  {...post,imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`} : {...req.body}
+              
+              POSTS.update({...postObject},{
+                where : {id:id}
+              })
+              .then(_ => {
+                POSTS.findByPk(id).then(post => res.status(201).json({message:`Le post suivant a bien été modifié !`,data:post}))
+              })
+
+          }
+
+          else
+            return res.status(404).json({message:`Vous n'êtes pas autorisé à effectuer cette démarche !`})
+          
+          })
+          
+          
+          .catch(() => {return res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})})
+     })
+
+     
+     
+     .catch(() => {return res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})})
+
+}
+
+exports.deletePost = (req,res) => {
+  const {id} = req.params
+  POSTS.findByPk(id).then(post => {
+    const filename = post.imageUrl.split('/images/')[1]
+ 
+    
+    SESSION.findAll().then(session => {
+
+      const sessionData =JSON.parse(session[0].dataValues['data'])
+      if(sessionData.userId === post.userId)
+       {   
+      
+        fs.unlink(`images/${filename}`,() => {
+          POSTS.destroy({
+            where : {id : id}
+          })
+          .then(()=> res.status(200).json({message:`Le post a bien été supprimé ! `,data:post}))
+      
+        })
+      }
+     
+        else
+          return res.status(404).json({message:`Vous n'êtes pas autorisé à effectuer cette opération !`})
+
+  
+    
+  })
+  .catch(() => {
+    res.status(500).json({message:`Veuillez réessayez dans quelques instants !`})
+  })
+  
+})
+
+.catch(() => {return res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})})
+   
 }
 
 
