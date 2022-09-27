@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes} = require('sequelize')
 const UserModel = require('../models/User')
+const fakeUsers = require('./fakeusers')
 const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
 dotenv.config()
@@ -23,15 +24,23 @@ const USER = UserModel(sequelize,DataTypes)
 
 const initDbUser = () => {
 
-  sequelize.sync({force:true}).then(_ => bcrypt.hash('Mandalorian89000#',10).then(hash => {
-    USER.create({
-      user:'Test',
-      email:'test@live.fr',
-      password:hash
+  sequelize.sync({force:true}).then(_ =>
+
+    fakeUsers.map(user => {
+      bcrypt.hash(user.password,10).then(hash => {
+
+        USER.create({
+          user:user.user,
+          email:user.email,
+          password:hash,
+          type:user.type
+        })
+        .then(user => console.log(user.toJSON()))
+      })
     })
 
-    .then(user => console.log(user.toJSON()))
-  }))
+
+  )
 }
 
 module.exports = {

@@ -3,6 +3,8 @@ const {SESSION} = require('../db/session')
 const {USER} = require('../db/sequelize')
 const { COMMENTS } = require('../db/posts')
 const { ValidationError } = require('sequelize')
+const dotenv = require('dotenv')
+dotenv.config()
 const fs = require('fs')
 exports.displayPosts = (req,res) => {
 
@@ -69,10 +71,11 @@ exports.updatePost = (req,res) => {
    
     POSTS.findByPk(id).then(post => 
       {
+        console.log(`${process.env.ADMIN}`)
         SESSION.findAll().then(session => {
 
           const sessionData =JSON.parse(session[0].dataValues['data'])
-
+ //* L'utilisateur peut modifier son post
           if(sessionData.userId === post.userId)
           {   
               //* On met au format json le contenu de la requête
@@ -90,7 +93,25 @@ exports.updatePost = (req,res) => {
               })
 
           }
+//* Le modérateur peut modifier le post de l'utilisateur
+          else if(sessionData.user === `${process.env.ADMIN}` && sessionData.type === `${process.env.TYPE}`){
+              //* On met au format json le contenu de la requête
+              const postData = JSON.stringify(req.body)
+              const post = JSON.parse(postData)
+              
+              // On vérifie ici si le contenu de la requête contient des fichiers ou uniquement du texte
+              const postObject = req.file ?  {...post,imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`} : {...req.body}
+              
+              POSTS.update({...postObject},{
+                where : {id:id}
+              })
+              .then(_ => {
+                POSTS.findByPk(id).then(post => res.status(201).json({message:`Le post suivant a bien été modifié !`,data:post}))
+              })
+          }
+          //* Rajouter une condition qui vérifie si l'utilisateur qui met le post à jour et bien l'admin si oui alors il est autorisé à modifier le post même si l'idpost n'est pas le sien
 
+          
           else
             return res.status(404).json({message:`Vous n'êtes pas autorisé à effectuer cette démarche !`})
           
@@ -126,6 +147,23 @@ exports.deletePost = (req,res) => {
       
         })
       }
+
+      else if(sessionData.user === `${process.env.ADMIN}` && sessionData.type === `${process.env.TYPE}`){
+
+        //* On met au format json le contenu de la requête
+        const postData = JSON.stringify(req.body)
+        const post = JSON.parse(postData)
+        
+        // On vérifie ici si le contenu de la requête contient des fichiers ou uniquement du texte
+        const postObject = req.file ?  {...post,imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`} : {...req.body}
+        
+        POSTS.update({...postObject},{
+          where : {id:id}
+        })
+        .then(_ => {
+          POSTS.findByPk(id).then(post => res.status(201).json({message:`Le post suivant a bien été modifié !`,data:post}))
+        })
+    }
      
         else
           return res.status(404).json({message:`Vous n'êtes pas autorisé à effectuer cette opération !`})
