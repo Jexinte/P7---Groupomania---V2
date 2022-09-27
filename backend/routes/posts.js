@@ -13,16 +13,15 @@ const PostsController = require('../controllers/posts')
 router.use(cors(corsOptions))
 router.use(express.json())
 
+//* POSTS ROUTES
 router.get('/listsposts',authSession,multer,PostsController.displayPosts)
 router.get('/displaypost/:id',authSession,multer,PostsController.displayPost)
-
 router.post('/createpost',authSession,multer,PostsController.createPost)
-
 router.put('/displaypost/like/:id',authSession,multer,PostsController.likeSystem)
 router.put('/updatepost/:id',authSession,multer,PostsController.updatePost)
-
 router.delete('/deletepost/:id',authSession,multer,PostsController.deletePost)
 
+//* COMMENTS ROUTES
 router.get('/displaycomments',authSession,multer,PostsController.displayComments)
 router.post('/createcomments/:id',authSession,multer,PostsController.createComments)
 

@@ -33,12 +33,15 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue';
     mounted: function () {
         user.showThePost()
         this.showUpdateAndDeleteComponent()
+        this.adminCommands()
 
     },
 
     data(){
       return {
         userIdData:'',
+        admin :'',
+        type:'',
         render:false
       }
     },
@@ -60,10 +63,27 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue';
           const userIdLinkToThePost = res.data['data'].userId 
          if(this.userIdData === userIdLinkToThePost ){
           this.render = true
+     
          }
+         
           
         })
-      }
+      },
+
+      // Le procédé est quasi le même que celui du dessus à l'exception près que le type du compte devra être vérifié 
+     adminCommands(){
+      const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
+            this.admin = cookie.user
+            this.type = cookie.type
+  
+       
+          if(this.admin === "Admin" && this.type === "ADMIN"){
+   
+            this.render = true
+          }
+          
+     
+     } 
     },
 
  

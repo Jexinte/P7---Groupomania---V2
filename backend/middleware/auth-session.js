@@ -4,6 +4,7 @@ module.exports = (req,res,next) => {
   const cookieContent = req.headers.cookie
   const cookie =Object.fromEntries(cookieContent.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
   const cookieIdSession = cookie.idSession
+  
 //* Comparaison de l'identifiant de session de la base de données avec celui sauvegardé dans le cookie crée dans le front
   SESSION.findOne({where:{session_id:cookieIdSession}})
   .then(match => {

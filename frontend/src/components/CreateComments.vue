@@ -3,15 +3,16 @@
   <div class="commentsbeforehand">
     <h3>Ajouter un commentaire</h3>
   </div>
-    <form action="/comments" method="post" enctype="multipart/form-data" class="comments-form" @submit.prevent>
+    <form action="/comments" method="post" enctype="multipart/form-data" class="comments-form" @submit.prevent="checkEmptyData">
       <label for="author" class="author-comments">
         Auteur <br>
-        <input type="text" v-model="author" name="author" id="author" placeholder="John" class="input"> <br>
-     
+        <input type="text" v-model="author" name="author" id="author" placeholder="John" class="input" > <br>
+        <span id="authorerrormsg" class="commentserrormsg"></span>
       </label>
       <label for="comments">
         Commentaires : <br>
-        <textarea name="comment" id="comments" v-model="comments" cols="30" rows="10"></textarea>
+        <textarea name="comment" id="comments" v-model="comments" cols="30" rows="10" placeholder="Lorem ipsum dolor siret "></textarea>
+        <span id="commenterrormsg" class="commentserrormsg"></span>
       
       </label>
       <br>
@@ -40,33 +41,34 @@
     },
 
     methods : {
-      // verificationDesChampsDeFormulaire() {
-           
-      //      const ERREURSURLAUTEUR = document.getElementById("erreurauteur");
-      //      const ERREURSURLECOMMENTAIRE = document.getElementById("erreurcommentaires");
- 
+      checkEmptyData() {
+            const errorOnAuthorComments = document.getElementById("authorerrormsg");
+            const errorOnCommentContent = document.getElementById("commenterrormsg");
+      
+   
+          
+        if(this.author === ""){
+          errorOnAuthorComments.textContent = "Le champ ne peut être vide";
+          errorOnAuthorComments.style.color = "red";
+        }
 
-      //      if (this.auteur === "") {
-      //        ERREURSURLAUTEUR.textContent = "Le champ ne peut être vide";
-      //        ERREURSURLAUTEUR.style.color = "red";
-  
-      //      }
+            else {
+                errorOnAuthorComments.textContent = "";
+            }
 
-      //      else {
-      //          ERREURSURLAUTEUR.textContent = "";
-      //      }
+            if (this.comments === "") {
+                errorOnCommentContent.textContent = "Le champ ne peut être vide";
+                errorOnCommentContent.style.color = "red";
+            }
 
-           
-      //      if (this.commentaires === "") {
-      //        ERREURSURLECOMMENTAIRE.textContent = "Le champ ne peut être vide";
-      //        ERREURSURLECOMMENTAIRE.style.color = "red";
-           
-      //      }
-      //      else {
-      //          ERREURSURLECOMMENTAIRE.textContent = "";
-      //      }
+            else {
+                errorOnCommentContent.textContent = "";
+            }
 
-      //  }
+            
+          
+
+        },
     }
   }
 </script>
@@ -102,8 +104,10 @@
 
   #comments{
     width: 100%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border: none;
+    padding:1em
   }
-
 
 
   #submit {

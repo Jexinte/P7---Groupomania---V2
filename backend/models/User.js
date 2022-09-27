@@ -34,10 +34,9 @@ module.exports = (sequelize,DataTypes) => {
           msg : `L'adresse mail n'est pas au bon format !`
         },
 
-        notEmpty : {
-          args:true,
-          msg : `Ce champ ne peut être vide`
-        },
+        notEmpty:true,
+         
+        
       },
 
       unique : {
@@ -51,13 +50,9 @@ module.exports = (sequelize,DataTypes) => {
       type:DataTypes.CHAR,
       allowNull:false,
       validate : {
-        notEmpty : {
-          args:true,
-          msg : `Ce champ ne peut être vide`
-        }
-      }
+        notEmpty:true,
+      },
     },
-
     type : {
       type : DataTypes.STRING,
       defaultValue: "EMPLOYÉ"

@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes} = require('sequelize')
 const UserModel = require('../models/User')
-const fakeUsers = require('./fakeusers')
+const fakeUsers = require('./fakeUsers')
 const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
 dotenv.config()

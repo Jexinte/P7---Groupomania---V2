@@ -51,11 +51,8 @@ exports.registration = (req,res) => {
 exports.login = (req,res) => {
 
   let mailOfUserLogin = req.body.mail
-   session = req.session
-   session.id = req.session.id
-  
    
-
+  
   //* Permet de retrouver l'adresse mail de l'utilisateur qui se connecte avec celui dans la base de données
   USER.findOne({where:{email:mailOfUserLogin}}).then(user => {
 
@@ -64,14 +61,19 @@ exports.login = (req,res) => {
     
       //* On ajoute le nom de l'utilisateur ainsi que son identifiant afin de pouvoir s'en servir dans les requêtes pour les posts
     bcrypt.compare(req.body.password , user.password).then(password => {
-      session.userId = user.id
-      session.user= user.user
-      session.type = user.type
+      
       if(!password) 
       return res.status(401).json({message:`Le mot de passe est incorrect`})
        
-   
-      return res.status(200).json({idSession:session.id,user:session.user,userId:session.userId,typeOfUser:session.type})
+      //* Si tout est bon alors on initialise la session 
+      else{
+        session = req.session
+        session.id = req.session.id
+        session.userId = user.id
+        session.user= user.user
+        session.type = user.type
+        return res.status(200).json({idSession:session.id,user:session.user,userId:session.userId,typeOfUser:session.type})
+      }
       
 
     })
@@ -82,6 +84,7 @@ exports.login = (req,res) => {
 
   .catch(() => res.status(500).json({message:`Veuillez réessayez dans quelques instants`}))
 }
+
 
 exports.logout = (req,res) => {
   session.id = req.session.id

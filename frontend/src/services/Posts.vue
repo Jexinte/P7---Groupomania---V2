@@ -51,6 +51,19 @@ export default class Posts {
               updateLink.href=`modifierpost/?idpost=${res.data['data'].id}`
               
         })
+
+
+        .catch(error => {
+          if(error.response.status === 403 || 500)
+          {
+                  document.cookie.split(';').forEach(function(cookie) {
+                    document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+            });
+
+            router.push('/connexion')
+          }
+          
+        })
         
 
   }
@@ -91,13 +104,22 @@ axios({
 })
 
 .catch(error => {
-  // if(error.response['status'] === 403 || 500)
-  // return window.location.href="/connexion"
-})
+          if(error.response.status === 403 || 500)
+          {
+                  document.cookie.split(';').forEach(function(cookie) {
+                    document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+            });
+
+            router.push('/connexion')
+          }
+          
+        })
+        
 }
 
 createPost(){
 const form = document.querySelector('form')
+
 form.addEventListener('submit',() => {
   
   axios({
@@ -107,14 +129,11 @@ form.addEventListener('submit',() => {
     withCredentials:true
   })
   
-  .then(res => {
-    router.push('/accueil')
+  .then(() => {
+     router.push('/accueil')
   })
   
-  .catch(err => {
-    if(err)
-    console.log(err)
-  })
+
 })
 }
 
@@ -131,8 +150,22 @@ updatePost(){
       withCredentials:true
     })
 
-    .then( res => console.log(res.data))
-  
+     .then((res) => {
+      if(res.status === 201)
+        router.push('/accueil')
+     })
+    .catch(error => {
+          if(error.response.status === 403 || 500)
+          {
+                  document.cookie.split(';').forEach(function(cookie) {
+                    document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+            });
+
+            router.push('/connexion')
+          }
+          
+        })
+        
   })
 
 

@@ -19,23 +19,20 @@
           
             <label for="mail"> 
               Adresse électronique  <br>
-              <input type="email" id="mail" name="mail" v-model="mail" placeholder="adalovelace@groupomania.fr">
+              <input type="email" id="mail" class="datasend" name="mail" v-model="mail" placeholder="adalovelace@groupomania.fr" required>
+              <span id="mailerrormsg" class="errormsg"></span>
             </label>
-            <p id="mailerrormsg" class="errormsg"></p>
 
             <label for="password">
               Mot de passe   <br>
-              <input type="password" id="password" name="password" v-model="password" >
+              <input type="password" class="datasend" id="password" name="password" v-model="password" required>
               
             </label>
-            <div class="verification-password">
-
-              <p @click="permettreALutilisateurDeVoirLeMotDePasseTaper">
-              
-                <img id="seepassword" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
-              </p>
-              <p id="passworderrormsg" class="errormsg"></p>
-            </div>
+            <label for="checkpassword" class="checkpassword">
+                Afficher le mot de passe 
+                <input type="checkbox"  id="checkpassword" @click="allowUserToSeeWrittenPassword">
+                
+              </label>
         
 
 
@@ -57,6 +54,7 @@ import Menu_Login from '@/components/Menu_Login.vue';
   const user = new Login()
   
   export default {
+    
 
     data() {
         return {
@@ -96,7 +94,7 @@ import Menu_Login from '@/components/Menu_Login.vue';
 
         },
 
-        permettreALutilisateurDeVoirLeMotDePasseTaper(){
+        allowUserToSeeWhatPasswordTheyAreTyping(){
 
           const passwordField = document.getElementById('password')
 
@@ -152,17 +150,31 @@ import Menu_Login from '@/components/Menu_Login.vue';
     font-weight: var(--900);
   }
 
-  .login-form input {
+  .login-form .datasend {
     width: 100%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 13px;
-    border:none
+    border:none;
   }
+
+  .checkpassword {
+    display: flex;
+    gap:.5em;
+  }
+
+  .datasend{
+    margin-bottom: .7em;
+  }
+
 
   #submit {
     background: white;
     font-weight: var(--900);
     cursor: pointer;
+    width: 100%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    padding: 13px;
+    border:none;
   }
 
   .errormsg{

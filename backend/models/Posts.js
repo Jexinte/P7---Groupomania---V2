@@ -14,6 +14,9 @@ module.exports = (sequelize,DataTypes) => {
     title : {
       type : DataTypes.CHAR,
       allowNull:false,
+      validate : {
+        notEmpty :true
+      }
   
     },
 
@@ -21,19 +24,18 @@ module.exports = (sequelize,DataTypes) => {
       type : DataTypes.STRING,
       allowNull:false,
       validate : {
-        notEmpty : {
-          args:true,
-          msg:'Wesh ?!'
-        }
+        notEmpty : true
       }
       
     },
 
     content : {
       type:DataTypes.TEXT,
-      allowNull:false
+      allowNull:false,
+      validate : {
+        notEmpty : true
     },
-
+  },
     author : {
       type:DataTypes.CHAR,
       allowNull:false,

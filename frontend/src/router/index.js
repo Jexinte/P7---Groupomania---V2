@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Registration from '../views/Registration.vue'
 import Login from '../views/Login.vue'
-
 import Homepage from '../views/Homepage.vue'
 import CreatePost from '../views/CreatePost.vue'
 import DisplayPost from '../views/DisplayPost.vue'
@@ -20,7 +19,6 @@ const routes = [
     component: Login
   },
 
- 
 
   {
     path: '/accueil',

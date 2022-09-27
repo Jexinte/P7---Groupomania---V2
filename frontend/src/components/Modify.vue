@@ -16,23 +16,23 @@
     <!-- FORMULAIRE -->
     <div class="post">
   
-      <form action="/updatepost" _method="put" enctype="multipart/form-data" class="update-form" @submit.prevent="checkEmptyData">
+      <form action="/updatepost" _method="put" enctype="multipart/form-data" class="update-form" @submit.prevent>
         <label for="title">
           Titre <br>
-          <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !">
+          <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !" required>
         </label>
         <p id="titleerror" class="errormsg"></p>
         
         <label for="image"> 
           Image  <br>
-          <input type="file" id="imageFile" name="imagePost" @change="stateOfFile">
+          <input type="file" id="imageFile" name="imagePost" @change="stateOfFile" required>
           <img id="output1" :src="previewUrl" v-if="previewUrl" width="100" height="100">
           <p v-else>Aucune image de téléchargée...</p>
     
         </label>
         
         
-        <textarea name="content" id="content" v-model="content" cols="30" rows="10"></textarea>
+        <textarea name="content" id="content" v-model="content" cols="30" rows="10" required></textarea>
         
         <input type="submit" value="Envoyer" id="submit">
         <Error id="error"></Error>
@@ -70,8 +70,8 @@
           
         const file = e.target.files[0]
         if (!file) {
-           return false
-       
+          // return false
+          alert('Test')
         }
         if (!file.type.match('image.*')) {
           alert('Ceci n\'est pas une image !')
@@ -84,11 +84,7 @@
         reader.readAsDataURL(file)
       
         },
-        checkEmptyData(){
-          if(this.title === "" || this.content === ""){
-            
-          }
-        }
+      
      
       },
       components: {Menu_CreatePost }

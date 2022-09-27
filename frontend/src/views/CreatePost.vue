@@ -19,25 +19,28 @@
       <form action="/posts" method="post" enctype="multipart/form-data" class="registration-form" @submit.prevent="checkEmptyData">
         <label for="title">
           Titre <br>
-          <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !">
+          <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !" required>
         </label>
-        <p id="titleerror" class="errormsg"></p>
+        <span id="titleerrormsg" class="errormsg"></span>
         
         <label for="image"> 
           Image  <br>
-          <input type="file" id="imageFile" name="imagePost" @change="stateOfFile">
+          <input type="file" id="imageFile" name="imagePost" @change="stateOfFile" required>
           <img id="output1" :src="previewUrl" v-if="previewUrl" width="100" height="100">
-          <p v-else>Aucune image de téléchargée...</p>
+          <span v-else>Aucune image de téléchargée...</span>
     
         </label>
         
-        
-        <textarea name="content" id="content" v-model="content" cols="30" rows="10"></textarea>
+        <label for="content">
+          Contenu <br>
+          <textarea name="content" id="content" v-model="content"  cols="30" rows="10" required></textarea >
+            <span id="contenterrormsg" class="errormsg"></span>
+          </label>
         
         <input type="submit" value="Envoyer" id="submit">
-        <Error id="error"></Error>
+  
       </form>
-  <!-- DES CHOSES SERONT A CHANGER CE JEUDI -->
+  
       <div class="preview_post">
         <h2 class="preview_title">Aperçu</h2>
         <h3 class="preview_secondtitle">{{title}}</h3>
@@ -52,26 +55,30 @@
   <script>
   import Menu_CreatePost from "../components/Menu_CreatePost.vue"
   import CreatePost from "@/services/Posts.vue"
+  
   const user = new CreatePost()
   
     export default {
       mounted:function(){
         user.createPost()
+        
       },
       data(){
         return {
           previewUrl:'',
           title:'',
-          content:''
+          content:'',
+          image:''
         }
       },
       methods : {
         stateOfFile(e){
           
         const file = e.target.files[0]
+  
         if (!file) {
-          // return false
-          alert('Test')
+          //  return false
+       
         }
         if (!file.type.match('image.*')) {
           alert('Ceci n\'est pas une image !')
@@ -84,14 +91,39 @@
         reader.readAsDataURL(file)
       
         },
-        checkEmptyData(){
-          if(this.title === "" || this.content === ""){
+  
+          checkEmptyData(){
+            const errorTitleMsg = document.getElementById('titleerrormsg')
+            const errorContentMsg = document.getElementById('contenterrormsg')
+            
+            if(this.title === "" ){
+              errorTitleMsg.textContent = "Ce champ ne peut-être vide"
+              errorTitleMsg.style.color="red"
+              errorTitleMsg.style.background="red"
+  
+            }
+  
+            
+            else {
+              errorTitleMsg.textContent = ""
+            }
+  
+  
+            if( this.content === ""){
+              errorContentMsg.textContent = "Ce champ ne peut-être vide"
+              errorContentMsg.style.color="red"
+  
+            }
+  
+            else {
+              errorContentMsg.textContent = ""
+            }
             
           }
-        }
+      
      
       },
-      components: {Menu_CreatePost }
+      components: {Menu_CreatePost,Error }
   }
   </script>
   <style scoped>
@@ -133,6 +165,26 @@
     
     }
   
+    #content:invalid{
+      border: 3px solid rgba(255, 99, 71, 0.8);
+    }
+    #content:valid {
+    border: 3px solid lightgreen;
+  }
+    #title:invalid{
+      border: 3px solid rgba(255, 99, 71, 0.8);
+    }
+  #title:valid {
+    border: 3px solid lightgreen;
+  }
+  
+  #imageFile:invalid{
+    border: 3px solid rgba(255, 99, 71, 0.8);
+  }
+  
+  #imageFile:valid {
+    border: 3px solid lightgreen;
+  }
   
     .registration-form input {
       width: 100%;
@@ -185,6 +237,9 @@
   font-weight: 800;
     }
   
+    #content{
+      width: 100%;
+    }
   
     #output2{
       width: 100%;

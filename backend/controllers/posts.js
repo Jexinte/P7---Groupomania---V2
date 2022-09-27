@@ -6,18 +6,24 @@ const { ValidationError } = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()
 const fs = require('fs')
+
 exports.displayPosts = (req,res) => {
 
         POSTS.findAll().then(post => res.status(200).json({message:post}))
       
 }
 
+
+
 exports.displayPost = (req,res) => {
   const { id } = req.params
   
 
   POSTS.findByPk(id).then(post => res.status(200).json({data:post}))
+  .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
 }
+
+
 
 exports.createPost = (req,res) => {
   
@@ -46,22 +52,15 @@ exports.createPost = (req,res) => {
             
            })
 
-           .catch(error => {
-          
-            res.status(404).json({message:error})
-           
-           })
-
-         
         }
       })
 
-      .catch(() => {
-         res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
-      })
     })
   
+    .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
 }
+
+
 
 //* Permettre la mise à jour d'un post en fonction de l'identifiant utilisateur lié
 exports.updatePost = (req,res) => {
@@ -127,7 +126,11 @@ exports.updatePost = (req,res) => {
 
 }
 
+
+
+
 exports.deletePost = (req,res) => {
+
   const {id} = req.params
   POSTS.findByPk(id).then(post => {
     const filename = post.imageUrl.split('/images/')[1]
@@ -214,12 +217,15 @@ COMMENTS.create({
 
 }
 
+
 exports.displayComments = (req,res) => {
 
 COMMENTS.findAll().then(response => {
   res.status(200).json({data1:response})
 })
 }
+
+
 
 exports.likeSystem = (req,res) => {
   
@@ -268,11 +274,7 @@ exports.likeSystem = (req,res) => {
             })
 
             .catch(error => res.status(404).json({message:error}))
-           
 
-         
-            
-        
 }
 
 
@@ -284,15 +286,13 @@ else {
        
       })
 
-       .catch(err => res.status(500).json({message:err}))
+      .catch(() => {
+        res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
+      })
   })
 
-   .catch(err => res.status(500).json({message:err}))
-
-
-
-
-  
-
+  .catch(() => {
+    res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
+  })
 
 }

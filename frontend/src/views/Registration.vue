@@ -17,37 +17,36 @@
           <!-- FORMULAIRE -->
 
           <form action="/inscription" method="post" enctype="multipart/form-data" class="registration-form" @submit.prevent="checkEmptyData">
+
             <label for="user">
               Utilisateur  <br>
-              <input type="text" id="user" name="user" v-model="user" placeholder="Ada Lovelace">
+              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada Lovelace">
+              <span id="usererrormsg" class="errormsg"></span>
             </label>
-            <p id="usererrormsg" class="errormsg"></p>
 
             <label for="mail"> 
               Adresse électronique  <br>
-              <input type="email" id="mail" name="mail" v-model="mail" placeholder="adalovelace@groupomania.fr">
+              <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr">
+              <span id="mailerrormsg" class="errormsg"></span>
             </label>
-            <p id="mailerrormsg" class="errormsg"></p>
 
             <label for="password">
               Mot de passe   <br>
-              <input type="password" id="password" name="password" v-model="password" >
-              
+              <input type="password" id="password" class="datasend" name="password" v-model="password" >
+              <span id="passworderrormsg" class="errormsg"></span>
             </label>
             
-            <div class="verification-password">
-
-<p @click="allowUserToSeeWrittenPassword">
-
-  <img id="seepassword" src="@/assets/images/oeil_mot_de_passe.png" alt="" height="50">
-</p>
-<p id="passworderrormsg" class="errormsg"></p>
-</div>
-
-
+         
+              <label for="checkpassword" class="checkpassword">
+                Afficher le mot de passe 
+                <input type="checkbox" id="checkpassword" @click="allowUserToSeeWrittenPassword">
+                
+              </label>
             <input type="submit" value="Envoyer" id="submit">
             <Error id="error"></Error>
+
           </form>
+
         </div>
   </div>
 
@@ -58,7 +57,7 @@
  
   import Registration from '@/services/Auth.vue'
   import Error from '@/components/Error.vue'
-import Menu_Registration from '@/components/Menu_Registration.vue'
+  import Menu_Registration from '@/components/Menu_Registration.vue'
 
   const user = new Registration()
   
@@ -78,17 +77,17 @@ import Menu_Registration from '@/components/Menu_Registration.vue'
     },
 
     methods: {
-        checkEmptyData(e) {
-            const errorOnUser = document.getElementById("utilisateurerrormsg");
+        checkEmptyData() {
+            const errorOnUser = document.getElementById("usererrormsg");
             const errorOnMail = document.getElementById("mailerrormsg");
             const errorOnPassword = document.getElementById("passworderrormsg");
    
-        
-            if (this.utilisateur === "") {
-                errorOnUser.textContent = "Le champ ne peut être vide";
-                errorOnUser.style.color = "red";
-                e.preventDefault();
-            }
+          
+        if(this.user === ""){
+          errorOnUser.textContent = "Le champ ne peut être vide";
+          errorOnUser.style.color = "red";
+        }
+
             else {
                 errorOnUser.textContent = "";
             }
@@ -136,8 +135,6 @@ import Menu_Registration from '@/components/Menu_Registration.vue'
 }
 
 
-
-
   /* BANNIERE */
 
   .banner  {
@@ -166,17 +163,33 @@ import Menu_Registration from '@/components/Menu_Registration.vue'
   
   }
 
-  .registration-form input {
+  .registration-form .datasend {
     width: 100%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 13px;
     border:none
   }
 
+  
+  .checkpassword {
+    display: flex;
+    gap:.5em;
+  }
+  
+  .datasend{
+    margin-bottom: .7em;
+  }
+
+
+
   #submit {
     background: white;
     font-weight: var(--900);
     cursor: pointer;
+    width: 100%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    padding: 13px;
+    border:none
   }
 
   .errormsg{

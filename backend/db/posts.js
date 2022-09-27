@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes} = require('sequelize')
 const PostModel = require('../models/posts')
 const CommentsModel = require('../models/Comments')
-const fauxPost = require('./fakeposts')
+const fauxPost = require('./fakePosts')
 const dotenv = require('dotenv')
 dotenv.config()
 
