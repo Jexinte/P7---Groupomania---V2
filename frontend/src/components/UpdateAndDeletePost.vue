@@ -29,19 +29,20 @@ const user = new Posts()
     gap:1.3em;
   }
   .updatedeletepost-button{
-    
     padding: .9em .7em;
   }
 
   #update{
-    background-color: aqua;
+    background-color: lightgreen;
     border-radius: 10px;
     font-weight: 900;
+    color: white;
   }
 
   #delete{
     background-color: var(--rouge);
     border-radius: 10px;
     font-weight: 900;
+    color: white;
   }
 </style>

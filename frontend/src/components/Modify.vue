@@ -70,8 +70,8 @@
           
         const file = e.target.files[0]
         if (!file) {
-          // return false
-          alert('Test')
+           return false
+       
         }
         if (!file.type.match('image.*')) {
           alert('Ceci n\'est pas une image !')
