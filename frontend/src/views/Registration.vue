@@ -119,7 +119,7 @@
           if(passwordField.type === "password")
               passwordField.type = "text"
           else
-              passwordField.type="password"
+              passwordField.type = "password"
         }
     },
     components: { Error, Menu_Registration }
@@ -144,12 +144,6 @@
     border-bottom: 5px solid red;
   }
 
-  .banner img {
-   
-    height: 342px;
-    width: 347px;
-    /* border: 1px solid black; */
-  }
   .registration-form {
     display: flex;
     flex-direction: column;
@@ -200,13 +194,4 @@
     cursor: pointer;
   }
 
-  @media screen and (max-width:340px){
-    .banner img {
-   
-   /* height: 342px; */
-   width: 100%;
-
- }
-
-  }
 </style>

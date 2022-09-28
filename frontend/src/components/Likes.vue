@@ -1,8 +1,8 @@
 <template>
   <!-- LIKES -->
-    <form action="/affichepost" _method="PUT"  enctype="multipart/form-data" class="likes-form" @submit.prevent>
+    <form action="/affichepost" _method="PUT"   enctype="multipart/form-data" class="likes-form" @submit.prevent>
 
-        <button class="button" type="submit" id="likebtn"  :disabled="isActive" @click="isActive=true" >
+        <button class="button" type="submit" id="likebtn"  :disabled="isActive"  @click="sendLike" >
           <font-awesome-icon icon="fa-solid fa-thumbs-up" />
           <span id="totalLikes"></span>
         </button>
@@ -29,7 +29,7 @@
 
     mounted:function(){
       this.totalNumberOfLikes()
-      this.sendLike()
+      // this.sendLike()
     },
 
     methods : {
@@ -63,7 +63,8 @@
             withCredentials:true
 
           })
-          .then(res => totalLikes.textContent = ` ${res.data['like']}`)
+          .then(res =>{ this.isActive = true
+             totalLikes.textContent = ` ${res.data['like']}`})
 
       
         })

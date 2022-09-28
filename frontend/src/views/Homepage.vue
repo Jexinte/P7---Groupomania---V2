@@ -59,6 +59,7 @@ a{
     display: flex;
     flex-direction: column;
     gap:1.5em;
+    width: 80%;
   }
 
   .everyposts-box h2 {
@@ -74,7 +75,7 @@ a{
 
 
   .everyposts__paragraph{
-    width: 600px;
+    
     text-overflow: ellipsis;
     overflow:hidden;
     white-space: nowrap;
@@ -84,16 +85,8 @@ a{
     display: flex;
     justify-content: center;
     margin-bottom: 1.5em;
-    /* border-bottom: 5px solid red; */
   }
 
-
-  .banner img {
-
-    height: 342px;
-    width: 347px;
-   
-  }
 
   @media screen and (max-width:992px){
     .everyposts__paragraphe{
@@ -102,6 +95,10 @@ a{
 
     .everyposts h1 {
       text-align: center;
+    }
+
+    .everyposts-box h2{
+      font-size: 1.5em;
     }
   }
 </style>

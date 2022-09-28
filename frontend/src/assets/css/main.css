@@ -38,10 +38,10 @@ a:visited{
   color:black;
 }
 
-@media screen and (max-width:340px) {
+@media screen and (max-width:992px) {
   .banner img {
    
-    height: 342px;
+    /* height: 342px; */
     width: 100%;
  
   }

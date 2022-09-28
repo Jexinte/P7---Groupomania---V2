@@ -94,14 +94,14 @@ import Menu_Login from '@/components/Menu_Login.vue';
 
         },
 
-        allowUserToSeeWhatPasswordTheyAreTyping(){
+        allowUserToSeeWrittenPassword(){
 
           const passwordField = document.getElementById('password')
 
           if(passwordField.type === "password")
               passwordField.type = "text"
           else
-              passwordField.type="password"
+              passwordField.type = "password"
         },
 
         login(){
@@ -131,12 +131,7 @@ import Menu_Login from '@/components/Menu_Login.vue';
     border-bottom: 5px solid red;
   }
 
-  .banner img {
-   
-    height: 342px;
-    width: 347px;
-   
-  }
+
   .login-form {
     display: flex;
     flex-direction: column;
@@ -189,13 +184,5 @@ import Menu_Login from '@/components/Menu_Login.vue';
   #seepassword{
     cursor: pointer;
   }
-  @media screen and (max-width:340px){
-    .banner img {
-   
-   height: 342px;
-   width: 100%;
 
- }
-
-  }
 </style>

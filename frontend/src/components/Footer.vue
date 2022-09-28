@@ -19,5 +19,8 @@ footer{
   justify-content: center;
 }
 
+#copyright {
+  text-align: center;
+}
 
 </style>

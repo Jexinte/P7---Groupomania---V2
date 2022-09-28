@@ -2,7 +2,7 @@
   <header>
            <nav>
              <router-link to="/" >Inscription</router-link>
-             <router-link to="/contact">Contact</router-link>
+    
            </nav>
          </header>
 </template>

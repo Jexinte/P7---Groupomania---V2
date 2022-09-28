@@ -100,12 +100,7 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue';
 
   }
 
-  .banner img {
-   
-    height: 342px;
-    width: 347px;
-   
-  }
+
   .post {
     display: flex;
     flex-direction: column;
@@ -134,10 +129,30 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue';
   }
 
   .authorBox {
-    display: flex;
-  justify-content: space-between;
+    display: grid;
+grid-template-columns: repeat(2,1fr);
+grid-template-rows: repeat(2,1fr);
+grid-template-areas: 
+"a b"
+"c c"
+;
+gap:1.5em;
 }
 
+#likes {
+  grid-area: a;
+  place-self: first baseline;
+}
+
+.author-post{
+  grid-area: b;
+  text-align: right;
+}
+
+.updatedeletepost{
+  grid-area: c;
+  place-self: center;
+}
 .comments-informations{
   padding-top:10em;
 }
@@ -159,7 +174,7 @@ padding-top: 1.5em;
 @media screen and (max-width:992px) {
 
   .h2-post {
-    font-size: 15px;
+    font-size: 1.5em;
     line-height: 2.5em;
   }
 

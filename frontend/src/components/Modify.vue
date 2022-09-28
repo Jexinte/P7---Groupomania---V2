@@ -1,7 +1,7 @@
 <template>
   <div class="container">
   <!-- POSTS -->
-  <div class="posts">
+  <div class="update-posts">
   
   <!-- MENU -->
   
@@ -91,16 +91,7 @@
   }
   </script>
   <style scoped>
-    
-    .posts {
-    width: 80%;
-    margin:0 auto 5em;
-    font-family: var(--lato);
-  }
-  
-  
-  
-  
+
     /* BANNIERE */
   
     .banner  {
@@ -109,13 +100,7 @@
       margin-bottom: 1.5em;
       border-bottom: 5px solid red;
     }
-  
-    .banner img {
-     
-      height: 342px;
-      width: 347px;
-      /* border: 1px solid black; */
-    }
+
     .update-form {
       display: flex;
       flex-direction: column;
@@ -186,13 +171,5 @@
       width: 100%;
       padding-bottom: 3em;
     }
-    @media screen and (max-width:340px){
-      .banner img {
-     
-     /* height: 342px; */
-     width: 100%;
-  
-   }
-  
-    }
+
   </style>

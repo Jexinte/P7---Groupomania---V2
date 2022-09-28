@@ -29,7 +29,7 @@ const user = new Posts()
     gap:1.3em;
   }
   .updatedeletepost-button{
-    padding: .9em .7em;
+    padding: .4em .8em;
   }
 
   #update{

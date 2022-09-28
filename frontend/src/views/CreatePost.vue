@@ -128,11 +128,7 @@
   </script>
   <style scoped>
     
-    .posts {
-    width: 80%;
-    margin:0 auto 5em;
-    font-family: var(--lato);
-  }
+  
   
   
   
@@ -146,12 +142,6 @@
       border-bottom: 5px solid red;
     }
   
-    .banner img {
-     
-      height: 342px;
-      width: 347px;
-      /* border: 1px solid black; */
-    }
     .registration-form {
       display: flex;
       flex-direction: column;
@@ -165,26 +155,7 @@
     
     }
   
-    #content:invalid{
-      border: 3px solid rgba(255, 99, 71, 0.8);
-    }
-    #content:valid {
-    border: 3px solid lightgreen;
-  }
-    #title:invalid{
-      border: 3px solid rgba(255, 99, 71, 0.8);
-    }
-  #title:valid {
-    border: 3px solid lightgreen;
-  }
   
-  #imageFile:invalid{
-    border: 3px solid rgba(255, 99, 71, 0.8);
-  }
-  
-  #imageFile:valid {
-    border: 3px solid lightgreen;
-  }
   
     .registration-form input {
       width: 100%;

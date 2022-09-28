@@ -9,7 +9,7 @@ export default class Posts {
   showThePost(){
    
         const updateLink = document.getElementById('update')
-
+        const updateAndDeleteButton = document.querySelector('.updatedeletepost')
         const containerPost = document.querySelector('.post')
         axios({
               method:'get',
@@ -47,7 +47,7 @@ export default class Posts {
               author.className = "author-post"
               authorBox.append(author)
               author.textContent = `Publié par ${res.data['data'].author}, le ${dateFrenchFormat}`
-
+              authorBox.appendChild(updateAndDeleteButton)
               updateLink.href=`modifierpost/?idpost=${res.data['data'].id}`
               
         })
