@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 let session
 
+//* Création d'un utilisateur
 exports.registration = (req,res) => {
 
   let mailOfUserRegistrating = req.body.mail
@@ -48,6 +49,7 @@ exports.registration = (req,res) => {
   })
 }
 
+//* Connexion d'un utilisateur
 exports.login = (req,res) => {
 
   let mailOfUserLogin = req.body.mail
@@ -87,7 +89,7 @@ exports.login = (req,res) => {
   .catch(() => res.status(500).json({message:`Veuillez réessayez dans quelques instants`}))
 }
 
-
+//* Déconnexion d'un utilisateur
 exports.logout = (req,res) => {
   session.id = req.session.id
 

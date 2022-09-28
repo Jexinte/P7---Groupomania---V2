@@ -29,7 +29,7 @@
 
     mounted:function(){
       this.totalNumberOfLikes()
-      // this.sendLike()
+      
     },
 
     methods : {

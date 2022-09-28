@@ -106,7 +106,7 @@
     width: 100%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     border: none;
-    padding:1em
+    padding:.4em;
   }
 
 
@@ -124,7 +124,7 @@
 
 
     .input {
-      padding: 0;
+      padding: .4em;
     }
 
     ::placeholder{

@@ -218,10 +218,7 @@
     }
     @media screen and (max-width:340px){
       .banner img {
-     
-     /* height: 342px; */
      width: 100%;
-  
    }
   
     }

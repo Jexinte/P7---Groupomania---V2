@@ -10,6 +10,7 @@ const corsOptions = {
 const multer = require('../middleware/multerConfig')
 const authSession = require('../middleware/auth-session')
 const PostsController = require('../controllers/posts')
+
 router.use(cors(corsOptions))
 router.use(express.json())
 

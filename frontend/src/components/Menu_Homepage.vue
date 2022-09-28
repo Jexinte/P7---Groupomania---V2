@@ -1,7 +1,7 @@
 <template>
   <header>
         <nav>
-          <!-- <router-link to="/accueil" ><font-awesome-icon icon="fa-solid fa-arrow-left" /></router-link> -->
+        
           <div class="right">
             <router-link to="/creationpost">Écrire un post</router-link>
             <router-link to="/" @click="logout">Déconnexion</router-link>

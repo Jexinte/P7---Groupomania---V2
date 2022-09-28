@@ -1,5 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
+
+
 const sequelize = require('./db/sequelize')
 const sequelizeSession = require('./db/session')
 const sequelizePosts = require('./db/posts')
