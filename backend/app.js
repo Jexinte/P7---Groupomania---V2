@@ -1,6 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
-
+const helmet = require('helmet')
 
 const sequelize = require('./db/sequelize')
 const sequelizeSession = require('./db/session')
@@ -14,6 +14,7 @@ app.use(morgan('dev'))
 app.use('/api/auth',UsersRoutes)
 app.use('/api/posts',PostsRoutes)
 app.use('/images',express.static('images'))
+app.use(helmet())
 
 sequelize.initDbUser()
 sequelizeSession.initDbSession()
