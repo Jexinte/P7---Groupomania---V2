@@ -6,7 +6,7 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 # How to use it
  - Clone the repo
  - Type "npm install" on frontend and backend folder
- - You have to get phpmyadmin or any other tools using mysql and mariadb dialect
+ - You have to install XAMPP in order to use mysql and phpmyadmin
  - There is an env example file for logs
  - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile 
  - On backend folder "npm start or nodemon"
