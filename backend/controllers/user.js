@@ -66,7 +66,7 @@ exports.login = (req,res) => {
       return res.status(401).json({message:`Le mot de passe est incorrect`})
        
       //* Si tout est bon alors on initialise la session 
-      else{
+      else if(password){
         session = req.session
         session.id = req.session.id
         session.userId = user.id
@@ -74,6 +74,8 @@ exports.login = (req,res) => {
         session.type = user.type
         return res.status(200).json({idSession:session.id,user:session.user,userId:session.userId,typeOfUser:session.type})
       }
+
+      
       
 
     })
