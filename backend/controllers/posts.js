@@ -10,7 +10,7 @@ const fs = require('fs')
 
 //* Affiche la liste des posts
 exports.displayPosts = (req,res) => {
-        POSTS.findAll().then(post => res.status(200).json({message:post}))
+        POSTS.findAll({order:['dateOfPublication']}).then(post => res.status(200).json({message:post}))
 }
 
 
