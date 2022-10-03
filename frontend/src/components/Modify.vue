@@ -19,20 +19,20 @@
       <form action="/updatepost" _method="put" enctype="multipart/form-data" class="update-form" @submit.prevent>
         <label for="title">
           Titre <br>
-          <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !" required>
+          <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !" >
         </label>
         <p id="titleerror" class="errormsg"></p>
         
         <label for="image"> 
           Image  <br>
-          <input type="file" id="imageFile" name="imagePost" @change="stateOfFile" required>
+          <input type="file" id="imageFile" name="imagePost" @change="stateOfFile" >
           <img id="output1" :src="previewUrl" v-if="previewUrl" width="100" height="100">
           <p v-else>Aucune image de téléchargée...</p>
     
         </label>
         
         
-        <textarea name="content" id="content" v-model="content" cols="30" rows="10" required></textarea>
+        <textarea name="content" id="content" v-model="content" cols="30" rows="10" ></textarea>
         
         <input type="submit" value="Envoyer" id="submit">
         <Error id="error"></Error>
@@ -53,10 +53,12 @@
   import Menu_CreatePost from "../components/Menu_CreatePost.vue"
   import UpdatePost from "@/services/Posts.vue"
   const user = new UpdatePost()
+  const axios = require('axios')
   
     export default {
       mounted:function(){
-        user.updatePost()
+        user.updatePost(),
+        this.dataOfPostByDefault()
       },
       data(){
         return {
@@ -85,6 +87,24 @@
       
         },
       
+        dataOfPostByDefault(){
+          const searchParams = new URLSearchParams(window.location.search)
+          const idPost = parseInt(searchParams.get('idpost'))
+      
+
+          axios({
+            method:'get',
+            url:`http://localhost:3000/api/posts/displaypost/${idPost}`,
+            withCredentials:true
+          })
+
+          .then(res => {
+            
+              this.title = res.data['data'].title
+              this.content = res.data['data'].content
+          })
+
+        }
      
       },
       components: {Menu_CreatePost }

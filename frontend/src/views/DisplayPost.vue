@@ -13,7 +13,8 @@
     </div>
     <div class="comments-informations">
       <CreateComments></CreateComments>
-      <DisplayComments></DisplayComments>
+      <DisplayComments>
+      </DisplayComments>
     </div>
   </div>
 </template>
@@ -23,12 +24,16 @@
 import PostThroughId from '@/services/Posts.vue';
 import Menu_Logout from '../components/Menu_Logout.vue';
 import CreateComments from '@/components/CreateComments.vue';
-import DisplayComments from '@/components/DisplayComments.vue';
+import DisplayComments from '@/components/DisplayComments.vue'
 import Likes from '@/components/Likes.vue'
-import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue';
+import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
 
   const user = new PostThroughId()
+  
   const axios = require('axios')
+  const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
+  const searchParams = new URLSearchParams(window.location.search)
+  const idPost = parseInt(searchParams.get('id'))
   export default {
     mounted: function () {
         user.showThePost()
@@ -48,11 +53,10 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue';
 
     methods: {
       showUpdateAndDeleteComponent(){
-        const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-        const searchParams = new URLSearchParams(window.location.search)
 
-        const idPost = parseInt(searchParams.get('id'))
-        this.userIdData = parseInt(cookie.userId)
+
+ 
+        this.userIdData = parseInt(cookie.userid)
         axios({
           method:'get',
           url:`http://localhost:3000/api/posts/displaypost/${idPost}`,
@@ -83,7 +87,8 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue';
           }
           
      
-     } 
+     } ,
+
     },
 
  

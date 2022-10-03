@@ -29,7 +29,7 @@ router.use(session({
   key:'id_session',
   secret:`${process.env.SECRETSESSIONCOOKIE}`,
   store:sessionStore,
-  resave:false,
+   resave:false,
   saveUninitialized:false
 }))
 

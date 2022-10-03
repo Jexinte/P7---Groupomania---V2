@@ -27,4 +27,5 @@ router.get('/displaycomments',authSession,multer,PostsController.displayComments
 router.post('/createcomments/:id',authSession,multer,PostsController.createComments)
 
 
+
 module.exports = router

@@ -62,19 +62,20 @@
       
       .then(res => {
   
-        if(res.status === 200)
-        {
-  
-            errorBox.style.display="none"
-            errorBoxMsg.textContent = ""
-  
-            document.cookie=`idSession=${res.data['idSession']};`
-            document.cookie=`user=${res.data['user']};`
-            document.cookie=`userId=${res.data['userId']};`
-            document.cookie=`type=${res.data['typeOfUser']};`
-            
-            router.push('/accueil')
-        }
+      
+      
+          //   errorBox.style.display="none"
+          //   errorBoxMsg.textContent = ""
+      
+
+          document.cookie=`idsession=${res.data['idSession']};`
+          document.cookie=`user=${res.data['user']};`
+          document.cookie=`userid=${res.data['userId']};`
+          document.cookie=`type=${res.data['typeOfUser']};`
+          
+           router.push('/accueil')
+      
+        
         
       })
       

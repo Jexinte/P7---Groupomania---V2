@@ -20,7 +20,7 @@
 
             <label for="user">
               Utilisateur  <br>
-              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada Lovelace">
+              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada">
               <span id="usererrormsg" class="errormsg"></span>
             </label>
 

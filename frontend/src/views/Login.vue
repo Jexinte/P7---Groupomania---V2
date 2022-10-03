@@ -26,7 +26,7 @@
             <label for="password">
               Mot de passe   <br>
               <input type="password" class="datasend" id="password" name="password" v-model="password" required>
-              
+              <span id="passworderrormsg" class="errormsg"></span>
             </label>
             <label for="checkpassword" class="checkpassword">
                 Afficher le mot de passe 

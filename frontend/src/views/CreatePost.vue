@@ -19,7 +19,7 @@
       <form action="/posts" method="post" enctype="multipart/form-data" class="registration-form" @submit.prevent="checkEmptyData">
         <label for="title">
           Titre <br>
-          <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !" required>
+          <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !"  required>
         </label>
         <span id="titleerrormsg" class="errormsg"></span>
         

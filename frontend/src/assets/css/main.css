@@ -38,6 +38,9 @@ a:visited{
   color:black;
 }
 
+textarea{
+  resize: none;
+}
 @media screen and (max-width:992px) {
   .banner img {
    

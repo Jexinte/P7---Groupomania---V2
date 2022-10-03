@@ -22,13 +22,17 @@
     data(){
       return {
         likes:1,
-        isActive:false
+        isActive:false,
+        userIdData:'',
+        user:''
       
      }
     },
 
     mounted:function(){
-      this.totalNumberOfLikes()
+      this.totalNumberOfLikes(),
+      this.forbiddenUserAuthorToLikeHisOwnPost()
+      this.forbiddenUserToLikeAgain()
       
     },
 
@@ -70,6 +74,42 @@
         })
         
       },
+
+      
+     forbiddenUserAuthorToLikeHisOwnPost(){
+      const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
+      this.userIdData = parseInt(cookie.userid)
+      axios({
+        method:'get',
+        url:`http://localhost:3000/api/posts/displaypost/${id}`,
+        withCredentials:true
+      })
+
+      .then(res => {
+        const userIdFromThePost = res.data['data'].userId 
+        if(userIdFromThePost === this.userIdData)
+          this.isActive = true
+      })
+     },
+
+     forbiddenUserToLikeAgain(){
+      const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
+      this.user = cookie.user
+      axios({
+        method:'get',
+        url:`http://localhost:3000/api/posts/displaypost/${id}`,
+        withCredentials:true
+      })
+
+      .then(res => {
+        
+          const usersWhoLovedThePost = res.data['data'].UsersWhoLovedThePost
+
+          if(usersWhoLovedThePost.includes(this.user))
+            this.isActive = true
+          
+      })
+     }
   },
 
     

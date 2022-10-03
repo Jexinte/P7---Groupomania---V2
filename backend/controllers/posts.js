@@ -10,7 +10,7 @@ const fs = require('fs')
 
 //* Affiche la liste des posts
 exports.displayPosts = (req,res) => {
-        POSTS.findAll({order:['dateOfPublication']}).then(post => res.status(200).json({message:post}))
+        POSTS.findAll({order:[['dateOfPublication','DESC']]}).then(post => res.status(200).json({message:post}))
 }
 
 
@@ -82,13 +82,21 @@ exports.updatePost = (req,res) => {
               const post = JSON.parse(postData)
               
               //* On vérifie ici si le contenu de la requête contient des fichiers ou uniquement du texte
-              const postObject = req.file ?  {...post,imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`} : {...req.body}
+              const postObject = req.file ?  {
+                ...post,
+                imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+              } : {...req.body}
               
               POSTS.update({...postObject},{
                 where : {id:id}
               })
               .then(_ => {
                 POSTS.findByPk(id).then(post => res.status(201).json({message:`Le post suivant a bien été modifié !`,data:post}))
+              })
+
+              .catch(error => {
+                if(error instanceof ValidationError)
+                    return res.status(404).json({message:'Test'})
               })
 
           }
@@ -185,6 +193,9 @@ COMMENTS.findAll().then(response => {
   res.status(200).json({data1:response})
 })
 }
+
+
+
 
 
 //* Création d'un like par utilisateur

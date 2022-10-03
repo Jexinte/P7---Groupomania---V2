@@ -14,27 +14,20 @@ module.exports = (sequelize,DataTypes) => {
     title : {
       type : DataTypes.CHAR,
       allowNull:false,
-      validate : {
-        notEmpty :true
-      }
-  
+
     },
 
     imageUrl : {
       type : DataTypes.STRING,
       allowNull:false,
-      validate : {
-        notEmpty : true
-      }
+   
       
     },
 
     content : {
       type:DataTypes.TEXT,
       allowNull:false,
-      validate : {
-        notEmpty : true
-    },
+
   },
     author : {
       type:DataTypes.CHAR,

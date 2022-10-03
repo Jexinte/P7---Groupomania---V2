@@ -6,6 +6,7 @@ import CreatePost from '../views/CreatePost.vue'
 import DisplayPost from '../views/DisplayPost.vue'
 import DisplayComments from '../components/DisplayComments.vue'
 import CreateComments from '../components/CreateComments.vue'
+
 import ModifyPost from '../components/Modify.vue'
 const routes = [
   {
@@ -49,6 +50,8 @@ const routes = [
     name:'Espace pour afficher les commentaires',
     component: DisplayComments
   },
+
+
   {
     path:'/modifierpost',
     name:'modification de post',

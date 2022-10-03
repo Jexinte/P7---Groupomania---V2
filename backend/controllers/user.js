@@ -39,7 +39,7 @@ exports.registration = (req,res) => {
     }
 
     else 
-      return res.status(404).json({message:`Merci d'écrire une adresse mail correcte !`})
+      return res.status(404).json({message:`Merci d'écrire une adresse mail au format suivant : example@groupomania.fr `})
     
   })
 
@@ -64,25 +64,38 @@ exports.login = (req,res) => {
       //* On ajoute le nom de l'utilisateur ainsi que son identifiant afin de pouvoir s'en servir dans les requêtes pour les posts
     bcrypt.compare(req.body.password , user.password).then(password => {
       
-      if(!password) 
-      return res.status(401).json({message:`Le mot de passe est incorrect`})
+      if(!password){
+
+         res.status(401).json({message:`Le mot de passe est incorrect`})
+      }
        
       //* Si tout est bon alors on initialise la session 
-      else if(password){
-        session = req.session
-        session.id = req.session.id
-        session.userId = user.id
-        session.user= user.user
-        session.type = user.type
-        return res.status(200).json({idSession:session.id,user:session.user,userId:session.userId,typeOfUser:session.type})
-      }
+    else if(password){
+
+      session = req.session
+      session.id = req.session.id
+      session.userId = user.id
+      session.user= user.user
+      session.type = user.type
+       res.status(200).json(
+        {
+          idSession:session.id,
+          user:session.user,
+          userId:session.userId,
+          typeOfUser:session.type
+        }
+      )
+
+     
+    }
+      
 
       
       
 
     })
     
-    .catch(error =>res.status(500).json({message:error}))
+    .catch(() =>res.status(500).json({message:`Veuillez réessayez dans quelques instants`}))
 
   })
 

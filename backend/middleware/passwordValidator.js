@@ -20,6 +20,6 @@ module.exports = (req,res,next) => {
       next()
     
   else
-      return res.status(400).json({message:"Veuillez saisir un mot de passe ayant au minimum 8 caractères avec :  1 majuscules , 1 minuscules et 1 chiffres"})
+      return res.status(400).json({message:"Veuillez saisir un mot de passe ayant au minimum 8 caractères avec :  1 majuscule, 1 minuscule et 1 chiffre"})
    
 }
