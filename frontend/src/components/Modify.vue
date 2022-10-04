@@ -16,12 +16,12 @@
     <!-- FORMULAIRE -->
     <div class="post">
   
-      <form action="/updatepost" _method="put" enctype="multipart/form-data" class="update-form" @submit.prevent>
+      <form action="/updatepost" _method="put" enctype="multipart/form-data" class="update-form" @submit.prevent="checkEmptyData">
         <label for="title">
           Titre <br>
           <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !" >
+          <span id="titleerror" class="errormsg"></span>
         </label>
-        <p id="titleerror" class="errormsg"></p>
         
         <label for="image"> 
           Image  <br>
@@ -33,7 +33,7 @@
         
         
         <textarea name="content" id="content" v-model="content" cols="30" rows="10" ></textarea>
-        
+        <span id="contenterror" class="errormsg"></span>
         <input type="submit" value="Envoyer" id="submit">
         <Error id="error"></Error>
       </form>
@@ -104,6 +104,30 @@
               this.content = res.data['data'].content
           })
 
+        },
+
+        checkEmptyData(){
+          const titleErrorMsg = document.getElementById('titleerror')
+          const contentErrorMsg = document.getElementById('contenterror')
+
+          if(this.content === ""){
+            contentErrorMsg.textContent = "Ce champ ne peut-être vide !"
+            contentErrorMsg.style.color = "red"
+          }
+
+          else {
+            contentErrorMsg.style.display = "none"
+          }
+
+
+          if(this.title === ""){
+            titleErrorMsg.textContent = "Ce champ ne peut-être vide !"
+            titleErrorMsg.style.color = "red"
+          }
+
+          else {
+            titleErrorMsg.style.display = "none"
+          }
         }
      
       },

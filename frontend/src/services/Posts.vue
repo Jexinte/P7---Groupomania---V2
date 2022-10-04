@@ -154,17 +154,7 @@ updatePost(){
       if(res.status === 201)
         router.push('/accueil')
      })
-    .catch(error => {
-          if(error.response.status === 403 || 500)
-          {
-                  document.cookie.split(';').forEach(function(cookie) {
-                    document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-            });
-
-            router.push('/connexion')
-          }
-          
-        })
+  
         
   })
 

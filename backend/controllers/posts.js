@@ -20,7 +20,7 @@ exports.displayPost = (req,res) => {
   
 
   POSTS.findByPk(id).then(post => res.status(200).json({data:post}))
-  .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
+  .catch(() => res.status(500).json({message:`${process.env.CRASHSERVER}`}))
 }
 
 
@@ -57,7 +57,7 @@ exports.createPost = (req,res) => {
 
     })
   
-    .catch(() => res.status(500).json({message:'Veuillez réessayez dans quelques instants !'}))
+    .catch(() => res.status(500).json({message:`${process.env.CRASHSERVER}`}))
 }
 
 
@@ -96,7 +96,7 @@ exports.updatePost = (req,res) => {
 
               .catch(error => {
                 if(error instanceof ValidationError)
-                    return res.status(404).json({message:'Test'})
+                   res.status(404).json({message:error.message})
               })
 
           }
@@ -105,12 +105,12 @@ exports.updatePost = (req,res) => {
           })
           
           
-          .catch(() => {return res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})})
+          .catch(() => {return res.status(500).json({message:`${process.env.CRASHSERVER}`})})
      })
 
      
      
-     .catch(() => {return res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})})
+     .catch(() => {return res.status(500).json({message:`${process.env.CRASHSERVER}`})})
 
 }
 
@@ -143,12 +143,12 @@ exports.deletePost = (req,res) => {
     
   })
   .catch(() => {
-    res.status(500).json({message:`Veuillez réessayez dans quelques instants !`})
+    res.status(500).json({message:`${process.env.CRASHSERVER}`})
   })
   
 })
 
-.catch(() => {return res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})})
+.catch(() => {return res.status(500).json({message:`${process.env.CRASHSERVER}`})})
    
 }
 
@@ -181,7 +181,7 @@ POSTS.findOne({where:{id:id}}).then(response => {
 })
 
 .catch(() => {
-  res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
+  res.status(500).json({message:`${process.env.CRASHSERVER}`})
 })
 
 }
@@ -258,12 +258,12 @@ exports.likeSystem = (req,res) => {
                 })
 
                 .catch(() => {
-                  res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
+                  res.status(500).json({message:`${process.env.CRASHSERVER}`})
                 })
 })
 
   .catch(() => {
-    res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
+    res.status(500).json({message:`${process.env.CRASHSERVER}`})
   })
 
 }

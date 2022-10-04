@@ -14,6 +14,12 @@ module.exports = (sequelize,DataTypes) => {
     title : {
       type : DataTypes.CHAR,
       allowNull:false,
+      validate : {
+        notEmpty : {
+          args:true,
+          msg:'Ce champ ne peut-être vide !'
+        }
+      }
 
     },
 
@@ -27,6 +33,12 @@ module.exports = (sequelize,DataTypes) => {
     content : {
       type:DataTypes.TEXT,
       allowNull:false,
+      validate : {
+        notEmpty : {
+          args:true,
+          msg:'Ce champ ne peut-être vide !'
+        }
+      }
 
   },
     author : {
