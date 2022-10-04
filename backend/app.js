@@ -20,4 +20,4 @@ sequelize.initDbUser()
 sequelizeSession.initDbSession()
 sequelizePosts.initDbPost()
 
-app.listen(port,() => console.log(`Le serveur a bien démarrer sur le port ${port}`))
+app.listen(3000,() => console.log(`Le serveur a bien démarrer sur le port 3000`))
