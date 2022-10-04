@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes} = require('sequelize')
 const PostModel = require('../models/posts')
 const CommentsModel = require('../models/Comments')
-const fauxPost = require('./fakePosts')
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -24,17 +23,7 @@ const POSTS = PostModel(sequelize,DataTypes)
 const COMMENTS = CommentsModel(sequelize,DataTypes)
 const initDbPost = () => {
 
-  sequelize.sync({force:true}).then(_ => {
-    fauxPost.map(post => {
-      POSTS.create({
-        userId:post.userId,
-        title:post.title,
-        imageUrl:post.imageUrl,
-        content:post.content,
-        author:post.author
-      })
-    })
-  })
+  sequelize.sync({force:true}).then(_ => console.log('Les tables POSTS ET COMMENTS ont bien été créées !'))
 }
 
 module.exports = {
