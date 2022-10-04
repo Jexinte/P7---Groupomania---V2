@@ -2,6 +2,8 @@ const { USER } = require('../db/sequelize')
 const { SESSION } = require('../db/session')
 const bcrypt = require('bcrypt')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
+const dotenv = require('dotenv')
+dotenv.config()
 let session
 
 //* Création d'un utilisateur
@@ -45,7 +47,7 @@ exports.registration = (req,res) => {
 
 //!  SI RIEN NE FONCTIONNE 
   .catch(() => {
-    res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
+    res.status(500).json({message:`${process.env.CRASHSERVER}`})
   })
 }
 
@@ -95,11 +97,11 @@ exports.login = (req,res) => {
 
     })
     
-    .catch(() =>res.status(500).json({message:`Veuillez réessayez dans quelques instants`}))
+    .catch(() =>res.status(500).json({message:`${process.env.CRASHSERVER}`}))
 
   })
 
-  .catch(() => res.status(500).json({message:`Veuillez réessayez dans quelques instants`}))
+  .catch(() => res.status(500).json({message:`${process.env.CRASHSERVER}`}))
 }
 
 //* Déconnexion d'un utilisateur
@@ -118,12 +120,12 @@ exports.logout = (req,res) => {
 
     else{
 
-      res.status(500).json({message:'Ok'})
+      res.status(500).json({message:`${process.env.CRASHSERVER}`})
     }
   })
 
   .catch(() => {
-    return res.status(500).json({message:`Veuillez réessayez dans quelques instants`})
+    return res.status(500).json({message:`${process.env.CRASHSERVER}`})
   })
 }
 
