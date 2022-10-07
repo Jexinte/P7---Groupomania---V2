@@ -10,7 +10,7 @@ const fs = require('fs')
 
 //* Affiche la liste des posts
 exports.displayPosts = (req,res) => {
-        POSTS.findAll({order:[['dateOfPublication','DESC']]}).then(post => res.status(200).json({message:post}))
+        POSTS.findAll({order:[['dateOfPublication','DESC']]}).then(post => res.status(200).json({data1:post}))
 }
 
 
@@ -77,27 +77,28 @@ exports.updatePost = (req,res) => {
  
           if(sessionData.userId === post.userId || sessionData.user === `${process.env.ADMIN}` && sessionData.type === `${process.env.TYPE}`)
           {   
-              //* On met au format json le contenu de la requête
-              const postData = JSON.stringify(req.body)
-              const post = JSON.parse(postData)
-              
-              //* On vérifie ici si le contenu de la requête contient des fichiers ou uniquement du texte
-              const postObject = req.file ?  {
-                ...post,
-                imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-              } : {...req.body}
-              
-              POSTS.update({...postObject},{
-                where : {id:id}
+            //* On met au format json le contenu de la requête
+            const postData = JSON.stringify(req.body)
+            const post = JSON.parse(postData)
+            
+            //* On vérifie ici si le contenu de la requête contient des fichiers ou uniquement du texte
+            const postObject = req.file ?  {
+              ...post,
+              imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+            } : {...req.body}
+            
+            POSTS.update({...postObject},{
+              where : {id:id}
               })
               .then(_ => {
                 POSTS.findByPk(id).then(post => res.status(201).json({message:`Le post suivant a bien été modifié !`,data:post}))
               })
-
+              
               .catch(error => {
                 if(error instanceof ValidationError)
-                   res.status(404).json({message:error.message})
+                res.status(404).json({message:error.message})
               })
+         
 
           }
 

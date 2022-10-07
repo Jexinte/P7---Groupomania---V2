@@ -32,8 +32,10 @@ const initDbUser = () => {
         USER.create({
           user:user.user,
           email:user.email,
+          imageProfile:user.imageProfile,
           password:hash,
-          type:user.type
+          type:user.type,
+          quote:user.quote,
         })
         .then(user => console.log(user.toJSON()))
       })

@@ -20,13 +20,27 @@
 
             <label for="user">
               Utilisateur  <br>
-              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada">
+              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada" >
               <span id="usererrormsg" class="errormsg"></span>
             </label>
 
+            <label for="quote">
+            Citation personnelle  <br>
+              <input type="text" id="quote" class="datasend" name="quote" v-model="quote" placeholder="Celui qui ne progresse pas chaque jour recule chaque jour" >
+              <span id="quoteerrormsg" class="errormsg"></span>
+            </label>
+
+            <label for="image" class="imageInput"> 
+          Image de profil <br>
+          <input type="file" id="imageFile" name="imageFile" @change="stateOfFile" required >
+          <img id="output1" :src="previewUrl" v-if="previewUrl" width="100" height="100">
+          <span v-else>Aucune image de téléchargée...</span>
+    
+        </label>
+
             <label for="mail"> 
               Adresse électronique  <br>
-              <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr">
+              <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr" >
               <span id="mailerrormsg" class="errormsg"></span>
             </label>
 
@@ -68,6 +82,8 @@
             user: "",
             mail: "",
             password: "",
+            quote:"",
+            previewUrl:''
             
         }
     },
@@ -81,7 +97,7 @@
             const errorOnUser = document.getElementById("usererrormsg");
             const errorOnMail = document.getElementById("mailerrormsg");
             const errorOnPassword = document.getElementById("passworderrormsg");
-   
+            const errorOnquote = document.getElementById('quoteerrormsg')
           
         if(this.user === ""){
           errorOnUser.textContent = "Le champ ne peut être vide";
@@ -110,6 +126,15 @@
                 errorOnPassword.textContent = "";
             }
 
+
+            if (this.quote === "") {
+                errorOnquote.textContent = "Le champ ne peut être vide";
+                errorOnquote.style.color = "red";
+            }
+            else {
+                errorOnquote.textContent = "";
+            }
+
         },
 
         allowUserToSeeWrittenPassword(){
@@ -120,7 +145,27 @@
               passwordField.type = "text"
           else
               passwordField.type = "password"
-        }
+        },
+
+        stateOfFile(e){
+          
+          const file = e.target.files[0]
+    
+          if (!file) {
+            //  return false
+         
+          }
+          if (!file.type.match('image.*')) {
+            alert('Ceci n\'est pas une image !')
+          }
+          const reader = new FileReader()
+          const that = this
+          reader.onload = function (e) {
+            that.previewUrl = e.target.result
+          }
+          reader.readAsDataURL(file)
+        
+          },
     },
     components: { Error, Menu_Registration }
 }
@@ -159,9 +204,7 @@
 
   .registration-form .datasend {
     width: 100%;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 13px;
-    border:none
   }
 
   
@@ -181,9 +224,8 @@
     font-weight: var(--900);
     cursor: pointer;
     width: 100%;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 13px;
-    border:none
+    border:1px solid black;
   }
 
   .errormsg{
@@ -192,6 +234,12 @@
 
   #seepassword{
     cursor: pointer;
+  }
+
+  .imageInput{
+    display: flex;
+    flex-direction: column;
+    gap: 1.1em;
   }
 
 </style>

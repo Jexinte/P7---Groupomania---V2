@@ -10,7 +10,7 @@
   
     <div class="banner">
       <img class="banner-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
-  
+      <h2 id="h2">Modifier un post</h2>
     </div>
   
     <!-- FORMULAIRE -->
@@ -25,7 +25,7 @@
         
         <label for="image"> 
           Image  <br>
-          <input type="file" id="imageFile" name="imagePost" @change="stateOfFile" >
+          <input type="file" id="imageFile" name="imageFile" @change="stateOfFile" >
           <img id="output1" :src="previewUrl" v-if="previewUrl" width="100" height="100">
           <p v-else>Aucune image de téléchargée...</p>
     
@@ -140,11 +140,18 @@
   
     .banner  {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       margin-bottom: 1.5em;
       border-bottom: 5px solid red;
     }
 
+    #h2{
+    font-size: 3em;
+    text-align: center;
+    font-weight: 900;
+    padding-bottom: 1em;
+  }
     .update-form {
       display: flex;
       flex-direction: column;
@@ -161,15 +168,14 @@
   
     .update-form input {
       width: 100%;
-      box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
       padding: 13px;
-      border:none
     }
   
     #submit {
       background: white;
       font-weight: var(--900);
       cursor: pointer;
+      border:1px solid black;
     }
   
     .errormsg{

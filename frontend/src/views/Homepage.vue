@@ -15,10 +15,13 @@
 <script>
 import Menu_Homepage from '@/components/Menu_Homepage.vue'
 import ListOfPosts from '@/services/Posts.vue'
+import User from '@/services/Auth.vue'
 const user = new ListOfPosts()
+const USER = new User()
   export default {
     mounted:function(){
       this.posts()
+      USER.profileUserId()
     },
 
     methods : {
@@ -42,12 +45,13 @@ a{
     width: 80%;
     margin: 0 auto;
     padding-bottom:3em;
+    min-height: 100vh;
   }
 
   .everyposts{
     display: flex;
     flex-direction: column;
-    gap:8.5em;
+    gap:5.5em;
   }
   
   .everyposts h1 {
@@ -95,6 +99,7 @@ a{
 
     .everyposts h1 {
       text-align: center;
+      font-size: 2em;
     }
 
     .everyposts-box h2{

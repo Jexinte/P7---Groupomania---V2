@@ -13,7 +13,7 @@ const checkPassword = require('../middleware/passwordValidator')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const MySQLStore = require('express-mysql-session')(session)
-
+const authSession = require('../middleware/auth-session')
 const options = {
   host : `${process.env.HOST}`,
   port : `${process.env.PORT}`,
@@ -37,6 +37,7 @@ router.use(cookieParser())
 router.use(cors(corsOptions))
 
 
+router.get('/users',multer,authSession,UsersControllers.allUsers)
 router.post('/registration',multer,checkPassword,UsersControllers.registration)
 router.post('/login',multer,UsersControllers.login)
 router.post('/logout',UsersControllers.logout)

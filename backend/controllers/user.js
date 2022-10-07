@@ -11,6 +11,7 @@ exports.registration = (req,res) => {
 
   let mailOfUserRegistrating = req.body.mail
   let nameOfUserRegistrating = req.body.user
+  let bioOfUserRegistrating = req.body.quote
   let regexMail = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
 
   bcrypt.hash(req.body.password,10).then(hash => {
@@ -22,7 +23,9 @@ exports.registration = (req,res) => {
         USER.create({
           user : nameOfUserRegistrating,
           email : mailOfUserRegistrating,
-          password : passwordHash
+          password : passwordHash,
+          quote:bioOfUserRegistrating,
+          imageProfile:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
         })
         
         .then(user => res.status(201).json({message:`L'utilisateur ${user.user} a bien été créé`}))
@@ -130,3 +133,7 @@ exports.logout = (req,res) => {
 }
 
 
+
+exports.allUsers = (req,res) => {
+  USER.findAll().then(user => res.status(200).json({data:user}))
+}

@@ -19,7 +19,20 @@ module.exports = (sequelize,DataTypes) => {
 
         is: {
           args:/^[A-Z]{1}[a-z]{0,9}$/,
-          msg :`Le nom d'utilisateur doit commencer par une lettre majuscule , ne peut contenir de chiffres et ne doit pas excéder 10 caractères`
+          msg :`Le nom d'utilisateur doit commencer par une lettre majuscule , ne ^peut contenir de chiffres et ne doit pas excéder 10 caractères`
+        }
+      }
+    },
+    quote : {
+      type:DataTypes.CHAR,
+      allowNull:false,
+      
+
+      validate : {
+
+        is: {
+          args:/^[A-Za-z]/,
+          msg :`Le champ citation personnelle ne peut être vide et / ou contenir de chiffres`
         }
       }
     },
@@ -38,13 +51,21 @@ module.exports = (sequelize,DataTypes) => {
          
         
       },
-
+    
       unique : {
         args : true,
         msg: `Cette adresse mail n'est pas disponible !`
       },
 
    
+    },
+
+      
+    imageProfile : {
+      type : DataTypes.STRING,
+      allowNull:false,
+   
+      
     },
   password : {
       type:DataTypes.CHAR,
@@ -55,7 +76,7 @@ module.exports = (sequelize,DataTypes) => {
     },
     type : {
       type : DataTypes.STRING,
-      defaultValue: "EMPLOYÉ"
+      defaultValue: "EMPLOYE"
     }
   },
   {

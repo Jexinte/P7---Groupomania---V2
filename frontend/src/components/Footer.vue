@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="footer">
     <div class="informations-importants">
       <p id="copyright">© Copyright 2022 - Tous droits réservés</p>
     </div>
@@ -10,6 +10,8 @@
 footer{
   background-color:#C4C4C4 ;
   font-weight: var(--700);
+  margin-top: 4em;
+
 }
 
 .informations-importants {
@@ -22,5 +24,7 @@ footer{
 #copyright {
   text-align: center;
 }
+
+
 
 </style>

@@ -54,6 +54,7 @@ export default class Posts {
 
 
         .catch(error => {
+       
           if(error.response.status === 403 || 500)
           {
                   document.cookie.split(';').forEach(function(cookie) {
@@ -78,7 +79,7 @@ axios({
 })
 
 .then(res => {
-  res.data['message'].map(post => {
+  res.data['data1'].map(post => {
     const postBox = document.createElement('a')
     postBox.className = "everyposts-box"
     postBox.href=`/post?id=${post.id}`

@@ -31,7 +31,7 @@
 
     mounted:function(){
       this.totalNumberOfLikes(),
-      this.forbiddenUserAuthorToLikeHisOwnPost()
+      this.forbiddenUserAuthorToLikeHisOwnPost(),
       this.forbiddenUserToLikeAgain()
       
     },
@@ -107,6 +107,7 @@
 
           if(usersWhoLovedThePost.includes(this.user))
             this.isActive = true
+            console.log('Oui')
           
       })
      }

@@ -97,16 +97,14 @@
 
   .input {
     width: 100%;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border: 1px solid black;
     padding: 13px;
-    border:none
+   
   }
 
   #comments{
     width: 100%;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-    border: none;
-    padding:.4em;
+    border: 1px solid black;
   }
 
 

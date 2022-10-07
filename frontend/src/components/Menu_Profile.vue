@@ -1,13 +1,11 @@
 <template>
-  <header>
+  <header class="header-profile">
         <nav>
-        
-          <div class="right">
-            
-            <a id="profil"><font-awesome-icon icon="fa-solid fa-user" /></a>
-            <router-link to="/creationpost"><font-awesome-icon icon="fa-solid fa-pen-to-square" /></router-link>
-            <router-link to="/" @click="logout"><font-awesome-icon icon="fa-solid fa-right-from-bracket" /></router-link>
-          </div>
+         
+          <ul class="right">
+            <li><router-link to="/accueil"><font-awesome-icon icon="fa-solid fa-house" /></router-link></li>
+            <li><router-link to="/" @click="logout"><font-awesome-icon icon="fa-solid fa-right-from-bracket" /></router-link></li>
+          </ul>
         </nav>
       </header>
 </template>
@@ -16,9 +14,6 @@
   import Logout from '@/services/Auth.vue';
   const user = new Logout()
   export default {
-    mounted:function(){
-      user.profileUserId()
-    },
     methods : {
       logout() {
         user.logout()
@@ -39,9 +34,12 @@ padding-top: 2em;
 font-weight: var(--700);
 color:black
 }
-
+ul li {
+  list-style-type: none;
+}
 .right {
   padding-top: 1.9em;
+  display: flex;
 }
 
 @media screen and (max-width:340px){

@@ -2,7 +2,7 @@
   <header>
         <nav>
           <router-link to="/accueil" ><font-awesome-icon icon="fa-solid fa-arrow-left" /></router-link>
-          <router-link to="/" @click="logout">Déconnexion</router-link>
+          <router-link to="/" @click="logout"><font-awesome-icon icon="fa-solid fa-right-from-bracket" /></router-link>
         </nav>
       </header>
 </template>

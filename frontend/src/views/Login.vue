@@ -147,9 +147,9 @@ import Menu_Login from '@/components/Menu_Login.vue';
 
   .login-form .datasend {
     width: 100%;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+ 
     padding: 13px;
-    border:none;
+   
   }
 
   .checkpassword {
@@ -167,9 +167,8 @@ import Menu_Login from '@/components/Menu_Login.vue';
     font-weight: var(--900);
     cursor: pointer;
     width: 100%;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 13px;
-    border:none;
+    border:1px solid black;
   }
 
   .errormsg{
