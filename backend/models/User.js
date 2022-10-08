@@ -19,7 +19,7 @@ module.exports = (sequelize,DataTypes) => {
 
         is: {
           args:/^[A-Z]{1}[a-z]{0,9}$/,
-          msg :`Le nom d'utilisateur doit commencer par une lettre majuscule , ne ^peut contenir de chiffres et ne doit pas excéder 10 caractères`
+          msg :`Le nom d'utilisateur doit commencer par une lettre majuscule , ne peut contenir de chiffres et ne doit pas excéder 10 caractères`
         }
       }
     },

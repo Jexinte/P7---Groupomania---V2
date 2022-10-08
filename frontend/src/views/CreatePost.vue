@@ -16,7 +16,7 @@
     <!-- FORMULAIRE -->
     <div class="post">
   
-      <form action="/posts" method="post" enctype="multipart/form-data" class="registration-form" @submit.prevent="checkEmptyData">
+      <form action="/posts" method="post" enctype="multipart/form-data" class="registration-form" @submit.prevent>
         <label for="title">
           Titre <br>
           <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !"  required>
@@ -37,7 +37,7 @@
             <span id="contenterrormsg" class="errormsg"></span>
           </label>
         
-        <input type="submit" value="Envoyer" id="submit">
+        <input type="submit" value="Envoyer" id="submit" @click="usert">
   
       </form>
   
@@ -59,10 +59,7 @@
   const user = new CreatePost()
   
     export default {
-      mounted:function(){
-        user.createPost()
-        
-      },
+     
       data(){
         return {
           previewUrl:'',
@@ -119,6 +116,10 @@
               errorContentMsg.textContent = ""
             }
             
+          } ,
+
+          usert(){
+            user.createPost()
           }
       
      

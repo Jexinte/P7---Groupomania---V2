@@ -1,4 +1,6 @@
 let passwordValidator = require('password-validator');
+const fs = require('fs')
+const path = require('path')
 
 // Création d'un schéma de mot de passe
 let passwordSchema = new passwordValidator();
@@ -16,10 +18,41 @@ passwordSchema
 
 
 module.exports = (req,res,next) => {
-  if(passwordSchema.validate(req.body.password))
+
+    const imageFolderPath = path.resolve('images')
+    const deletionOfImageDownloadWhenErrorOccurOnClientForm = fs.readdirSync(imageFolderPath)
+
+  if(passwordSchema.validate(req.body.password)){
+
       next()
+  }
+
+  else{
+    const willBeResolveIn1sec =  () => {
+        return new Promise (resolve => {
+            setTimeout(() => {
+                
+                fs.unlink(`${imageFolderPath}/${deletionOfImageDownloadWhenErrorOccurOnClientForm.pop()}`,() => {
+              
+                })
+                resolve('Le fichier a bien été supprimé !')
+            },1000)
+            
+        })
+        }
+     
+        const asyncCall = async () => {
+            const result = await willBeResolveIn1sec()
+            console.log(result)
+        }
     
-  else
-      return res.status(400).json({message:"Veuillez saisir un mot de passe ayant au minimum 8 caractères avec :  1 majuscule, 1 minuscule et 1 chiffre"})
+        asyncCall() 
+    
+      
+    return res.status(400).json({message:'Veuillez saisir un mot de passe ayant au minimum 8 caractères avec :  1 majuscule, 1 minuscule et 1 chiffre'})
+  }
+  
+ 
+     
    
 }

@@ -3,16 +3,21 @@ const { SESSION } = require('../db/session')
 const bcrypt = require('bcrypt')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 const dotenv = require('dotenv')
+const fs = require('fs')
+const path = require('path')
 dotenv.config()
 let session
 
 //* Création d'un utilisateur
 exports.registration = (req,res) => {
+  const imageFolderPath = path.resolve('images')
+    const deletionOfImageDownloadWhenErrorOccurOnClientForm = fs.readdirSync(imageFolderPath)
 
   let mailOfUserRegistrating = req.body.mail
   let nameOfUserRegistrating = req.body.user
   let bioOfUserRegistrating = req.body.quote
   let regexMail = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
+
 
   bcrypt.hash(req.body.password,10).then(hash => {
 
@@ -32,19 +37,79 @@ exports.registration = (req,res) => {
 
         .catch(error => {
           if(error instanceof ValidationError){
+            const willBeResolveForValidationError =  () => {
+              return new Promise (resolve => {
+                setTimeout(() => {
+                  
+                  fs.unlink(`${imageFolderPath}/${deletionOfImageDownloadWhenErrorOccurOnClientForm.pop()}`,() => {
+                  })
+                  resolve('Le fichier a bien été supprimé')
+                },1000)
+                
+              })
+            }
             
+            
+            const asyncCall = async () => {
+              const result = await willBeResolveForValidationError()
+              console.log(result)
+            }
+            
+            asyncCall()
             return res.status(404).json({message:error.message})
+         
           }
           
           if(error instanceof UniqueConstraintError) {
+            const willBeResolveForConstraintError =  () => {
+              return new Promise (resolve => {
+                setTimeout(() => {
+                  
+                  fs.unlink(`${imageFolderPath}/${deletionOfImageDownloadWhenErrorOccurOnClientForm.pop()}`,() => {
+                  })
+                  resolve('Le fichier a bien été supprimé')
+                },1000)
+                
+              })
+            }
+            
+            
+            const asyncCall2 = async () => {
+              const result = await willBeResolveForConstraintError()
+              console.log(result)
+            }
+            
+            asyncCall2()
+            
             return res.status(404).json({message:error.message})
           }
         })
 
     }
 
-    else 
-      return res.status(404).json({message:`Merci d'écrire une adresse mail au format suivant : example@groupomania.fr `})
+     else {
+      const willBeResolveForEmailRegex =  () => {
+        return new Promise (resolve => {
+          setTimeout(() => {
+           
+            fs.unlink(`${imageFolderPath}/${deletionOfImageDownloadWhenErrorOccurOnClientForm.pop()}`,() => {
+            })
+            resolve('Le fichier a bien été supprimé')
+          },1000)
+         
+        })
+      }
+
+
+      const asyncCall3 = async () => {
+        const result = await willBeResolveForEmailRegex()
+        console.log(result)
+      }
+     
+      asyncCall3()
+       return res.status(404).json({message:`Merci d'écrire une adresse mail au format suivant : example@groupomania.fr `})
+     }
+
     
   })
 

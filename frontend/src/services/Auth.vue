@@ -12,7 +12,8 @@
       const erreurBox = document.getElementById('error')
       const erreurBoxMsg = document.getElementById('error-msg')
       const form = document.querySelector('form')
-      
+
+
       form.addEventListener('submit',() => {
         
         
