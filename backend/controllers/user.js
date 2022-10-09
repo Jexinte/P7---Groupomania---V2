@@ -200,5 +200,18 @@ exports.logout = (req,res) => {
 
 
 exports.allUsers = (req,res) => {
-  USER.findAll().then(user => res.status(200).json({data:user}))
+  SESSION.findAll().then(session => {
+    const sessionData = JSON.parse(session[0].dataValues['data'])
+    USER.findOne({where:{user:sessionData.user}}).then(user => res.status(200).json({
+      userId:user.id,
+      username:user.user,
+      imageProfile:user.imageProfile,
+      quote:user.quote
+    }))
+  })
+//   USER.findAll().then(user =>{
+  
+//       res.status(200).json({data:user})
+  
+// })
 }

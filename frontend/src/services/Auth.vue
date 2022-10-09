@@ -122,11 +122,15 @@
 
       .then(res => {
         const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-        const users = res.data['data']
-        const findCorrectUser = users.find(user => user.id === parseInt(cookie.userid))
+        const userData = res.data
+        const emptyArray = []
+              emptyArray.push(userData)
+
+        const findCorrectUser = emptyArray.find(user => user.userId === parseInt(cookie.userid))
+     
         if(findCorrectUser){
 
-          profile.href=`/profil?idUser=${findCorrectUser.id}`
+          profile.href=`/profil?idUser=${findCorrectUser.userId}`
         }
           
       })
@@ -158,11 +162,14 @@
           const idOfUserConnected = parseInt(searchParams.get('idUser')) 
         
 
-          const users = res.data['data']
-          const findCorrectUser = users.find(user => user.id === idOfUserConnected)
+          const userData = res.data
+        
+          const emptyArray = []
+                emptyArray.push(userData)
+          const findCorrectUser = emptyArray.find(user => user.userId === idOfUserConnected)
           if(findCorrectUser){
           
-            const nameOfUserInDatabase = findCorrectUser.user
+            const nameOfUserInDatabase = findCorrectUser.username
                     const quoteOfUserInDatabase = findCorrectUser.quote
                     const imageProfileOfUserInDatabase = findCorrectUser.imageProfile
 
@@ -180,7 +187,7 @@
                           quoteUserProfileBox.style.color="slategray"
           }
             posts.filter(post => {
-              if(post.userId === findCorrectUser.id && post.author === findCorrectUser.user){
+              if(post.userId === findCorrectUser.userId && post.author === findCorrectUser.username){
                  
                     
                     
