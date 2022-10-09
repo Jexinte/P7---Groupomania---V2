@@ -199,7 +199,7 @@ exports.logout = (req,res) => {
 
 
 
-exports.allUsers = (req,res) => {
+exports.privateProfilData = (req,res) => {
   SESSION.findAll().then(session => {
     const sessionData = JSON.parse(session[0].dataValues['data'])
     USER.findOne({where:{user:sessionData.user}}).then(user => res.status(200).json({
@@ -209,9 +209,5 @@ exports.allUsers = (req,res) => {
       quote:user.quote
     }))
   })
-//   USER.findAll().then(user =>{
-  
-//       res.status(200).json({data:user})
-  
-// })
+
 }

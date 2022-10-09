@@ -37,7 +37,7 @@ router.use(cookieParser())
 router.use(cors(corsOptions))
 
 
-router.get('/users',multer,authSession,UsersControllers.allUsers)
+router.get('/users',multer,authSession,UsersControllers.privateProfilData)
 router.post('/registration',multer,checkPassword,UsersControllers.registration)
 router.post('/login',multer,UsersControllers.login)
 router.post('/logout',UsersControllers.logout)
