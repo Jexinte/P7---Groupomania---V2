@@ -223,7 +223,7 @@ exports.likeSystem = (req,res) => {
             let arrayOfUsersWhoLovedThePost = post.UsersWhoLovedThePost
 
 
-            //! Si l'utilisateur n'est pas dans le tableau correspondant et qu'il aime la sauce  
+            //! Si l'utilisateur n'est pas dans le tableau correspondant et qu'il aime le post
             if(!arrayOfUsersWhoLovedThePost.includes(user.user) && likesParsed === 1) {
 
               arrayOfUsersWhoLovedThePost.push(user.user)

@@ -58,7 +58,8 @@ module.exports = (sequelize,DataTypes) => {
       if (!this.getDataValue('UsersWhoLovedThePost')) {
         return [];
       } else {
-        // Permet de récupérer les informations de la propriété "Types" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
+
+        //! Permet de récupérer les informations de la propriété "UsersWhoLovedThePost" en tableau ['donnéee','donnéee'] depuis la base de données vers l'API
         return this.getDataValue('UsersWhoLovedThePost').split(',');
       }
     
