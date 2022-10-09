@@ -36,7 +36,7 @@ module.exports = (req,res,next) => {
               
                 })
                 resolve('Le fichier a bien été supprimé !')
-            },1000)
+            },300)
             
         })
         }

@@ -44,7 +44,7 @@ exports.registration = (req,res) => {
                   fs.unlink(`${imageFolderPath}/${deletionOfImageDownloadWhenErrorOccurOnClientForm.pop()}`,() => {
                   })
                   resolve('Le fichier a bien été supprimé')
-                },1000)
+                },300)
                 
               })
             }
@@ -68,7 +68,7 @@ exports.registration = (req,res) => {
                   fs.unlink(`${imageFolderPath}/${deletionOfImageDownloadWhenErrorOccurOnClientForm.pop()}`,() => {
                   })
                   resolve('Le fichier a bien été supprimé')
-                },1000)
+                },300)
                 
               })
             }
@@ -95,7 +95,7 @@ exports.registration = (req,res) => {
             fs.unlink(`${imageFolderPath}/${deletionOfImageDownloadWhenErrorOccurOnClientForm.pop()}`,() => {
             })
             resolve('Le fichier a bien été supprimé')
-          },1000)
+          },300)
          
         })
       }
