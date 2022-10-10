@@ -20,7 +20,7 @@ const options = {
   user : `${process.env.USER}`,
   password : `${process.env.MDP}`,
   database:`${process.env.DATABASE}`,
-  createDatabaseTable:false
+  createDatabaseTable:false,
 }
 
 const sessionStore = new MySQLStore(options)
