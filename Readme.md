@@ -14,7 +14,7 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
  - On frontend folder "npm run serve"
 
 
-# Screenshot 
+# Screenshot ( 12/09/2022 - 17/09/2022)
 
 ## Inscription 
 ![inscription_page](https://user-images.githubusercontent.com/88725081/190871206-d7b4dd3f-a5ad-4c92-8b87-bdb14a312122.PNG)
@@ -34,6 +34,34 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 
 ## Commentaires
 ![Commentaires](https://user-images.githubusercontent.com/88725081/191080925-09888209-2e41-4b34-8a85-7701ff4a8afe.png)
+
+
+# Groupomania V2 (10/10/2022 - now )
+
+After many reviews I decide to change a little bit the design to make it more cleaner and add the possibility for the user to see his profile with latest post published
+
+## Inscription V2 
+![InscriptionV2](https://user-images.githubusercontent.com/88725081/194826398-d5f211a5-fd27-4108-a081-80313f55b710.PNG)
+
+## Connexion V2
+![ConnexionV2](https://user-images.githubusercontent.com/88725081/194826506-4934b957-1ba2-49dc-bc86-6da9ed684f60.png)
+
+## Affichage des posts V2
+![AFFICHAGE DES POSTS V2](https://user-images.githubusercontent.com/88725081/194826635-5d571fce-60d7-4bce-abf7-07d1a963cab7.png)
+
+## Affichage d'un post V2
+![AFFICHAGE POST V2 (2)](https://user-images.githubusercontent.com/88725081/194826686-9304750d-6b15-4a87-a5f0-0699baa5f1fb.png)
+
+## Écrire un post V2
+![ECRIREUNPOSTV2](https://user-images.githubusercontent.com/88725081/194826750-7294a5c9-5ff2-4047-9829-f2d4a4436b7c.png)
+
+
+## Modifier un post V2
+![MODIFIER UN POST](https://user-images.githubusercontent.com/88725081/194826798-688bbec1-b924-486d-a883-97e1b2866477.PNG)
+
+## Profil V2
+
+![ProfilV2](https://user-images.githubusercontent.com/88725081/194826929-5988d7e9-6ab7-4c9c-a77f-7abdcb6a153c.png)
 
 
 
