@@ -186,10 +186,7 @@ exports.logout = (req,res) => {
       res.status(200).json({message:`Vous avez bien été déconnectez et allez être redirigez vers la page d'accueil`})
     }
 
-    else{
-
-      res.status(500).json({message:`${process.env.CRASHSERVER}`})
-    }
+  
   })
 
   .catch(() => {
