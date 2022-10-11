@@ -11,7 +11,7 @@ let session
 //* Création d'un utilisateur
 exports.registration = (req,res) => {
   const imageFolderPath = path.resolve('images')
-    const deletionOfImageDownloadWhenErrorOccurOnClientForm = fs.readdirSync(imageFolderPath)
+  const deletionOfImageDownloadWhenErrorOccurOnClientForm = fs.readdirSync(imageFolderPath)
 
   let mailOfUserRegistrating = req.body.mail
   let nameOfUserRegistrating = req.body.user
@@ -159,10 +159,6 @@ exports.login = (req,res) => {
      
     }
       
-
-      
-      
-
     })
     
     .catch(() =>res.status(500).json({message:`${process.env.CRASHSERVER}`}))

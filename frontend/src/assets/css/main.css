@@ -43,14 +43,10 @@ textarea{
   resize: none;
 }
 
-header{
-  margin: 0 auto;
-  width: 80%;
-}
+
 @media screen and (max-width:992px) {
   .banner img {
    
-    /* height: 342px; */
     width: 100%;
  
   }
