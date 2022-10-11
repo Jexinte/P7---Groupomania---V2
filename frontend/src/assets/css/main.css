@@ -31,6 +31,9 @@
   overflow-x: hidden;
 }
 
+header{
+  margin-bottom: 3em;
+}
 a{
   text-decoration: none;
   color:black;

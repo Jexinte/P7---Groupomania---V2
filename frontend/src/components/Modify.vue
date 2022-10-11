@@ -144,6 +144,7 @@
       align-items: center;
       margin-bottom: 1.5em;
       border-bottom: 5px solid red;
+      gap:2.5em;
     }
 
     #h2{
