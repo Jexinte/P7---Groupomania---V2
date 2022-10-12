@@ -64,8 +64,11 @@ module.exports = (sequelize,DataTypes) => {
     imageProfile : {
       type : DataTypes.STRING,
       allowNull:false,
-   
-      
+    },
+
+    descriptionImage :{
+      type:DataTypes.CHAR,
+      allowNull:false
     },
   password : {
       type:DataTypes.CHAR,

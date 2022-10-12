@@ -38,6 +38,12 @@
     
         </label>
 
+        <label for="descriptionimage">
+          Courte description de l'image : <br>
+          <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" required>
+          <span id="descriptionerrormsg" class="errormsg"></span>
+        </label>
+
             <label for="mail"> 
               Adresse électronique  <br>
               <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr" >
@@ -83,7 +89,8 @@
             mail: "",
             password: "",
             quote:"",
-            previewUrl:''
+            previewUrl:'',
+            descriptionImage:''
             
         }
     },
@@ -98,7 +105,7 @@
             const errorOnMail = document.getElementById("mailerrormsg");
             const errorOnPassword = document.getElementById("passworderrormsg");
             const errorOnquote = document.getElementById('quoteerrormsg')
-          
+            const errorOnDescription = document.getElementById('descriptionerrormsg')
         if(this.user === ""){
           errorOnUser.textContent = "Le champ ne peut être vide";
           errorOnUser.style.color = "red";
@@ -133,6 +140,16 @@
             }
             else {
                 errorOnquote.textContent = "";
+            }
+
+
+            if(this.descriptionImage === ""){
+          errorOnDescription.textContent = "Le champ ne peut être vide";
+          errorOnDescription.style.color = "red";
+        }
+
+            else {
+                errorOnDescription.textContent = "";
             }
 
         },

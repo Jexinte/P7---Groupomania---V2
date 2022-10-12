@@ -166,16 +166,19 @@ const userData = res.data
 
 const emptyArray = []
 emptyArray.push(userData)
+console.log(emptyArray)
 const findCorrectUser = emptyArray.find(user => user.userId === idOfUserConnected)
 if(findCorrectUser){
 
 const nameOfUserInDatabase = findCorrectUser.username
 const quoteOfUserInDatabase = findCorrectUser.quote
 const imageProfileOfUserInDatabase = findCorrectUser.imageProfile
+const imageDescriptionOfUserInDatabase = findCorrectUser.descriptionImage
 
 
 const imgProfileBox = document.querySelector('.userprofilebox--img')
 imgProfileBox.src=`${imageProfileOfUserInDatabase}`
+imgProfileBox.alt = `${imageDescriptionOfUserInDatabase}`
 
 
 const nameUserProfileBox = document.querySelector('.userprofilebox--maintitle')
@@ -216,6 +219,7 @@ postsBox.append(titlePostBox)
 const imagePostBox = document.createElement('img')
 imagePostBox.className = "postbox--img"
 imagePostBox.src = `${post.imageUrl}`
+imagePostBox.alt = `${post.descriptionImage}`
 imagePostBox.style.width="80%"
 postsBox.append(imagePostBox)
 
@@ -234,6 +238,12 @@ postsBox.append(imagePostBox)
 
 
 })
+
+.catch((error) => {
+  if(error.response.status === 403 || 500) 
+      router.push('/connexion')
+})
 }
+
 }
 </script>

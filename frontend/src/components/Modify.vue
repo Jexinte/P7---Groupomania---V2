@@ -30,6 +30,12 @@
           <p v-else>Aucune image de téléchargée...</p>
     
         </label>
+
+        <label for="descriptionimage">
+          Courte description de l'image : <br>
+          <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" required>
+          <span id="descriptionerrormsg" class="errormsg"></span>
+        </label>
         
         
         <textarea name="content" id="content" v-model="content" cols="30" rows="10" ></textarea>
@@ -64,7 +70,8 @@
         return {
           previewUrl:'',
           title:'',
-          content:''
+          content:'',
+          descriptionImage:''
         }
       },
       methods : {
@@ -102,6 +109,7 @@
             
               this.title = res.data['data'].title
               this.content = res.data['data'].content
+              this.descriptionImage = res.data['data'].descriptionImage
           })
 
         },
@@ -109,6 +117,7 @@
         checkEmptyData(){
           const titleErrorMsg = document.getElementById('titleerror')
           const contentErrorMsg = document.getElementById('contenterror')
+          const descriptionErrorMsg = document.getElementById('descriptionerrormsg')
 
           if(this.content === ""){
             contentErrorMsg.textContent = "Ce champ ne peut-être vide !"
@@ -128,6 +137,16 @@
           else {
             titleErrorMsg.style.display = "none"
           }
+
+          if(this.descriptionImage === ""){
+            descriptionErrorMsg.textContent = "Ce champ ne peut-être vide !"
+            descriptionErrorMsg.style.color = "red"
+          }
+
+          else {
+            descriptionErrorMsg.style.display = "none"
+          }
+
         }
      
       },
@@ -144,7 +163,6 @@
       align-items: center;
       margin-bottom: 1.5em;
       border-bottom: 5px solid red;
-      gap:2.5em;
     }
 
     #h2{

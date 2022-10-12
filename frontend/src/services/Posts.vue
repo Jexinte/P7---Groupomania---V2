@@ -28,6 +28,7 @@ const image = document.createElement('img')
 image.className="image-post"
 containerPost.append(image)
 image.src= res.data['data'].imageUrl
+image.alt=res.data['data'].descriptionImage
 
 const content = document.createElement('p')
 content.className = "content-post"
@@ -93,6 +94,7 @@ const image = document.createElement('img')
 image.className ="image"
 postBox.append(image)
 image.src= post.imageUrl
+image.alt=post.descriptionImage
 
 const content = document.createElement('p')
 content.className = "everyposts__paragraph"

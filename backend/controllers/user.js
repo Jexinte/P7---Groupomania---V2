@@ -16,6 +16,7 @@ exports.registration = (req,res) => {
   let mailOfUserRegistrating = req.body.mail
   let nameOfUserRegistrating = req.body.user
   let bioOfUserRegistrating = req.body.quote
+  let descriptionImageOfUserRegistrating = req.body.descriptionimage
   let regexMail = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
 
 
@@ -30,7 +31,8 @@ exports.registration = (req,res) => {
           email : mailOfUserRegistrating,
           password : passwordHash,
           quote:bioOfUserRegistrating,
-          imageProfile:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+          imageProfile:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+          descriptionImage: descriptionImageOfUserRegistrating
         })
         
         .then(user => res.status(201).json({message:`L'utilisateur ${user.user} a bien été créé`}))
@@ -107,7 +109,7 @@ exports.registration = (req,res) => {
       }
      
       asyncCall3()
-       return res.status(404).json({message:`Merci d'écrire une adresse mail au format suivant : example@groupomania.fr `})
+       return res.status(404).json({message:`Merci d'écrire une adresse mail au format suivant : example@gmail.fr `})
      }
 
     
@@ -125,13 +127,12 @@ exports.login = (req,res) => {
   let mailOfUserLogin = req.body.mail
    
   
-  //* Permet de retrouver l'adresse mail de l'utilisateur qui se connecte avec celui dans la base de données
+  
   USER.findOne({where:{email:mailOfUserLogin}}).then(user => {
 
     if(!user)
       return res.status(401).json({message:`Cet utilisateur n'existe pas`})
-    
-      //* On ajoute le nom de l'utilisateur ainsi que son identifiant afin de pouvoir s'en servir dans les requêtes pour les posts
+
     bcrypt.compare(req.body.password , user.password).then(password => {
       
       if(!password){
@@ -139,7 +140,7 @@ exports.login = (req,res) => {
          res.status(401).json({message:`Le mot de passe est incorrect`})
       }
        
-      //* Si tout est bon alors on initialise la session 
+ 
     else if(password){
 
       session = req.session
@@ -159,6 +160,10 @@ exports.login = (req,res) => {
      
     }
       
+
+      
+      
+
     })
     
     .catch(() =>res.status(500).json({message:`${process.env.CRASHSERVER}`}))
@@ -168,11 +173,11 @@ exports.login = (req,res) => {
   .catch(() => res.status(500).json({message:`${process.env.CRASHSERVER}`}))
 }
 
-//* Déconnexion d'un utilisateur
+
 exports.logout = (req,res) => {
   session.id = req.session.id
 
-  //* Vérification de la correspondances des identifiants de session avant déconnexion
+
   SESSION.findOne({where:{session_id:session.id}})
   .then(match => {
    
@@ -199,7 +204,8 @@ exports.privateProfilData = (req,res) => {
       userId:user.id,
       username:user.user,
       imageProfile:user.imageProfile,
-      quote:user.quote
+      quote:user.quote,
+      descriptionImage:user.descriptionImage
     }))
   })
 

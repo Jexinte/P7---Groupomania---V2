@@ -36,6 +36,7 @@ const initDbUser = () => {
           password:hash,
           type:user.type,
           quote:user.quote,
+          descriptionImage:user.descriptionImage
         })
         .then(user => console.log(user.toJSON()))
       })

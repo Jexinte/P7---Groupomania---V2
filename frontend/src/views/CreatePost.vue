@@ -28,7 +28,12 @@
           <input type="file" id="imageFile" name="imageFile" @change="stateOfFile" required>
           <img id="output1" :src="previewUrl" v-if="previewUrl" width="100" height="100">
           <span v-else>Aucune image de téléchargée...</span>
-    
+        </label>
+
+        <label for="descriptionimage">
+          Courte description de l'image : <br>
+          <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" required>
+          <span id="descriptionerrormsg" class="errormsg"></span>
         </label>
         
         <label for="content">
@@ -37,7 +42,7 @@
             <span id="contenterrormsg" class="errormsg"></span>
           </label>
         
-        <input type="submit" value="Envoyer" id="submit" @click="usert">
+        <input type="submit" value="Envoyer" id="submit" @click="userCreatePost">
   
       </form>
   
@@ -65,7 +70,8 @@
           previewUrl:'',
           title:'',
           content:'',
-          image:''
+          image:'',
+          descriptionImage:''
         }
       },
       methods : {
@@ -92,7 +98,7 @@
           checkEmptyData(){
             const errorTitleMsg = document.getElementById('titleerrormsg')
             const errorContentMsg = document.getElementById('contenterrormsg')
-            
+            const errorOnDescription = document.getElementById('descriptionerrormsg')
             if(this.title === "" ){
               errorTitleMsg.textContent = "Ce champ ne peut-être vide"
               errorTitleMsg.style.color="red"
@@ -115,10 +121,20 @@
             else {
               errorContentMsg.textContent = ""
             }
+
+            if( this.descriptionImage === ""){
+              errorOnDescription.textContent = "Ce champ ne peut-être vide"
+              errorOnDescription.style.color="red"
+  
+            }
+  
+            else {
+              errorOnDescription.textContent = ""
+            }
             
           } ,
 
-          usert(){
+          userCreatePost(){
             user.createPost()
           }
       
@@ -142,7 +158,6 @@
       align-items: center;
       margin-bottom: 1.5em;
       border-bottom: 5px solid red;
-      gap:2.5em;
     }
   #h2{
     font-size: 3em;

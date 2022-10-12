@@ -44,7 +44,8 @@ exports.createPost = (req,res) => {
              title : req.body.title,
              imageUrl :`${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
              content : req.body.content,
-             author:match.user
+             author:match.user,
+             descriptionImage:req.body.descriptionimage
            })
            .then(post => {
        

@@ -31,9 +31,6 @@
   overflow-x: hidden;
 }
 
-header{
-  margin-bottom: 3em;
-}
 a{
   text-decoration: none;
   color:black;
@@ -46,10 +43,17 @@ textarea{
   resize: none;
 }
 
+header{
+  margin-bottom: 3em;
+}
 
+.banner{
+  margin-bottom: 1.5em;
+}
 @media screen and (max-width:992px) {
   .banner img {
    
+  
     width: 100%;
  
   }
