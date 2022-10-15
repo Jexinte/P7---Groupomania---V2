@@ -21,6 +21,7 @@ const options = {
   password : `${process.env.MDP}`,
   database:`${process.env.DATABASE}`,
   createDatabaseTable:false,
+  clearExpired:true,
 }
 
 const sessionStore = new MySQLStore(options)

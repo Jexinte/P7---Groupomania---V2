@@ -188,7 +188,7 @@ withCredentials:true
     quoteUserProfileBox.textContent = `"${quoteOfUserInDatabase}"`
     quoteUserProfileBox.style.color="slategray"
     }
-    posts.filter(post => {
+    posts.map(post => {
     if(post.userId === findCorrectUser.userId && post.author === findCorrectUser.username){
 
 

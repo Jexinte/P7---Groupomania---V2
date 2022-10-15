@@ -19,13 +19,13 @@
           
             <label for="mail"> 
               Adresse électronique  <br>
-              <input type="email" id="mail" class="datasend" name="mail" v-model="mail" placeholder="adalovelace@groupomania.fr" required>
+              <input type="email" id="mail" class="datasend" name="mail" v-model="mail" placeholder="adalovelace@groupomania.fr" @change="hideLoginButton" required>
               <span id="mailerrormsg" class="errormsg"></span>
             </label>
 
             <label for="password">
               Mot de passe   <br>
-              <input type="password" class="datasend" id="password" name="password" v-model="password" required>
+              <input type="password" class="datasend" id="password" name="password" v-model="password" @change="hideLoginButton" required>
               <span id="passworderrormsg" class="errormsg"></span>
             </label>
             <label for="checkpassword" class="checkpassword">
@@ -36,7 +36,7 @@
         
 
 
-            <input type="submit" value="Connexion" id="submit" @click="login">
+            <input type="submit" value="Connexion" v-show="renderLoginButtonSubmit" id="submit" @click="login">
             <Error id="error"></Error>
           </form>
         </div>
@@ -60,6 +60,7 @@ import Menu_Login from '@/components/Menu_Login.vue';
         return {
             mail: "",
             password: "",
+            renderLoginButtonSubmit:false
         }
     },
 
@@ -106,6 +107,14 @@ import Menu_Login from '@/components/Menu_Login.vue';
 
         login(){
           user.login()
+        },
+
+        hideLoginButton(){
+          if(this.mail != "" && this.password != "")
+              this.renderLoginButtonSubmit = true
+          else{
+            this.renderLoginButtonSubmit = false
+          }
         }
     },
     components: { Error, Menu_Login }

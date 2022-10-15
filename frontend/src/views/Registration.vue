@@ -20,13 +20,13 @@
 
             <label for="user">
               Utilisateur  <br>
-              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada" >
+              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada" @change="hideSubmitRegistrationButton" >
               <span id="usererrormsg" class="errormsg"></span>
             </label>
 
             <label for="quote">
             Citation personnelle  <br>
-              <input type="text" id="quote" class="datasend" name="quote" v-model="quote" placeholder="Celui qui ne progresse pas chaque jour recule chaque jour" >
+              <input type="text" id="quote" class="datasend" name="quote" v-model="quote" placeholder="Celui qui ne progresse pas chaque jour recule chaque jour" @change="hideSubmitRegistrationButton" >
               <span id="quoteerrormsg" class="errormsg"></span>
             </label>
 
@@ -40,19 +40,19 @@
 
         <label for="descriptionimage">
           Courte description de l'image : <br>
-          <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" required>
+          <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" @change="hideSubmitRegistrationButton" required>
           <span id="descriptionerrormsg" class="errormsg"></span>
         </label>
 
             <label for="mail"> 
               Adresse électronique  <br>
-              <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr" >
+              <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr" @change="hideSubmitRegistrationButton">
               <span id="mailerrormsg" class="errormsg"></span>
             </label>
 
             <label for="password">
               Mot de passe   <br>
-              <input type="password" id="password" class="datasend" name="password" v-model="password" >
+              <input type="password" id="password" class="datasend" name="password" v-model="password" @change="hideSubmitRegistrationButton">
               <span id="passworderrormsg" class="errormsg"></span>
             </label>
             
@@ -62,7 +62,7 @@
                 <input type="checkbox" id="checkpassword" @click="allowUserToSeeWrittenPassword">
                 
               </label>
-            <input type="submit" value="Envoyer" id="submit">
+            <input type="submit" value="Envoyer" id="submit" v-show="renderRegistrationSubmitButton">
             <Error id="error"></Error>
 
           </form>
@@ -90,7 +90,8 @@
             password: "",
             quote:"",
             previewUrl:'',
-            descriptionImage:''
+            descriptionImage:'',
+            renderRegistrationSubmitButton:false
             
         }
     },
@@ -183,6 +184,16 @@
           reader.readAsDataURL(file)
         
           },
+
+          hideSubmitRegistrationButton(){
+            if(this.user != "" && this.quote != "" && this.descriptionImage != "" && this.mail != "" && this.password)
+            this.renderRegistrationSubmitButton = true
+      
+            else{
+              this.renderRegistrationSubmitButton = false
+            }
+ 
+          }
     },
     components: { Error, Menu_Registration }
 }

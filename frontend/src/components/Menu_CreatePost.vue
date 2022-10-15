@@ -26,7 +26,7 @@ justify-content: space-between;
 }
 
 nav a {
-padding-right:2em;
+padding-right:1em;
 padding-top: 2em;
 font-weight: var(--700);
 color:black

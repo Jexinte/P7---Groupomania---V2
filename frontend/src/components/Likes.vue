@@ -3,6 +3,7 @@
     <form action="/affichepost" _method="PUT"   enctype="multipart/form-data" class="likes-form" @submit.prevent>
 
         <button class="button" type="submit" id="likebtn"  :disabled="isActive"  @click="sendLike" >
+         
           <font-awesome-icon icon="fa-solid fa-thumbs-up" />
           <span id="totalLikes"></span>
         </button>
@@ -31,8 +32,8 @@
 
     mounted:function(){
       this.totalNumberOfLikes(),
-      this.forbiddenUserAuthorToLikeHisOwnPost(),
-      this.forbiddenUserToLikeAgain()
+      this.preventUserToLikeHisOwnPost(),
+      this.preventUserToLikeAgain()
       
     },
 
@@ -48,7 +49,7 @@
         })
 
         .then(res => {
-  
+          console.log(res)
           totalLikes.textContent = ` ${res.data['data'].likes}`
 
         })
@@ -76,7 +77,7 @@
       },
 
       
-     forbiddenUserAuthorToLikeHisOwnPost(){
+     preventUserToLikeHisOwnPost(){
       const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
       this.userIdData = parseInt(cookie.userid)
       axios({
@@ -92,7 +93,7 @@
       })
      },
 
-     forbiddenUserToLikeAgain(){
+     preventUserToLikeAgain(){
       const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
       this.user = cookie.user
       axios({
@@ -147,6 +148,7 @@
   display: flex;
   gap:1.5em;
 }
+
 
 @media screen and (max-width:992px){
   #totalLikes {
