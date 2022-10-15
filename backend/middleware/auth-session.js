@@ -1,58 +1,30 @@
-module.exports = (req,res, next) => {
-const { SESSION } = require('../db/session')
-const {USER} = require('../db/sequelize')
-const cookieContent = req.headers.cookie
-const cookie =Object.fromEntries(cookieContent.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
+module.exports = (req,res,next) => {
 
-USER.findOne({where:{id:cookie.userid}}).then(user => {
+  const {SESSION} = require('../db/session')
+
+  //* On récupère le contenu du cookie
+  const cookie = req.headers.cookie
+
+  //* On le transforme en objet 
+  const cookieObject =Object.fromEntries(cookie.split('; ').map(value=>value.split(/=(.*)/s).map(decodeURIComponent)))
   
-  const userId = user['dataValues'].id
-  SESSION.findAll().then(session => {
-    session.map(session => {
-    
-      const sessionData = JSON.parse(session.data)
-      if(sessionData.userId === userId && session.session_id === cookie.idsession)
-        next()
+  //* On récupère la partie de l'identifiant nécessaire pour la comparaison avec la base de donnée !
+  const idSessionOnReqCookie = cookieObject.idsession
+
+
+  SESSION.findOne({where:{session_id:idSessionOnReqCookie}})
+  .then(match => {
+
+    if(!match)
+      return res.status(403).json({message:`Vous n'êtes pas autorisée à voir ce contenu`})
+      else
       
-      
-    })
+      next()
   })
 
-})
+  .catch(() => {
+    return res.status(500).json({msg:'Veuillez réessayez dans quelques instants !'})
+  })
 
-.catch(() => {
-  return res.status(403).json({message:'Vous n\'êtes pas autorisé à accéder à ce contenu !'})
-})
+
 }
-
-// module.exports = (req,res,next) => {
-
-// const { SESSION } = require('../db/session')
-
-// const cookieContent = req.headers.cookie
-
-// const cookie =Object.fromEntries(cookieContent.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-// const cookieIdSession = cookie.idsession
-
-
-
-// //* Comparaison de l'identifiant de session de la base de données avec celui sauvegardé dans le cookie crée dans le front
-//   SESSION.findOne({where:{session_id:cookieIdSession}})
-//   .then(match => {
-    
-//     if(!match){
-
-    
-//       return res.status(403).json({message:`Vous n'êtes pas autorisé à accéder à ce contenu !`})
-//     } 
-      
-//     else
-//       next()
-    
-//   })
-  
-//   .catch(() => {
-
-//     return res.status(500).json({message:'Veuillez réessayez dans quelques instants !'})
-// })
-// }

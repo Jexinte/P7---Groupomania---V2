@@ -16,7 +16,7 @@ router.use(express.json())
 
 router.get('/displaycomments',authSession,multer,CommentsController.displayComments)
 router.post('/createcomments/:id',authSession,multer,CommentsController.createComments)
-router.delete('/deletecomments/:id',authSession,multer,CommentsController.deleteComments)
+
 
 
 module.exports = router

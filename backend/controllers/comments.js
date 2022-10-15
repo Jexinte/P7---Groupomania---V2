@@ -1,5 +1,4 @@
 const {POSTS} = require('../db/posts')
-const {SESSION} = require('../db/session')
 const { COMMENTS } = require('../db/posts')
 const { ValidationError } = require('sequelize')
 const dotenv = require('dotenv')
@@ -11,15 +10,16 @@ exports.createComments = (req,res) => {
 
 const { id } = req.params
 
-
 //* Il est nécessaire de récuperer les identifiants des posts afin de les faire correspondre avec l'identifiant en paramètre puis associé la réponse au champ "id_post" de la table commentaires
 
 POSTS.findOne({where:{id:id}}).then(response => {
-
+  const idPostOfUser = response.id
+  const authorOfTheComment = req.body.author
+  const commentOfTheAuthor = req.body.comment
   COMMENTS.create({
-    id_post:response.id,
-    author:req.body.author,
-    comment:req.body.comment
+    id_post:idPostOfUser,
+    author:authorOfTheComment,
+    comment:commentOfTheAuthor
   })
 
   .then(data => res.status(201).json({message:data}))
@@ -46,35 +46,5 @@ COMMENTS.findAll().then(response => {
 })
 }
 
-
-
-//* Suppression de commentaires
-exports.deleteComments = (req,res) => {
-  const { id } = req.params
-
-  POSTS.findOne({where:{id:id}}).then(post => {
-
-      COMMENTS.findAll().then(comment => {
-
-            const commentsIdPost = comment[0].dataValues['id_post']
-
-            SESSION.findAll().then(session => {
-
-              const sessionData = JSON.parse(session[0].dataValues['data'])
-              if(post.id === commentsIdPost && sessionData.user === `${process.env.ADMIN}` && sessionData.type === `${process.env.TYPE}` )
-              {
-                COMMENTS.destroy({where:{id_post:post.id}}).then(() => {
-                  res.status(200).json({message:`Le commentaire a bien été supprimé`})
-                })
-              }
-
-              else
-                res.status(403).json({msg:`Vous n'êtes pas autorisé à effectuer cette action !`})
-            })
-
-        })
-    })
-}
-  
 
 

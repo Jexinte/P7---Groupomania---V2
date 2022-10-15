@@ -22,6 +22,7 @@ const USER = new User()
     mounted:function(){
       this.posts()
       USER.profileUserId()
+   
     },
 
     methods : {

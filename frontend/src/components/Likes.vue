@@ -48,7 +48,7 @@
         })
 
         .then(res => {
-          console.log(res)
+  
           totalLikes.textContent = ` ${res.data['data'].likes}`
 
         })
@@ -107,7 +107,7 @@
 
           if(usersWhoLovedThePost.includes(this.user))
             this.isActive = true
-            console.log('Oui')
+            
           
       })
      }

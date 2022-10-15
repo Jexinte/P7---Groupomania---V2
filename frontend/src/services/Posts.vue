@@ -6,11 +6,9 @@ const searchParams = new URLSearchParams(window.location.search)
 const idPost = parseInt(searchParams.get('id'))
 
 export default class Posts {
-showThePost(){
-
+  showThePost(){
 const updateLink = document.getElementById('update')
-const updateAndDeleteButton = document.querySelector('.updatedeletepost')
-const containerPost = document.querySelector('.post')
+
 axios({
 method:'get',
 url:`http://localhost:3000/api/posts/displaypost/${idPost}`,
@@ -18,52 +16,47 @@ withCredentials:true
 })
 
 .then(res =>{
-console.log(res)
-const h2Post = document.createElement('h2')
-h2Post.className = "h2-post"
-h2Post.textContent = res.data['data'].title
-containerPost.append(h2Post)
 
-const image = document.createElement('img')
-image.className="image-post"
-containerPost.append(image)
-image.src= res.data['data'].imageUrl
-image.alt=res.data['data'].descriptionImage
+const h2Post = document.querySelector('.h2-post')
+      h2Post.textContent = res.data['data'].title
 
-const content = document.createElement('p')
-content.className = "content-post"
-containerPost.append(content)
-content.textContent = res.data['data'].content
 
-const authorBox = document.createElement('div')
-authorBox.className = "authorBox"
-containerPost.append(authorBox)
+const image = document.querySelector('.image-post')
+      image.src= res.data['data'].imageUrl
+      image.alt=res.data['data'].descriptionImage
 
-const likes = document.querySelector('.likes-form')
-authorBox.append(likes)
+const content = document.querySelector('.content-post')
+      content.textContent = res.data['data'].content
+
 
 const dateFormat = new Date(res.data['data'].dateOfPublication)
 const dateFrenchFormat = dateFormat.toLocaleDateString('fr') 
-const author = document.createElement('p')
-author.className = "author-post"
-authorBox.append(author)
-author.textContent = `Publié par ${res.data['data'].author}, le ${dateFrenchFormat}`
-authorBox.appendChild(updateAndDeleteButton)
-updateLink.href=`modifierpost/?idpost=${res.data['data'].id}`
+const author = document.querySelector('.author-post')
+      author.textContent = `Publié par ${res.data['data'].author}, le ${dateFrenchFormat}`
+      updateLink.href=`modifierpost/?idpost=${res.data['data'].id}`
 
 })
 
 
 .catch(error => {
 
-if(error.response.status === 403 || 500)
+  switch (error.response.status) 
 {
-document.cookie.split(';').forEach(function(cookie) {
-document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-});
+    case 403:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+          })
+          router.push('/connexion')
+      break;
 
-router.push('/connexion')
-}
+    case 500:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      })
+        router.push('/connexion')
+    break;
+  }
+
 
 })
 
@@ -76,7 +69,8 @@ const containerEveryPosts = document.querySelector('.everyposts')
 axios({
 method:'get',
 url:'http://localhost:3000/api/posts/listsposts',
-withCredentials:true
+withCredentials:true,
+timeout:1000
 })
 
 .then(res => {
@@ -107,38 +101,31 @@ content.textContent = post.content
 })
 
 .catch(error => {
-if(error.response.status === 403 || 500)
+
+switch (error.response.status) 
 {
-document.cookie.split(';').forEach(function(cookie) {
-document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-});
+    case 403:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+          })
+          router.push('/connexion')
+      break;
 
-router.push('/connexion')
+    case 500:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      })
+        router.push('/connexion')
+    break;
 }
 
+
 })
 
 }
 
-createPost(){
-const form = document.querySelector('form')
-
-form.addEventListener('submit',() => {
-
-axios({
-method:'post',
-url:'http://localhost:3000/api/posts/createpost',
-data : new FormData(form),
-withCredentials:true
-})
-
-.then(() => {
-router.push('/accueil')
-})
 
 
-})
-}
 
 updatePost(){
 

@@ -2,9 +2,10 @@
 
 import router from '@/router'
 
+
 const axios = require('axios')
 
-export default class User {
+ export default class User {
 
 registration(){
 
@@ -147,81 +148,79 @@ withCredentials:true
 .then(res => {
 
 
+    axios({
+    method:'get',
+    url:`http://localhost:3000/api/posts/listsposts`,
+    withCredentials:true
+    })
+
+    .then(response => {
+
+    const searchParams = new URLSearchParams(window.location.search)
+    const posts = response.data['data1']
+    const idOfUserConnected = parseInt(searchParams.get('idUser')) 
 
 
-axios({
-method:'get',
-url:`http://localhost:3000/api/posts/listsposts`,
-withCredentials:true
-})
+    const userData = res.data
 
-.then(response => {
+    const emptyArray = []
+    emptyArray.push(userData)
+    console.log(emptyArray)
+    const findCorrectUser = emptyArray.find(user => user.userId === idOfUserConnected)
+    if(findCorrectUser){
 
-const searchParams = new URLSearchParams(window.location.search)
-const posts = response.data['data1']
-const idOfUserConnected = parseInt(searchParams.get('idUser')) 
-
-
-const userData = res.data
-
-const emptyArray = []
-emptyArray.push(userData)
-console.log(emptyArray)
-const findCorrectUser = emptyArray.find(user => user.userId === idOfUserConnected)
-if(findCorrectUser){
-
-const nameOfUserInDatabase = findCorrectUser.username
-const quoteOfUserInDatabase = findCorrectUser.quote
-const imageProfileOfUserInDatabase = findCorrectUser.imageProfile
-const imageDescriptionOfUserInDatabase = findCorrectUser.descriptionImage
+    const nameOfUserInDatabase = findCorrectUser.username
+    const quoteOfUserInDatabase = findCorrectUser.quote
+    const imageProfileOfUserInDatabase = findCorrectUser.imageProfile
+    const imageDescriptionOfUserInDatabase = findCorrectUser.descriptionImage
 
 
-const imgProfileBox = document.querySelector('.userprofilebox--img')
-imgProfileBox.src=`${imageProfileOfUserInDatabase}`
-imgProfileBox.alt = `${imageDescriptionOfUserInDatabase}`
+    const imgProfileBox = document.querySelector('.userprofilebox--img')
+    imgProfileBox.src=`${imageProfileOfUserInDatabase}`
+    imgProfileBox.alt = `${imageDescriptionOfUserInDatabase}`
 
 
-const nameUserProfileBox = document.querySelector('.userprofilebox--maintitle')
-nameUserProfileBox.textContent = `${nameOfUserInDatabase}`
+    const nameUserProfileBox = document.querySelector('.userprofilebox--maintitle')
+    nameUserProfileBox.textContent = `${nameOfUserInDatabase}`
 
 
-const quoteUserProfileBox = document.querySelector('.userprofile--quote')
-quoteUserProfileBox.textContent = `"${quoteOfUserInDatabase}"`
-quoteUserProfileBox.style.color="slategray"
-}
-posts.filter(post => {
-if(post.userId === findCorrectUser.userId && post.author === findCorrectUser.username){
+    const quoteUserProfileBox = document.querySelector('.userprofile--quote')
+    quoteUserProfileBox.textContent = `"${quoteOfUserInDatabase}"`
+    quoteUserProfileBox.style.color="slategray"
+    }
+    posts.filter(post => {
+    if(post.userId === findCorrectUser.userId && post.author === findCorrectUser.username){
 
 
 
-const posts = document.querySelector('.posts_user')
+    const posts = document.querySelector('.posts_user')
 
-const postsBox = document.createElement('a')
-postsBox.className ="postsbox"
-postsBox.href=`/post?id=${post.id}`
-posts.append(postsBox)
-postsBox.style.display="flex"
-postsBox.style.flexDirection = "column"
-postsBox.style.alignItems = "center"
-postsBox.style.gap = "1.3em"
+    const postsBox = document.createElement('a')
+    postsBox.className ="postsbox"
+    postsBox.href=`/post?id=${post.id}`
+    posts.append(postsBox)
+    postsBox.style.display="flex"
+    postsBox.style.flexDirection = "column"
+    postsBox.style.alignItems = "center"
+    postsBox.style.gap = "1.3em"
 
-const dateFormat = new Date(post.dateOfPublication)
-const dateFrenchFormat = dateFormat.toLocaleDateString('fr') 
+    const dateFormat = new Date(post.dateOfPublication)
+    const dateFrenchFormat = dateFormat.toLocaleDateString('fr') 
 
-const titlePostBox = document.createElement('h3')
-titlePostBox.className = "postbox--title"
-titlePostBox.textContent = `${post.title} , le ${dateFrenchFormat}`
-titlePostBox.style.fontSize = "1.5em";
-titlePostBox.style.textDecoration = "underline"
-titlePostBox.style.textDecorationColor = "red"
-postsBox.append(titlePostBox)
+    const titlePostBox = document.createElement('h3')
+    titlePostBox.className = "postbox--title"
+    titlePostBox.textContent = `${post.title} , le ${dateFrenchFormat}`
+    titlePostBox.style.fontSize = "1.5em";
+    titlePostBox.style.textDecoration = "underline"
+    titlePostBox.style.textDecorationColor = "red"
+    postsBox.append(titlePostBox)
 
-const imagePostBox = document.createElement('img')
-imagePostBox.className = "postbox--img"
-imagePostBox.src = `${post.imageUrl}`
-imagePostBox.alt = `${post.descriptionImage}`
-imagePostBox.style.width="80%"
-postsBox.append(imagePostBox)
+    const imagePostBox = document.createElement('img')
+    imagePostBox.className = "postbox--img"
+    imagePostBox.src = `${post.imageUrl}`
+    imagePostBox.alt = `${post.descriptionImage}`
+    imagePostBox.style.width="80%"
+    postsBox.append(imagePostBox)
 
 
 }
@@ -234,16 +233,54 @@ postsBox.append(imagePostBox)
 })
 
 
+.catch((error) => {
+  switch (error.response.status) 
+{
+    case 403:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+          })
+          router.push('/connexion')
+      break;
 
+    case 500:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      })
+        router.push('/connexion')
+    break;
+}
+
+})
 
 
 })
 
 .catch((error) => {
-  if(error.response.status === 403 || 500) 
-      router.push('/connexion')
-})
+  switch (error.response.status) 
+{
+    case 403:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+          })
+          router.push('/connexion')
+      break;
+
+    case 500:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      })
+        router.push('/connexion')
+    break;
 }
 
+})
 }
+ 
+
+
+}
+
+
 </script>
+

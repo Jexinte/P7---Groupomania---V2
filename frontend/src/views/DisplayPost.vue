@@ -7,9 +7,15 @@
       
     </div>
     <div class="post">
+      <h2 class="h2-post"></h2>
+      <img class="image-post">
+      <p class="content-post"></p>
+      <div class="authorBox">
+        <Likes id="likes"></Likes>
+        <p class="author-post"></p>
+      </div>
       <UpdateAndDeletePost v-show="render"></UpdateAndDeletePost>
-      <Likes id="likes"></Likes>
-      
+     
     </div>
     <div class="comments-informations">
       <CreateComments></CreateComments>
@@ -36,8 +42,8 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
   const idPost = parseInt(searchParams.get('id'))
   export default {
     mounted: function () {
-        user.showThePost()
-        this.showUpdateAndDeleteComponent()
+        user.showThePost(),
+        this.showUpdateAndDeleteComponent(),
         this.adminCommands()
 
     },
@@ -74,7 +80,7 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
         })
       },
 
-      // Le procédé est quasi le même que celui du dessus à l'exception près que le type du compte devra être vérifié 
+     
      adminCommands(){
       const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
             this.admin = cookie.user

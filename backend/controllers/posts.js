@@ -1,16 +1,20 @@
 const {POSTS} = require('../db/posts')
 const {SESSION} = require('../db/session')
 const {USER} = require('../db/sequelize')
-const { COMMENTS } = require('../db/posts')
 const { ValidationError } = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()
 const fs = require('fs')
+const multer = require('multer')
+const upload= multer().single('imageFile')
 
 
 //* Affiche la liste des posts
 exports.displayPosts = (req,res) => {
         POSTS.findAll({order:[['dateOfPublication','DESC']]}).then(post => res.status(200).json({data1:post}))
+        .catch(() => {
+         res.status(500).json({message:`${process.env.CRASHSERVER}`})
+        })
 }
 
 
@@ -20,7 +24,10 @@ exports.displayPost = (req,res) => {
   
 
   POSTS.findByPk(id).then(post => res.status(200).json({data:post}))
-  .catch(() => res.status(500).json({message:`${process.env.CRASHSERVER}`}))
+  .catch(() => {
+  return  res.status(500).json({message:`${process.env.CRASHSERVER}`})
+  
+  })
 }
 
 
@@ -35,25 +42,31 @@ exports.createPost = (req,res) => {
       USER.findOne({where:{id:sessionData.userId}})
 
 //* Si correspondance alors la création du post est autorisé
-      .then(match => {
-        if(match){
-          const idUser = match.dataValues['id']
-        
-           POSTS.create({
-             userId:idUser,
-             title : req.body.title,
-             imageUrl :`${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-             content : req.body.content,
-             author:match.user,
-             descriptionImage:req.body.descriptionimage
-           })
-           .then(post => {
-       
-              return res.status(201).json({data:post})
-            
-           })
+      .then((match) => {
 
-        }
+        const idUser = match.dataValues['id']
+        const titleOfThePost = req.body.title
+        const contentOfThePost = req.body.content
+        const authorOfThePost = match.user
+        const descriptionImageOfThePost = req.body.descriptionimage
+      
+
+      
+
+      POSTS.create(
+        {
+          userId:idUser,
+          title :titleOfThePost,
+          imageUrl :`${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+          content : contentOfThePost,
+          author:authorOfThePost,
+          descriptionImage:descriptionImageOfThePost
+        })
+        .then(post => 
+          {
+            res.status(201).json({data:post})
+          })
+          
       })
 
     })
@@ -81,7 +94,7 @@ exports.updatePost = (req,res) => {
             //* On met au format json le contenu de la requête
             const postData = JSON.stringify(req.body)
             const post = JSON.parse(postData)
-            
+           
             //* On vérifie ici si le contenu de la requête contient des fichiers ou uniquement du texte
             const postObject = req.file ?  {
               ...post,

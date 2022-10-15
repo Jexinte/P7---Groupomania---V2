@@ -13,16 +13,16 @@ exports.registration = (req,res) => {
   const imageFolderPath = path.resolve('images')
   const deletionOfImageDownloadWhenErrorOccurOnClientForm = fs.readdirSync(imageFolderPath)
 
-  let mailOfUserRegistrating = req.body.mail
-  let nameOfUserRegistrating = req.body.user
-  let bioOfUserRegistrating = req.body.quote
-  let descriptionImageOfUserRegistrating = req.body.descriptionimage
-  let regexMail = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
-
+  const mailOfUserRegistrating = req.body.mail
+  const nameOfUserRegistrating = req.body.user
+  const bioOfUserRegistrating = req.body.quote
+  const descriptionImageOfUserRegistrating = req.body.descriptionimage
+  const regexMail = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
+  const imageOfProfile = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
 
   bcrypt.hash(req.body.password,10).then(hash => {
 
-    let passwordHash = hash
+    const passwordHash = hash
 
     if(regexMail.test(mailOfUserRegistrating)){
 
@@ -31,7 +31,7 @@ exports.registration = (req,res) => {
           email : mailOfUserRegistrating,
           password : passwordHash,
           quote:bioOfUserRegistrating,
-          imageProfile:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+          imageProfile:imageOfProfile,
           descriptionImage: descriptionImageOfUserRegistrating
         })
         
@@ -207,6 +207,14 @@ exports.privateProfilData = (req,res) => {
       quote:user.quote,
       descriptionImage:user.descriptionImage
     }))
+
+    .catch(() =>{
+      res.status(500).json({message:`${process.env.CRASHSERVER}`})
+   } )
   })
+
+  .catch(() =>{
+     res.status(500).json({message:`${process.env.CRASHSERVER}`})
+  } )
 
 }

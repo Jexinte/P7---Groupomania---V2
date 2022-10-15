@@ -37,10 +37,10 @@
           <span id="descriptionerrormsg" class="errormsg"></span>
         </label>
         
-        
+        <!-- Ici il faudra apporter les mêmes modification pour surveiller les changements des inputs avant de faire apparaître le bon bouton-->
         <textarea name="content" id="content" v-model="content" cols="30" rows="10" ></textarea>
         <span id="contenterror" class="errormsg"></span>
-        <input type="submit" value="Envoyer" id="submit">
+        <input type="submit" value="Envoyer" id="submitmodify" :disabled="disableButtonSubmit">
         <Error id="error"></Error>
       </form>
   <!-- DES CHOSES SERONT A CHANGER CE JEUDI -->
@@ -71,7 +71,9 @@
           previewUrl:'',
           title:'',
           content:'',
-          descriptionImage:''
+          descriptionImage:'',
+          renderSubmitButton:false,
+          disableButtonSubmit:false
         }
       },
       methods : {
@@ -147,7 +149,9 @@
             descriptionErrorMsg.style.display = "none"
           }
 
-        }
+        },
+
+     
      
       },
       components: {Menu_CreatePost }
@@ -190,11 +194,12 @@
       padding: 13px;
     }
   
-    #submit {
+    #submitmodify {
       background: white;
       font-weight: var(--900);
       cursor: pointer;
       border:1px solid black;
+      display: block;
     }
   
     .errormsg{
