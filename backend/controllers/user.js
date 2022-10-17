@@ -53,8 +53,8 @@ exports.registration = (req,res) => {
             
             
             const asyncCall = async () => {
-              const result = await willBeResolveForValidationError()
-              console.log(result)
+               await willBeResolveForValidationError()
+             
             }
             
             asyncCall()
@@ -77,8 +77,8 @@ exports.registration = (req,res) => {
             
             
             const asyncCall2 = async () => {
-              const result = await willBeResolveForConstraintError()
-              console.log(result)
+                await willBeResolveForConstraintError()
+             
             }
             
             asyncCall2()
@@ -104,8 +104,8 @@ exports.registration = (req,res) => {
 
 
       const asyncCall3 = async () => {
-        const result = await willBeResolveForEmailRegex()
-        console.log(result)
+      await willBeResolveForEmailRegex()
+       
       }
      
       asyncCall3()

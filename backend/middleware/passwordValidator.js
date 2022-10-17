@@ -42,8 +42,8 @@ module.exports = (req,res,next) => {
         }
      
         const asyncCall = async () => {
-            const result = await willBeResolveIn1sec()
-            console.log(result)
+        await willBeResolveIn1sec()
+       
         }
     
         asyncCall() 
