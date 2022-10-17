@@ -10,7 +10,7 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
  - There is an env example file for logs
  - Go check in the env_example file on backend folder  to see how set yours logs once it's done replace env_example by .env
  - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile 
- - On backend folder "npm start or nodemon"
+ - On backend folder "npm start or nodemon" but if you the latest version of nodejs v-18 just node --watch app 
  - On frontend folder "npm run serve"
 
 

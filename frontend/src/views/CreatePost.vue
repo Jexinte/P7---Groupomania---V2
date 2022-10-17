@@ -41,7 +41,7 @@
           <textarea name="content" id="content" v-model="content"  cols="30" rows="10" required @change="hideSubmitButton"></textarea >
             <span id="contenterrormsg" class="errormsg"></span>
           </label>
-          <!-- @click="createPost" -->
+       
         <input type="submit" value="Envoyer" id="submit" v-show="render" :disabled="disableButton">
   
       </form>

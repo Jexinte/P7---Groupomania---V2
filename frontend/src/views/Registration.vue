@@ -20,13 +20,13 @@
 
             <label for="user">
               Utilisateur  <br>
-              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada" @change="hideSubmitRegistrationButton" >
+              <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada" @change="disabledSubmitButtonRegistration" >
               <span id="usererrormsg" class="errormsg"></span>
             </label>
 
             <label for="quote">
             Citation personnelle  <br>
-              <input type="text" id="quote" class="datasend" name="quote" v-model="quote" placeholder="Celui qui ne progresse pas chaque jour recule chaque jour" @change="hideSubmitRegistrationButton" >
+              <input type="text" id="quote" class="datasend" name="quote" v-model="quote" placeholder="Celui qui ne progresse pas chaque jour recule chaque jour" @change="disabledSubmitButtonRegistration" >
               <span id="quoteerrormsg" class="errormsg"></span>
             </label>
 
@@ -40,19 +40,19 @@
 
         <label for="descriptionimage">
           Courte description de l'image : <br>
-          <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" @change="hideSubmitRegistrationButton" required>
+          <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" @change="disabledSubmitButtonRegistration" required>
           <span id="descriptionerrormsg" class="errormsg"></span>
         </label>
 
             <label for="mail"> 
               Adresse électronique  <br>
-              <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr" @change="hideSubmitRegistrationButton">
+              <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr" @change="disabledSubmitButtonRegistration">
               <span id="mailerrormsg" class="errormsg"></span>
             </label>
 
             <label for="password">
               Mot de passe   <br>
-              <input type="password" id="password" class="datasend" name="password" v-model="password" @change="hideSubmitRegistrationButton">
+              <input type="password" id="password" class="datasend" name="password" v-model="password" @change="disabledSubmitButtonRegistration">
               <span id="passworderrormsg" class="errormsg"></span>
             </label>
             
@@ -62,7 +62,7 @@
                 <input type="checkbox" id="checkpassword" @click="allowUserToSeeWrittenPassword">
                 
               </label>
-            <input type="submit" value="Envoyer" id="submit" v-show="renderRegistrationSubmitButton">
+            <input type="submit" value="Envoyer" id="submit" :disabled="disabledRegistrationSubmitButton">
             <Error id="error"></Error>
 
           </form>
@@ -91,7 +91,7 @@
             quote:"",
             previewUrl:'',
             descriptionImage:'',
-            renderRegistrationSubmitButton:false
+            disabledRegistrationSubmitButton:true
             
         }
     },
@@ -185,12 +185,12 @@
         
           },
 
-          hideSubmitRegistrationButton(){
+          disabledSubmitButtonRegistration(){
             if(this.user != "" && this.quote != "" && this.descriptionImage != "" && this.mail != "" && this.password)
-            this.renderRegistrationSubmitButton = true
+            this.disabledRegistrationSubmitButton = false
       
             else{
-              this.renderRegistrationSubmitButton = false
+              this.disabledRegistrationSubmitButton = true
             }
  
           }

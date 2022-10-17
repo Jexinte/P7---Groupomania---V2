@@ -5,8 +5,7 @@ const { ValidationError } = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()
 const fs = require('fs')
-const multer = require('multer')
-const upload= multer().single('imageFile')
+
 
 
 //* Affiche la liste des posts
