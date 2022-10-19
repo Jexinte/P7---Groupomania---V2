@@ -6,10 +6,10 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 # How to use it
  - Clone the repo
  - Type "npm install" on frontend and backend folder
- - You have to install XAMPP in order to use mysql and phpmyadmin
+ - You have to install XAMPP / WampServer in order to use mysql and phpmyadmin
  - There is an env example file for logs
- - Go check in the env_example file on backend folder  to see how set yours logs once it's done replace env_example by .env
- - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile 
+ - Go check in the env_example file on backend folder to see how set yours logs once it's done replace env_example by .env
+ - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile more details here on the set up here : https://fontawesome.com/docs/web/use-with/vue/
  - On backend folder "npm start or nodemon" but if you the latest version of nodejs v-18 just node --watch app 
  - On frontend folder "npm run serve"
 
@@ -38,7 +38,7 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 
 # Groupomania V2 (10/10/2022 - now )
 
-After many reviews I decide to change a little bit the design to make it more cleaner and add the possibility for the user to see his profile with latest post published
+After looking at the design from several angles I decided to make it more streamlined
 
 ## Inscription V2 
 ![InscriptionV2](https://user-images.githubusercontent.com/88725081/194826398-d5f211a5-fd27-4108-a081-80313f55b710.PNG)
