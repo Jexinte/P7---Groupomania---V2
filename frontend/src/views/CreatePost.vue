@@ -288,6 +288,8 @@ import axios from 'axios'
       white-space: break-spaces;
   font-size: 1.4em;
   font-weight: 800;
+  text-align: left;
+  line-height: 1.8em;
     }
   
     #content{

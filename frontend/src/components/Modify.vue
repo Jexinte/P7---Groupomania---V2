@@ -246,4 +246,7 @@
       padding-bottom: 3em;
     }
 
+    .content_preview{
+      text-align: left;
+    }
   </style>
