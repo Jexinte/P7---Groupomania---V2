@@ -38,7 +38,7 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 
 # Groupomania V2 (10/10/2022 - now )
 
-After many reviews I decide to change a little bit the design to make it more cleaner and add the possibility for the user to see his profile with latest post published
+After looking at the design from several angles I decided to make it more streamlined
 
 ## Inscription V2 
 ![InscriptionV2](https://user-images.githubusercontent.com/88725081/194826398-d5f211a5-fd27-4108-a081-80313f55b710.PNG)
