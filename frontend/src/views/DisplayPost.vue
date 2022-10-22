@@ -179,10 +179,12 @@ padding-top: 1.5em;
 }
 .author {
   font-weight: var(--900);
+  transition: all ease-in-out 700ms;
 }
 
 .date-comments {
   font-weight: normal;
+  transition: all ease-in 700ms;
 }
 
 @media screen and (max-width:992px) {
@@ -206,14 +208,17 @@ padding-top: 1.5em;
 
   .author {
     font-size: 11px;
+    transition: font-size ease-in-out 700ms;
   }
 
   .content-comments {
     font-size: 11px;
+    transition: font-size ease-in-out 700ms;
   }
 
   .date-comments{
     font-size: 11px;
+    transition: font-size ease-in-out 700ms;
   }
 
  
