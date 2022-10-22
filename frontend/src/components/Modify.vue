@@ -40,7 +40,7 @@
         <!-- Ici il faudra apporter les mêmes modification pour surveiller les changements des inputs avant de faire apparaître le bon bouton-->
         <textarea name="content" id="content" v-model="content" cols="30" rows="10" ></textarea>
         <span id="contenterror" class="errormsg"></span>
-        <input type="submit" value="Envoyer" id="submitmodify" :disabled="disableButtonSubmit">
+        <input type="submit" value="Envoyer" id="submitmodify" :disabled="disableButtonSubmit" @click="updateData">
         <Error id="error"></Error>
       </form>
   <!-- DES CHOSES SERONT A CHANGER CE JEUDI -->
@@ -63,7 +63,7 @@
   
     export default {
       mounted:function(){
-        user.updatePost(),
+        
         this.dataOfPostByDefault()
       },
       data(){
@@ -151,10 +151,13 @@
 
         },
 
+        updateData(){
+          user.updatePost()
+        }
      
      
       },
-      components: {Menu_CreatePost }
+      components: {Menu_CreatePost}
   }
   </script>
   <style scoped>

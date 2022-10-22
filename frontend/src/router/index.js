@@ -7,6 +7,7 @@ import DisplayPost from '../views/DisplayPost.vue'
 import DisplayComments from '../components/DisplayComments.vue'
 import CreateComments from '../components/CreateComments.vue'
 import PrivateProfile from '../views/PrivateProfile.vue'
+import AccessFailed from '../components/AccessFailed'
 
 import ModifyPost from '../components/Modify.vue'
 const routes = [
@@ -63,6 +64,12 @@ const routes = [
     path:'/modifierpost',
     name:'modification de post',
     component: ModifyPost
+  } ,
+
+  {
+    path:'/noauthorization',
+    name : 'erreur homepage',
+    component:AccessFailed 
   }
 ]
 

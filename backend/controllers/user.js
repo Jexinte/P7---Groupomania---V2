@@ -1,4 +1,4 @@
-const { USER } = require('../db/sequelize')
+const { USER } = require('../db/users')
 const { SESSION } = require('../db/session')
 const bcrypt = require('bcrypt')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
@@ -10,6 +10,7 @@ let session
 
 //* Création d'un utilisateur
 exports.registration = (req,res) => {
+
   const imageFolderPath = path.resolve('images')
   const deletionOfImageDownloadWhenErrorOccurOnClientForm = fs.readdirSync(imageFolderPath)
 
@@ -17,8 +18,9 @@ exports.registration = (req,res) => {
   const nameOfUserRegistrating = req.body.user
   const bioOfUserRegistrating = req.body.quote
   const descriptionImageOfUserRegistrating = req.body.descriptionimage
-  const regexMail = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
   const imageOfProfile = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+
+  const regexMail = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
 
   bcrypt.hash(req.body.password,10).then(hash => {
 
@@ -35,7 +37,10 @@ exports.registration = (req,res) => {
           descriptionImage: descriptionImageOfUserRegistrating
         })
         
-        .then(user => res.status(201).json({message:`L'utilisateur ${user.user} a bien été créé`}))
+        .then(user => {
+          console.log(user.toJSON())
+          res.status(201).json({message:`L'utilisateur ${user.user} a bien été créé`})
+        })
 
         .catch(error => {
           if(error instanceof ValidationError){
@@ -120,6 +125,7 @@ exports.registration = (req,res) => {
     res.status(500).json({message:`${process.env.CRASHSERVER}`})
   })
 }
+
 
 //* Connexion d'un utilisateur
 exports.login = (req,res) => {

@@ -240,7 +240,7 @@ withCredentials:true
         document.cookie.split(';').forEach(function(cookie) {
         document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
           })
-          router.push('/connexion')
+          router.push('/noauthorization')
       break;
 
     case 500:
@@ -263,7 +263,7 @@ withCredentials:true
         document.cookie.split(';').forEach(function(cookie) {
         document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
           })
-          router.push('/connexion')
+          router.push('/noauthorization')
       break;
 
     case 500:

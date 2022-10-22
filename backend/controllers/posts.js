@@ -1,6 +1,6 @@
 const {POSTS} = require('../db/posts')
 const {SESSION} = require('../db/session')
-const {USER} = require('../db/sequelize')
+const {USER} = require('../db/users')
 const { ValidationError } = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()

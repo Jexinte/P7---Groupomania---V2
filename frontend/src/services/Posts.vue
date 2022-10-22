@@ -46,7 +46,7 @@ const author = document.querySelector('.author-post')
         document.cookie.split(';').forEach(function(cookie) {
         document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
           })
-          router.push('/connexion')
+          router.push('/noauthorization')
       break;
 
     case 500:
@@ -108,7 +108,7 @@ switch (error.response.status)
         document.cookie.split(';').forEach(function(cookie) {
         document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
           })
-          router.push('/connexion')
+          router.push('/noauthorization')
       break;
 
     case 500:
@@ -145,8 +145,32 @@ if(res.status === 201)
 router.push('/accueil')
 })
 
+.catch(error => {
+
+switch (error.response.status) 
+{
+    case 403:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+          })
+          router.push('/noauthorization')
+      break;
+
+    case 500:
+        document.cookie.split(';').forEach(function(cookie) {
+        document.cookie = cookie.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      })
+        router.push('/connexion')
+    break;
+}
+
 
 })
+
+
+
+})
+
 
 
 

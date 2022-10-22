@@ -13,9 +13,11 @@ const { id } = req.params
 //* Il est nécessaire de récuperer les identifiants des posts afin de les faire correspondre avec l'identifiant en paramètre puis associé la réponse au champ "id_post" de la table commentaires
 
 POSTS.findOne({where:{id:id}}).then(response => {
+
   const idPostOfUser = response.id
   const authorOfTheComment = req.body.author
   const commentOfTheAuthor = req.body.comment
+  
   COMMENTS.create({
     id_post:idPostOfUser,
     author:authorOfTheComment,

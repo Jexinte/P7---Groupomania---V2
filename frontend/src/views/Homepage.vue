@@ -10,6 +10,7 @@
       <h1>Derniers posts publiés récemments</h1>
     </div>    
   </div>
+
 </template>
 
 <script>
