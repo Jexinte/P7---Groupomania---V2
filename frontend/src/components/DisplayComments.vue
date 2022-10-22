@@ -27,11 +27,13 @@
     border-bottom: 3px solid black;
     padding-bottom: 1em;
     font-size: 2em;
+    transition: font-size ease-in 700ms;
   }
 
   @media screen and (max-width:992px) {
     .comments h3 {
     font-size: 14px;
+    transition: font-size ease-in-out 700ms;
   }
   }
 </style>

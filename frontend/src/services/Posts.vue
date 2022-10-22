@@ -81,6 +81,7 @@ postBox.href=`/post?id=${post.id}`
 
 containerEveryPosts.append(postBox)
 
+
 const h2 = document.createElement('h2')
 postBox.append(h2)
 h2.textContent = post.title

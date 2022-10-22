@@ -59,15 +59,19 @@ export default {
     border-radius: 50%;
     box-shadow: 5px 5px 10px rgb(0 0 0 / 50%);
     border: 0.4em solid black;
+    transition: all ease-in 700ms;
 }
 
 .userprofile--quote{
   font-weight: var(--900);
   font-style:italic;
+  font-size: 18px;
+  transition: font-size ease-in 700ms;
 }
 
 .userprofilebox--maintitle{
   font-size: 3em;
+  transition: font-size ease-in 700ms;
 }
 
 
@@ -77,6 +81,7 @@ export default {
   font-size: 2em;
    align-self: flex-start;
     padding-bottom: 0.3em;
+    transition: font-size ease-in 700ms;
 }
 
 .posts_user{
@@ -104,20 +109,25 @@ width: 80%;
     padding-top:5em;
   }
   .userprofilebox .userprofilebox--img{
+   
+ transition: all ease-in-out 700ms;
     width: 10em;
     height: 10em;
   }
 
   .userprofilebox--maintitle{
     font-size: 2.5em;
+    transition: font-size ease-in-out 700ms;
   }
 
   .userprofile--quote{
     font-size: 12px;
+    transition: font-size ease-in-out 700ms;
   }
 
   .posts_user--maintitle{
     font-size: 1.5em;
+    transition: font-size ease-in-out 700ms;
   }
   
 }

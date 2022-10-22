@@ -59,6 +59,7 @@ a{
   .everyposts h1 {
     font-size: 2.5em;
     font-weight: var(--900);
+    transition: font-size ease-in 700ms;
   }
   .everyposts-box{
     margin: 0 auto;
@@ -73,6 +74,7 @@ a{
     font-size: 2em;
     text-decoration: underline;
     text-decoration-color:red ;
+    transition: font-size ease-in 700ms;
   }
   .everyposts-box
    img{
@@ -102,10 +104,12 @@ a{
     .everyposts h1 {
       text-align: center;
       font-size: 2em;
+      transition: font-size ease-in-out 700ms;
     }
 
     .everyposts-box h2{
       font-size: 1.5em;
+      transition: font-size ease-in-out 700ms;
     }
   }
 </style>

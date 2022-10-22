@@ -118,23 +118,32 @@
   @media screen and (max-width:992px) {
     .commentsbeforehand h3{
       font-size: 14px;
+      transition: font-size ease-in-out 700ms;
     }
 
 
     .input {
       padding: .4em;
+      transition: font-size ease-in-out 700ms;
+    }
+
+    textarea{
+      padding: .4em;
     }
 
     ::placeholder{
       font-size: 11px;
+      transition: font-size ease-in-out 700ms;
     }
 
     .comments-form label {
       font-size: 11px;
+      transition: font-size ease-in-out 700ms;
     }
 
     #submit{
       font-size: 13px;
+      transition: font-size ease-in-out 700ms;
     }
   }
 </style>

@@ -282,6 +282,7 @@ import axios from 'axios'
   padding-bottom: 3em;
   font-size: 3em;
   text-decoration: underline;
+  transition: font-size ease-in 700ms;
     }
   
     .content_preview{
@@ -307,6 +308,7 @@ import axios from 'axios'
 
    .preview_secondtitle{
     font-size: 2em;
+    transition: font-size ease-in-out 700ms;
    }
   
     }

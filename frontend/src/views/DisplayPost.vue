@@ -124,6 +124,7 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
     border-width:4px;
     font-weight: var(--900);
     text-align: center;
+    transition: font-size ease-in 700ms;
   }
 
   .image-post{
@@ -137,6 +138,7 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
     line-height: 3em;
     padding-bottom: 2em;
     border-bottom: 3px solid black;
+    transition: font-size ease-in 700ms;
   }
 
   .authorBox {
@@ -158,6 +160,7 @@ gap:1.5em;
 .author-post{
   grid-area: b;
   text-align: right;
+  transition: font-size ease-in 700ms;
 }
 
 .updatedeletepost{
@@ -187,15 +190,18 @@ padding-top: 1.5em;
   .h2-post {
     font-size: 1.5em;
     line-height: 2.5em;
+    transition: font-size ease-in-out 700ms;
   }
 
   .content-post{
     font-size: 11px;
     text-align: justify;
+    transition: font-size ease-in-out 700ms;
   }
 
   .author-post{
     font-size: 11px;
+    transition: font-size ease-in-out 700ms;
   }
 
   .author {
