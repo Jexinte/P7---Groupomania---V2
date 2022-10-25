@@ -76,23 +76,23 @@
         
       },
 
-      
-    //  preventUserToLikeHisOwnPost(){
-    //   const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-    //   this.userIdData = parseInt(cookie.userid)
-    //   axios({
-    //     method:'get',
-    //     url:`http://localhost:3000/api/posts/displaypost/${id}`,
-    //     withCredentials:true
-    //   })
+      // L'objectif ici sera de faire en sorte d'afficher un message disant à l'utilisateur qu'il ne peut aimer son propre post
+      preventUserToLikeHisOwnPost(){
+       const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
+       this.userIdData = parseInt(cookie.userid)
+       axios({
+         method:'get',
+         url:`http://localhost:3000/api/posts/displaypost/${id}`,
+         withCredentials:true
+       })
 
-    //   .then(res => {
-    //     const userIdFromThePost = res.data['data'].userId 
-    //     if(userIdFromThePost === this.userIdData)
-    //       this.isActive = true
-    //   })
-    //  },
-
+       .then(res => {
+         const userIdFromThePost = res.data['data'].userId 
+         if(userIdFromThePost === this.userIdData)
+           this.isActive = true
+       })
+      },
+// L'objectif ici sera de faire en sorte d'afficher un message disant à l'utilisateur qu'il ne peut aimer un post plus d'une fois !
      preventUserToLikeAgain(){
       const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
       this.user = cookie.userid
@@ -106,8 +106,8 @@
         
           const usersWhoLovedThePost = res.data['data'].UsersWhoLovedThePost
 
-          // if(usersWhoLovedThePost.includes(this.user))
-          //    this.isActive = true
+           if(usersWhoLovedThePost.includes(this.user))
+              this.isActive = true
             
           
       })

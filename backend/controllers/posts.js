@@ -184,8 +184,8 @@ exports.likeSystem = (req,res) => {
   SESSION.findAll().then(session => {
     
               
-                //* 1  - Récupération de l'identifiant de session de l'utilisateur actuellement connecté 
-              const dataCookie =  session[0].dataValues['data']
+          //* 1  - Récupération de l'identifiant de session de l'utilisateur actuellement connecté 
+        const dataCookie =  session[0].dataValues['data']
 
           //* 2 - On récupère le post que l'utilisateur est sur le point de noter
           POSTS.findOne({where:{id:id}}).then(post => {
@@ -196,22 +196,28 @@ exports.likeSystem = (req,res) => {
             
             let user = JSON.parse(dataCookie) 
        
-          
+         
             
             //! Mettre l'identifiant du post dans le tableau des utilisateursQuiOntAimés
             let arrayOfUsersWhoLovedThePost = post.UsersWhoLovedThePost
-         
+            
             
         
+            let emptyArray = []
 
             
-            //! Si l'utilisateur n'est pas dans le tableau correspondant et qu'il aime le post
-            if(!arrayOfUsersWhoLovedThePost.includes(user.userId)) {
-              console.log(arrayOfUsersWhoLovedThePost)
-              arrayOfUsersWhoLovedThePost.push(parseInt(user.userId))
+           
+            arrayOfUsersWhoLovedThePost.map(el => {
+              let idOfUser = parseInt(el)
+             emptyArray.push(idOfUser)
+            })
 
+             //! Si l'utilisateur n'est pas dans le tableau correspondant et qu'il aime le post
+            if(!emptyArray.includes(user.userId)) {
+              emptyArray.push(user.userId)
+            
               
-                      POSTS.update({UsersWhoLovedThePost:arrayOfUsersWhoLovedThePost},{ where : { id:id }})
+                      POSTS.update({UsersWhoLovedThePost:emptyArray},{ where : { id:id }})
 
                       .then(_ => {
 
