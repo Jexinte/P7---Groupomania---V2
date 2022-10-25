@@ -22,7 +22,7 @@
   
     data(){
       return {
-        likes:1,
+        likes:0,
         isActive:false,
         userIdData:'',
         user:''
@@ -32,7 +32,7 @@
 
     mounted:function(){
       this.totalNumberOfLikes(),
-      this.preventUserToLikeHisOwnPost(),
+      // this.preventUserToLikeHisOwnPost(),
       this.preventUserToLikeAgain()
       
     },
@@ -77,25 +77,25 @@
       },
 
       
-     preventUserToLikeHisOwnPost(){
-      const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-      this.userIdData = parseInt(cookie.userid)
-      axios({
-        method:'get',
-        url:`http://localhost:3000/api/posts/displaypost/${id}`,
-        withCredentials:true
-      })
+    //  preventUserToLikeHisOwnPost(){
+    //   const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
+    //   this.userIdData = parseInt(cookie.userid)
+    //   axios({
+    //     method:'get',
+    //     url:`http://localhost:3000/api/posts/displaypost/${id}`,
+    //     withCredentials:true
+    //   })
 
-      .then(res => {
-        const userIdFromThePost = res.data['data'].userId 
-        if(userIdFromThePost === this.userIdData)
-          this.isActive = true
-      })
-     },
+    //   .then(res => {
+    //     const userIdFromThePost = res.data['data'].userId 
+    //     if(userIdFromThePost === this.userIdData)
+    //       this.isActive = true
+    //   })
+    //  },
 
      preventUserToLikeAgain(){
       const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-      this.user = cookie.user
+      this.user = cookie.userid
       axios({
         method:'get',
         url:`http://localhost:3000/api/posts/displaypost/${id}`,
@@ -106,8 +106,8 @@
         
           const usersWhoLovedThePost = res.data['data'].UsersWhoLovedThePost
 
-          if(usersWhoLovedThePost.includes(this.user))
-            this.isActive = true
+          // if(usersWhoLovedThePost.includes(this.user))
+          //    this.isActive = true
             
           
       })

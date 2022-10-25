@@ -1,11 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container-createpost">
 
     <Menu_Logout></Menu_Logout>
-    <div class="banner">
-      <img class="banner-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
-      
-    </div>
+ 
     <div class="post">
       <h2 class="h2-post"></h2>
       <img class="image-post">
@@ -57,6 +54,7 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
       }
     },
 
+    
     methods: {
       showUpdateAndDeleteComponent(){
 
@@ -111,6 +109,10 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
 
   }
 
+  .container-createpost{
+    width: 80%;
+    margin: 0 auto;
+  }
 
   .post {
     display: flex;

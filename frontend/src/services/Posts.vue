@@ -75,26 +75,40 @@ timeout:1000
 
 .then(res => {
 res.data['data1'].map(post => {
-const postBox = document.createElement('a')
+const postBox = document.createElement('div')
 postBox.className = "everyposts-box"
-postBox.href=`/post?id=${post.id}`
+// postBox.href=`/post?id=${post.id}`
 
 containerEveryPosts.append(postBox)
 
 
 const h2 = document.createElement('h2')
 postBox.append(h2)
-h2.textContent = post.title
+const dateFormat = new Date(post.dateOfPublication)
+const dateFrenchFormat = dateFormat.toLocaleDateString('fr') 
+h2.textContent = `${post.title} publié par ${post.author} le, ${dateFrenchFormat}`
 const image = document.createElement('img')
 image.className ="image"
 postBox.append(image)
 image.src= post.imageUrl
 image.alt=post.descriptionImage
 
+const divForParagraphAndSeeMore = document.createElement('div')
+      divForParagraphAndSeeMore.className="divForParagraphAndSeeMore"
+      postBox.append(divForParagraphAndSeeMore)
 const content = document.createElement('p')
-content.className = "everyposts__paragraph"
-postBox.append(content)
-content.textContent = post.content
+const seeMore = document.createElement('a')
+      seeMore.href=`/post?id=${post.id}`
+      seeMore.textContent="Voir plus..."
+      content.className = "everyposts__paragraph"
+      postBox.append(content)
+      content.textContent = `${post.content}`
+      divForParagraphAndSeeMore.append(content)
+      divForParagraphAndSeeMore.append(seeMore)
+      divForParagraphAndSeeMore.style.display="flex"
+      divForParagraphAndSeeMore.style.flexDirection="column"
+      seeMore.style.alignSelf="end"
+      seeMore.style.paddingTop ="1em"
 
 
 })

@@ -1,13 +1,16 @@
 <template>
   <header>
         <nav>
+          <ul class="left">
+            <li><a href="/accueil"><img class="banner-img-homepage_menu" src="@/assets/images/logo.png" alt="Logo Groupomania" ></a></li>
+          </ul>
         
-          <div class="right">
+          <ul class="right">
+            <li><a id="profil"><font-awesome-icon icon="fa-solid fa-user" /></a></li>
+            <li><router-link to="/creationpost"><font-awesome-icon icon="fa-solid fa-pen-to-square" /></router-link></li>
+            <li><router-link to="/" @click="logout"><font-awesome-icon icon="fa-solid fa-right-from-bracket" /></router-link></li>
             
-            <a id="profil"><font-awesome-icon icon="fa-solid fa-user" /></a>
-            <router-link to="/creationpost"><font-awesome-icon icon="fa-solid fa-pen-to-square" /></router-link>
-            <router-link to="/" @click="logout"><font-awesome-icon icon="fa-solid fa-right-from-bracket" /></router-link>
-          </div>
+          </ul>
         </nav>
       </header>
 </template>
@@ -27,10 +30,13 @@
   }
 </script>
 <style scoped>
+header{
+  margin-top: 3em;
+}
 /* MENU */
 nav {
 display: flex;
-justify-content: flex-end;
+justify-content: space-between;
 }
 
 nav a {
@@ -41,7 +47,13 @@ color:black
 }
 
 .right {
-  padding-top: 1.9em;
+  display: flex;
+}
+
+.banner-img-homepage_menu{
+  height: 136px;
+  position: relative;
+  bottom:54px;
 }
 
 @media screen and (max-width:340px){

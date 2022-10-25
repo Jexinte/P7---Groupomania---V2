@@ -10,28 +10,29 @@
           <!-- BANNER -->
 
           <div class="banner">
-            <img class="banner-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
-
+            <img class="banner-img-registration" src="@/assets/images/logo.png" alt="Logo Groupomania" >
+            <h1 id="h1">Inscription</h1>
           </div>
         
           <!-- FORMULAIRE -->
 
           <form action="/inscription" method="post" enctype="multipart/form-data" class="registration-form" @submit.prevent="checkEmptyData">
+            <span class="obligationasterique">Tous les champs * sont obligatoires</span>
 
             <label for="user">
-              Utilisateur  <br>
+              Utilisateur <span id="asterique">*</span><br>
               <input type="text" id="user" class="datasend" name="user" v-model="user" placeholder="Ada" @change="disabledSubmitButtonRegistration" >
               <span id="usererrormsg" class="errormsg"></span>
             </label>
 
             <label for="quote">
-            Citation personnelle  <br>
+            Citation personnelle <span id="asterique">*</span>  <br>
               <input type="text" id="quote" class="datasend" name="quote" v-model="quote" placeholder="Celui qui ne progresse pas chaque jour recule chaque jour" @change="disabledSubmitButtonRegistration" >
               <span id="quoteerrormsg" class="errormsg"></span>
             </label>
 
             <label for="image" class="imageInput"> 
-          Image de profil <br>
+          Image de profil *   <br>
           <input type="file" id="imageFile" name="imageFile" @change="stateOfFile" required >
           <img id="output1" :src="previewUrl" v-if="previewUrl" width="100" height="100">
           <span v-else>Aucune image de téléchargée...</span>
@@ -39,19 +40,19 @@
         </label>
 
         <label for="descriptionimage">
-          Courte description de l'image : <br>
+          Courte description de l'image  <span id="asterique">*</span> <br>
           <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" @change="disabledSubmitButtonRegistration" required>
           <span id="descriptionerrormsg" class="errormsg"></span>
         </label>
 
             <label for="mail"> 
-              Adresse électronique  <br>
+              Adresse électronique <span id="asterique">*</span>  <br>
               <input type="email" id="mail" class="datasend" name="mail"  v-model="mail" placeholder="adalovelace@groupomania.fr" @change="disabledSubmitButtonRegistration">
               <span id="mailerrormsg" class="errormsg"></span>
             </label>
 
             <label for="password">
-              Mot de passe   <br>
+              Mot de passe  <span id="asterique">*</span>  <br>
               <input type="password" id="password" class="datasend" name="password" v-model="password" @change="disabledSubmitButtonRegistration">
               <span id="passworderrormsg" class="errormsg"></span>
             </label>
@@ -62,9 +63,9 @@
                 <input type="checkbox" id="checkpassword" @click="allowUserToSeeWrittenPassword">
                 
               </label>
+            
             <input type="submit" value="Envoyer" id="submit" :disabled="disabledRegistrationSubmitButton">
             <Error id="error"></Error>
-
           </form>
 
         </div>
@@ -207,21 +208,34 @@
   font-family: var(--lato);
 }
 
+.container {
+  transition: width 700ms;
+}
+
 
   /* BANNIERE */
 
   .banner  {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 1.5em;
     border-bottom: 5px solid red;
   }
 
+
+
+  #h1{
+    font-size: 2.3em;
+    padding-bottom: 1em;
+    font-weight: var(--900);
+  }
   .registration-form {
     display: flex;
     flex-direction: column;
     gap:1.5em;   
-    padding-top:1.5em
+    padding-top:1.5em;
+    position: relative;
   }
 
   .registration-form label {
@@ -234,7 +248,15 @@
     width: 100%;
     padding: 13px;
   }
-
+  .obligationasterique{
+position: absolute;
+right: 0;
+top: 0;
+font-weight: 600;
+font-size: 0.7em;
+margin-bottom: 2em;
+transition: all ease-in 700ms;
+  }
   
   .checkpassword {
     display: flex;
@@ -244,7 +266,6 @@
   .datasend{
     margin-bottom: .7em;
   }
-
 
 
   #submit {
@@ -270,4 +291,20 @@
     gap: 1.1em;
   }
 
+
+  @media screen and (max-width:992px){
+  .container{
+    width: 100%;
+    transition: width 700ms;
+  }
+ 
+  .banner .banner-img-registration {
+   
+    width: 100%;
+   
+ 
+  }
+ 
+
+}
 </style>

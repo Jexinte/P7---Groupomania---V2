@@ -1,48 +1,50 @@
 <template>
+<main>
 
   <div class="container">
-
-        <div class="login">
-
-     <Menu_Login></Menu_Login>
-
-          <!-- BANNER -->
-
+    
+    <div class="login">
+      
+      <Menu_Login></Menu_Login>
+      
+      <!-- BANNER -->
+      
           <div class="banner">
-            <img class="banner-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
-
+            <img id="login-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
+            
           </div>
-        
-          <!-- FORMULAIRE -->
-
-          <form action="/connexion" method="post" enctype="multipart/form-data" class="login-form" @submit.prevent="checkEmptyData">
           
+          <!-- FORMULAIRE -->
+          
+          <form action="/connexion" method="post" enctype="multipart/form-data" class="login-form" @submit.prevent="checkEmptyData">
+            <span class="obligationasterique">Tous les champs * sont obligatoires</span>
             <label for="mail"> 
-              Adresse électronique  <br>
+              Adresse électronique *  <br>
               <input type="email" id="mail" class="datasend" name="mail" v-model="mail" placeholder="adalovelace@groupomania.fr" @change="disabledLoginButton" required>
               <span id="mailerrormsg" class="errormsg"></span>
             </label>
-
+            
             <label for="password">
-              Mot de passe   <br>
+              Mot de passe *<br>
               <input type="password" class="datasend" id="password" name="password" v-model="password" @change="disabledLoginButton" required>
               <span id="passworderrormsg" class="errormsg"></span>
             </label>
             <label for="checkpassword" class="checkpassword">
-                Afficher le mot de passe 
-                <input type="checkbox"  id="checkpassword" @click="allowUserToSeeWrittenPassword">
-                
-              </label>
-        
-
-
+              Afficher le mot de passe 
+              <input type="checkbox"  id="checkpassword" @click="allowUserToSeeWrittenPassword">
+              
+            </label>
+            
+            
+            
             <input type="submit" value="Connexion" :disabled="activeLoginButtonSubmit" id="submit" @click="login">
             <Error id="error"></Error>
           </form>
         </div>
-  </div>
-
-</template>
+      </div>
+      
+    </main>
+    </template>
 
 
 <script>
@@ -122,13 +124,16 @@ import Menu_Login from '@/components/Menu_Login.vue';
 
 </script>
 <style scoped>
-  
+
 .login {
   width: 80%;
   margin:0 auto 5em;
 
 }
 
+.container{
+  padding-bottom: 0;
+}
 
 
   /* BANNIERE */
@@ -146,19 +151,32 @@ import Menu_Login from '@/components/Menu_Login.vue';
     flex-direction: column;
     gap:1.5em;   
     padding-top:1.5em;
+    position: relative;
     
+  }
+
+  #login-img{
+    height: 400px;
   }
 
   .login-form label {
     line-height: 2.1em;
     font-weight: var(--900);
+    transition: all ease-in 700ms;
   }
 
+  .obligationasterique{
+position: absolute;
+right: 0;
+top: 0;
+font-weight: 600;
+font-size: 0.7em;
+margin-bottom: 2em;
+transition: all ease-in 700ms;
+  }
   .login-form .datasend {
     width: 100%;
- 
     padding: 13px;
-   
   }
 
   .checkpassword {
@@ -192,5 +210,25 @@ import Menu_Login from '@/components/Menu_Login.vue';
   #seepassword{
     cursor: pointer;
   }
+
+
+
+  @media screen and (max-width:305px){
+    .obligationasterique{
+      font-size: .6em;
+      transition: all ease-in-out 700ms;
+    }
+
+  }
+
+  @media screen and (max-width:350px){
+
+    .login-form label {
+        font-size: .8em;
+        transition: all ease-in-out 700ms;
+      }
+  }
+
+ 
 
 </style>

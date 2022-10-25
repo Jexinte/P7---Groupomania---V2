@@ -5,6 +5,7 @@ const { ValidationError } = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()
 const fs = require('fs')
+const { Console } = require('console')
 
 
 
@@ -154,6 +155,8 @@ exports.deletePost = (req,res) => {
         })
       }
 
+      //! Mettre une erreur 403 
+
 
     
   })
@@ -175,8 +178,7 @@ exports.deletePost = (req,res) => {
 //* Création d'un like par utilisateur
 exports.likeSystem = (req,res) => {
   
-  const  {like}  = req.body
-  const likesParsed = JSON.parse(like)
+
   const { id } = req.params
   
   SESSION.findAll().then(session => {
@@ -193,15 +195,22 @@ exports.likeSystem = (req,res) => {
             
             
             let user = JSON.parse(dataCookie) 
+       
+          
+            
+            //! Mettre l'identifiant du post dans le tableau des utilisateursQuiOntAimés
             let arrayOfUsersWhoLovedThePost = post.UsersWhoLovedThePost
-
-
-            //! Si l'utilisateur n'est pas dans le tableau correspondant et qu'il aime le post
-            if(!arrayOfUsersWhoLovedThePost.includes(user.user) && likesParsed === 1) {
-
-              arrayOfUsersWhoLovedThePost.push(user.user)
+         
+            
+        
 
             
+            //! Si l'utilisateur n'est pas dans le tableau correspondant et qu'il aime le post
+            if(!arrayOfUsersWhoLovedThePost.includes(user.userId)) {
+              console.log(arrayOfUsersWhoLovedThePost)
+              arrayOfUsersWhoLovedThePost.push(parseInt(user.userId))
+
+              
                       POSTS.update({UsersWhoLovedThePost:arrayOfUsersWhoLovedThePost},{ where : { id:id }})
 
                       .then(_ => {
@@ -221,6 +230,8 @@ exports.likeSystem = (req,res) => {
                       .catch(error => res.status(404).json({message:error}))
 
           }
+
+        
 
 
 

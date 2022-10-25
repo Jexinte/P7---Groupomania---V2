@@ -35,6 +35,8 @@ a{
   text-decoration: none;
   color:black;
 }
+
+
 a:visited{
   color:black;
 }
@@ -47,16 +49,15 @@ header{
   margin-bottom: 3em;
 }
 
+#asterique {
+  color: var(--grisFoncé);
+}
+
 
 .banner{
   margin-bottom: 1.5em;
 }
-@media screen and (max-width:992px) {
-  .banner img {
-   
-  
-    width: 100%;
- 
-  }
- 
+
+.banner img {
+  height: 600px;
 }

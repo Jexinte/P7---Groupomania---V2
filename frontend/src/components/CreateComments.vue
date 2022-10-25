@@ -6,12 +6,12 @@
     <form action="/comments" method="post" enctype="multipart/form-data" class="comments-form" @submit.prevent="checkEmptyData">
       <label for="author" class="author-comments">
         Auteur <br>
-        <input type="text" v-model="author" name="author" id="author" placeholder="John" class="input" > <br>
+        <input type="text" v-model="author" name="author" id="author"  class="input" > <br>
         <span id="authorerrormsg" class="commentserrormsg"></span>
       </label>
       <label for="comments">
-        Commentaires : <br>
-        <textarea name="comment" id="comments" v-model="comments" cols="30" rows="10" placeholder="Lorem ipsum dolor siret "></textarea>
+        Commentaire : <br>
+        <textarea name="comment" id="comments" v-model="comments" cols="30" rows="10" placeholder="Réagissez au post de l'auteur !"></textarea>
         <span id="commenterrormsg" class="commentserrormsg"></span>
       
       </label>
@@ -27,7 +27,7 @@
 <script>
   import Comments from '@/services/Comments.vue';
  const user = new Comments()
-
+ const axios = require('axios')
   export default{
 
     mounted:function(){
@@ -38,6 +38,17 @@
         author : '',
         comments:''
       }
+    },
+
+    created(){
+      axios({
+        method:'get',
+        url:'http://localhost:3000/api/auth/users',
+        withCredentials:true
+      })
+
+      .then(res => this.author = res.data['username'])
+    
     },
 
     methods : {

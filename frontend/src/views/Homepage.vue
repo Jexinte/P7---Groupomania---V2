@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
+  <div class="container-homepage">
 
     <Menu_Homepage></Menu_Homepage>
-    <div class="banner">
+    <!-- <div class="banner">
       <img class="banner-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
      
-    </div>
+    </div> -->
     <div class="everyposts">
       <h1>Derniers posts publiés récemments</h1>
     </div>    
@@ -35,7 +35,7 @@ const USER = new User()
 }
 </script>
 
-<style>
+<style >
 a:visited {
   color:black;
 }
@@ -43,11 +43,12 @@ a:visited {
 a{
   color:black;
 }
-  .container {
+  .container-homepage {
     width: 80%;
     margin: 0 auto;
     padding-bottom:3em;
     min-height: 100vh;
+    transition: width 700ms;
   }
 
   .everyposts{
@@ -60,6 +61,7 @@ a{
     font-size: 2.5em;
     font-weight: var(--900);
     transition: font-size ease-in 700ms;
+    text-align: center;
   }
   .everyposts-box{
     margin: 0 auto;
@@ -86,7 +88,6 @@ a{
     
     text-overflow: ellipsis;
     overflow:hidden;
-    white-space: nowrap;
     font-weight: var(--600);
   }
   .banner  {
@@ -103,13 +104,18 @@ a{
 
     .everyposts h1 {
       text-align: center;
-      font-size: 2em;
+      font-size: 1.4em;
       transition: font-size ease-in-out 700ms;
     }
 
     .everyposts-box h2{
       font-size: 1.5em;
       transition: font-size ease-in-out 700ms;
+    }
+
+    .container-homepage{
+      width: 100%;
+      transition: width 700ms;
     }
   }
 </style>
