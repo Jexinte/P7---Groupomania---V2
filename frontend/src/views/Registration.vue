@@ -1,6 +1,8 @@
 <template>
+<main>
 
-  <div class="container">
+
+  <div class="container-registration">
 
         <div class="registration">
 
@@ -9,10 +11,9 @@
 
           <!-- BANNER -->
 
-          <div class="banner">
-            <img class="banner-img-registration" src="@/assets/images/logo.png" alt="Logo Groupomania" >
+          
             <h1 id="h1">Inscription</h1>
-          </div>
+          
         
           <!-- FORMULAIRE -->
 
@@ -70,7 +71,7 @@
 
         </div>
   </div>
-
+</main>
 </template>
 
 
@@ -208,27 +209,22 @@
   font-family: var(--lato);
 }
 
-.container {
+.container-registration {
   transition: width 700ms;
 }
 
 
   /* BANNIERE */
 
-  .banner  {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1.5em;
-    border-bottom: 5px solid red;
-  }
-
-
-
+  
+  
+  
   #h1{
     font-size: 2.3em;
+    border-bottom: 5px solid red;
     padding-bottom: 1em;
     font-weight: var(--900);
+    text-align: center;
   }
   .registration-form {
     display: flex;
@@ -251,7 +247,7 @@
   .obligationasterique{
 position: absolute;
 right: 0;
-top: 0;
+top: 10px;
 font-weight: 600;
 font-size: 0.7em;
 margin-bottom: 2em;

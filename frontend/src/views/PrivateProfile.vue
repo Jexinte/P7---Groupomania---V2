@@ -1,19 +1,22 @@
 <template>
-  <Menu_Profile></Menu_Profile>
-  <div class="container-profile">
-    <div class="userprofilebox">
-      <img class="userprofilebox--img" src="" alt="">
-      <h1 class="userprofilebox--maintitle"></h1>
-    
-        <p class="userprofile--quote"></p>
-      
-    </div>
+  <main>
 
-    <div class="posts_user">
-      <h2 class="posts_user--maintitle">Derniers posts publiés récemments</h2>
+    <Menu_Profile></Menu_Profile>
+    <div class="container-profile">
+      <div class="userprofilebox">
+        <img class="userprofilebox--img" src="" alt="">
+        <h1 class="userprofilebox--maintitle"></h1>
+        
+        <p class="userprofile--quote"></p>
+        
+      </div>
       
+      <div class="posts_user">
+        <h2 class="posts_user--maintitle">Derniers posts publiés récemments</h2>
+        
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

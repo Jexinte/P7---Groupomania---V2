@@ -63,7 +63,7 @@ exports.registration = (req,res) => {
             }
             
             asyncCall()
-            return res.status(404).json({message:error.message})
+            return res.status(400).json({message:error.message})
          
           }
           
@@ -88,7 +88,7 @@ exports.registration = (req,res) => {
             
             asyncCall2()
             
-            return res.status(404).json({message:error.message})
+            return res.status(400).json({message:error.message})
           }
         })
 
@@ -114,7 +114,7 @@ exports.registration = (req,res) => {
       }
      
       asyncCall3()
-       return res.status(404).json({message:`Merci d'écrire une adresse mail au format suivant : example@gmail.fr `})
+       return res.status(400).json({message:`Merci d'écrire une adresse mail au format suivant : example@gmail.fr `})
      }
 
     
@@ -137,7 +137,7 @@ exports.login = (req,res) => {
   USER.findOne({where:{email:mailOfUserLogin}}).then(user => {
 
     if(!user)
-      return res.status(401).json({message:`Cet utilisateur n'existe pas`})
+      return res.status(400).json({message:`Cet utilisateur n'existe pas`})
 
     bcrypt.compare(req.body.password , user.password).then(password => {
       

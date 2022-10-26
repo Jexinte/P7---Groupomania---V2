@@ -1,13 +1,16 @@
 <template>
-  <div class="container-homepage">
+  <main>
 
-    <Menu_Homepage></Menu_Homepage>
-   
-    <div class="everyposts">
-      <h1>Derniers posts publiés récemments</h1>
-    </div>    
-  </div>
-
+    <div class="container-homepage">
+      
+      <Menu_Homepage></Menu_Homepage>
+      
+      <div class="everyposts">
+        <h1>Derniers posts publiés récemments</h1>
+      </div>    
+    </div>
+    
+  </main>
 </template>
 
 <script>

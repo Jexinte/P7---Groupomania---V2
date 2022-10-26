@@ -1,25 +1,28 @@
 <template>
-  <div class="container-createpost">
+  <main>
 
-    <Menu_Logout></Menu_Logout>
- 
-    <div class="post">
-      <h2 class="h2-post"></h2>
-      <img class="image-post">
-      <p class="content-post"></p>
-      <div class="authorBox">
-        <Likes id="likes"></Likes>
-        <p class="author-post"></p>
+    <div class="container-createpost">
+      
+      <Menu_Logout></Menu_Logout>
+      
+      <div class="post">
+        <h2 class="h2-post"></h2>
+        <img class="image-post">
+        <p class="content-post"></p>
+        <div class="authorBox">
+          <Likes id="likes"></Likes>
+          <p class="author-post"></p>
+        </div>
+        <UpdateAndDeletePost v-show="render"></UpdateAndDeletePost>
+        
       </div>
-      <UpdateAndDeletePost v-show="render"></UpdateAndDeletePost>
-     
+      <div class="comments-informations">
+        <CreateComments></CreateComments>
+        <DisplayComments>
+        </DisplayComments>
+      </div>
     </div>
-    <div class="comments-informations">
-      <CreateComments></CreateComments>
-      <DisplayComments>
-      </DisplayComments>
-    </div>
-  </div>
+  </main>
 </template>
 
 

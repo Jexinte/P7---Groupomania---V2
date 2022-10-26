@@ -143,7 +143,7 @@ exports.deletePost = (req,res) => {
 
       const sessionData =JSON.parse(session[0].dataValues['data'])
     
-      if(sessionData.userId === post.userId || sessionData.user === `${process.env.ADMIN}` && sessionData.type === `${process.env.TYPE}`)
+      if(sessionData.userId === post.userId || sessionData.type === `${process.env.TYPEADMIN}`)
        {   
       
         fs.unlink(`images/${filename}`,() => {
@@ -155,7 +155,11 @@ exports.deletePost = (req,res) => {
         })
       }
 
-      //! Mettre une erreur 403 
+
+      
+      else{
+        return res.status(403).json({message:"Vous n'êtes pas autorisé à accéder à ce contenu !"})
+      }
 
 
     
@@ -233,7 +237,7 @@ exports.likeSystem = (req,res) => {
                             
                       })
 
-                      .catch(error => res.status(404).json({message:error}))
+                      .catch(() => res.status(500).json({message:`${process.env.CRASHSERVER}`}))
 
           }
 

@@ -1,43 +1,44 @@
 <template>
-  <div class="container">
+  <main>
+
+  
+  <div class="container-create-post">
   <!-- POSTS -->
   <div class="posts">
   
   <!-- MENU -->
   
   <Menu_CreatePost></Menu_CreatePost>
-    <!-- BANNER -->
   
-    <div class="banner">
-      <img class="banner-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
       <h2 id="h2">Écrire un post</h2>
-    </div>
+  
   
     <!-- FORMULAIRE -->
     <div class="post">
   
       <form action="/posts" method="post" enctype="multipart/form-data" class="create-form" @submit.prevent>
+        <span class="obligationasterique">Tous les champs * sont obligatoires</span>
         <label for="title">
-          Titre <br>
+          Titre* <br>
           <input type="text" id="title" name="title" v-model="title" placeholder="La patience est dure mais sa récompense est pure !" @change="hideSubmitButton" required>
         </label>
         <span id="titleerrormsg" class="errormsg"></span>
         
         <label for="image"> 
-          Image  <br>
+          Image*  <br>
           <input type="file" id="imageFile" name="imageFile" @change="stateOfFile"  required>
           <img id="output1" :src="previewUrl" v-if="previewUrl" width="100" height="100">
           <span v-else>Aucune image de téléchargée...</span>
         </label>
 
         <label for="descriptionimage">
-          Courte description de l'image : <br>
+          Courte description de l'image * <br>
           <input type="text" name="descriptionimage" id="descriptionimage" v-model="descriptionImage" class="datasend" placeholder="Un paysage de montagne !" required @change="hideSubmitButton">
           <span id="descriptionerrormsg" class="errormsg"></span>
         </label>
         
         <label for="content">
-          Contenu <br>
+          Contenu * <br>
           <textarea name="content" id="content" v-model="content"  cols="30" rows="10" required @change="hideSubmitButton"></textarea >
             <span id="contenterrormsg" class="errormsg"></span>
           </label>
@@ -56,6 +57,7 @@
   </div>
   <!-- FIN  POSTS -->
   </div>
+</main>
   </template>
   <script>
 
@@ -205,29 +207,40 @@ import axios from 'axios'
     
   
   
+  .container-create-post{
+    width: 80%;
+    margin: 0 auto;
+    transition: width 700ms;
+  }
   
+
+  .obligationasterique{
+position: absolute;
+right: 0;
+top: 15px;
+font-weight: 600;
+font-size: 0.7em;
+margin-bottom: 2em;
+transition: all ease-in 700ms;
+  }
   
+
   
-    /* BANNIERE */
-  
-    .banner  {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1.5em;
+
+    #h2{
+      font-size: 3em;
+      text-align: center;
+      font-weight: 900;
+      padding-bottom: 1em;
       border-bottom: 5px solid red;
-    }
-  #h2{
-    font-size: 3em;
-    text-align: center;
-    font-weight: 900;
-    padding-bottom: 1em;
+      width: 100%;
   }
     .create-form {
       display: flex;
       flex-direction: column;
       gap:1.5em;   
-      padding-top:1.5em
+      padding-top:1.5em;
+      position: relative;
     }
   
     .create-form label {
@@ -297,10 +310,15 @@ import axios from 'axios'
       width: 100%;
       padding-bottom: 3em;
     }
+    @media screen and (max-width:992px){
+
+      .container-create-post{
+    
+    transition: width 700ms;
+ }
+}
     @media screen and (max-width:340px){
-      .banner img {
-     width: 100%;
-   }
+   
 
    .preview_secondtitle{
     font-size: 2em;
@@ -308,4 +326,6 @@ import axios from 'axios'
    }
   
     }
+
+
   </style>

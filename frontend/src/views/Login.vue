@@ -1,7 +1,7 @@
 <template>
 <main>
 
-  <div class="container">
+  <div class="container-login">
     
     <div class="login">
       
@@ -9,10 +9,7 @@
       
       <!-- BANNER -->
       
-          <div class="banner">
-            <img id="login-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
-            
-          </div>
+          <h1 class="h1-login">Connexion</h1>
           
           <!-- FORMULAIRE -->
           
@@ -131,8 +128,17 @@ import Menu_Login from '@/components/Menu_Login.vue';
 
 }
 
-.container{
+.h1-login {
+  font-size: 2.3em;
+    border-bottom: 5px solid red;
+    padding-bottom: 1em;
+    font-weight: var(--900);
+    text-align: center;
+}
+
+.container-login{
   padding-bottom: 0;
+  min-height: 100vh;
 }
 
 
@@ -168,7 +174,7 @@ import Menu_Login from '@/components/Menu_Login.vue';
   .obligationasterique{
 position: absolute;
 right: 0;
-top: 0;
+top: 10px;
 font-weight: 600;
 font-size: 0.7em;
 margin-bottom: 2em;

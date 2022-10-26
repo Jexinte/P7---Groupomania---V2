@@ -1,19 +1,38 @@
 <template>
   <header>
+        
+
            <nav>
-             <router-link to="/" >Inscription</router-link>
-    
-           </nav>
+          <ul class="left">
+            <li><a href="/"><img class="banner-img-login" src="@/assets/images/logo.png" alt="Logo Groupomania" ></a></li>
+          </ul>
+        
+          <ul class="right">
+          
+            <li><router-link to="/">Inscription</router-link></li>
+            
+          </ul>
+        </nav>
          </header>
 </template>
 
 <style scoped>
  
+ header{
+  margin-top: 3em;
+ }
  /* MENU */
  nav {
    display: flex;
-   justify-content: flex-end;
+   justify-content: space-between;
  }
+
+ .banner-img-login{
+  height: 136px;
+  position: relative;
+  bottom:54px;
+}
+
 
  nav a {
    padding-right:2em;
