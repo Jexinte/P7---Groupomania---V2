@@ -9,7 +9,7 @@
         <!-- MENU -->
         <Menu_Registration></Menu_Registration>
 
-          <!-- BANNER -->
+        
 
           
             <h1 id="h1">Inscription</h1>
@@ -220,11 +220,12 @@
   
   
   #h1{
-    font-size: 2.3em;
+    font-size: 3.5em;
     border-bottom: 5px solid red;
     padding-bottom: 1em;
     font-weight: var(--900);
     text-align: center;
+    transition: font-size ease-in 700ms;
   }
   .registration-form {
     display: flex;
@@ -294,11 +295,9 @@ transition: all ease-in 700ms;
     transition: width 700ms;
   }
  
-  .banner .banner-img-registration {
-   
-    width: 100%;
-   
- 
+  #h1{
+    font-size: 2.3em;
+    transition: font-size ease-out 700ms;
   }
  
 

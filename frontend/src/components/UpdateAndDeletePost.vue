@@ -17,7 +17,7 @@ const user = new Posts()
   export default {
     methods : {
       deletePost(){
-        if(window.confirm('Voulez-vous confirmez la suppression de votre post ?!'))
+        if(window.confirm('Êtes-vous sûr de vouloir supprimer votre post ?!'))
         user.deletePost()
       }
     }

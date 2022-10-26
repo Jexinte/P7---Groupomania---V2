@@ -129,11 +129,12 @@ import Menu_Login from '@/components/Menu_Login.vue';
 }
 
 .h1-login {
-  font-size: 2.3em;
+  font-size: 3.5em;
     border-bottom: 5px solid red;
     padding-bottom: 1em;
     font-weight: var(--900);
     text-align: center;
+    transition: font-size ease-in 700ms;
 }
 
 .container-login{
@@ -217,7 +218,12 @@ transition: all ease-in 700ms;
     cursor: pointer;
   }
 
-
+  @media screen and (max-width:992px){
+    .h1-login {
+      font-size: 2.3em;
+      transition: font-size ease-out 700ms;
+    }
+  }
 
   @media screen and (max-width:305px){
     .obligationasterique{
