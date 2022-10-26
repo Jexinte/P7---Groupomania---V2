@@ -5,7 +5,7 @@ const { ValidationError } = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()
 const fs = require('fs')
-const { Console } = require('console')
+
 
 
 
@@ -110,7 +110,7 @@ exports.updatePost = (req,res) => {
               
               .catch(error => {
                 if(error instanceof ValidationError)
-                res.status(404).json({message:error.message})
+                res.status(400).json({message:error.message})
               })
          
 
@@ -246,7 +246,7 @@ exports.likeSystem = (req,res) => {
 
 
           else {
-            res.status(404).json({message:'Vous ne pouvez aimez un post plus d\'une fois'})
+            res.status(400).json({message:'Vous ne pouvez aimez un post plus d\'une fois'})
           }
                 
                 
