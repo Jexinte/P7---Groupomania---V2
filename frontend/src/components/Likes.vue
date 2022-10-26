@@ -1,11 +1,12 @@
 <template>
   <!-- LIKES -->
-    <form action="/affichepost" _method="PUT"   enctype="multipart/form-data" class="likes-form" @submit.prevent>
+    <form action="/affichepost" method="post"  enctype="multipart/form-data" class="likes-form" @submit.prevent>
 
-        <button class="button" type="submit" id="likebtn"  :disabled="isActive"  @click="sendLike" >
+        <button class="button" id="likebtn"  :disabled="isActive"  @click="sendLike" >
          
           <font-awesome-icon icon="fa-solid fa-thumbs-up" />
           <span id="totalLikes"></span>
+          <span class="errorlike" ></span>
         </button>
         <input class="input" type="number"  v-model="likes" name="like" hidden >
 
@@ -24,16 +25,11 @@
       return {
         likes:0,
         isActive:false,
-        userIdData:'',
-        user:''
-      
      }
     },
 
     mounted:function(){
-      this.totalNumberOfLikes(),
-      // this.preventUserToLikeHisOwnPost(),
-      this.preventUserToLikeAgain()
+      this.totalNumberOfLikes()
       
     },
 
@@ -49,69 +45,41 @@
         })
 
         .then(res => {
-          console.log(res)
+          
           totalLikes.textContent = ` ${res.data['data'].likes}`
 
         })
       },
 
       sendLike() {
-        const form = document.querySelector('.likes-form')
+        
+        
         const totalLikes = document.getElementById('totalLikes')
- 
-    
-        form.addEventListener('submit',() => {
+        const errorLike = document.querySelector('.errorlike')
+      
+
           axios({
-            method:'PUT',
+            method:'post',
             url:`http://localhost:3000/api/posts/displaypost/like/${id}`,
-            data:new FormData(form),
+            
             withCredentials:true
 
           })
           .then(res =>{ this.isActive = true
              totalLikes.textContent = ` ${res.data['like']}`})
+           
+    
 
-      
+        .catch((error) => {
+         if(error.response.status === 404)
+          this.isActive = true
+          errorLike.textContent = error.response.data['message']
         })
-        
+      
+
       },
 
-      // L'objectif ici sera de faire en sorte d'afficher un message disant à l'utilisateur qu'il ne peut aimer son propre post
-      preventUserToLikeHisOwnPost(){
-       const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-       this.userIdData = parseInt(cookie.userid)
-       axios({
-         method:'get',
-         url:`http://localhost:3000/api/posts/displaypost/${id}`,
-         withCredentials:true
-       })
-
-       .then(res => {
-         const userIdFromThePost = res.data['data'].userId 
-         if(userIdFromThePost === this.userIdData)
-           this.isActive = true
-       })
-      },
-// L'objectif ici sera de faire en sorte d'afficher un message disant à l'utilisateur qu'il ne peut aimer un post plus d'une fois !
-     preventUserToLikeAgain(){
-      const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-      this.user = cookie.userid
-      axios({
-        method:'get',
-        url:`http://localhost:3000/api/posts/displaypost/${id}`,
-        withCredentials:true
-      })
-
-      .then(res => {
-        
-          const usersWhoLovedThePost = res.data['data'].UsersWhoLovedThePost
-
-           if(usersWhoLovedThePost.includes(this.user))
-              this.isActive = true
-            
-          
-      })
-     }
+     
   },
 
     
@@ -129,14 +97,22 @@
   -moz-appearance: textfield;
 }
 
+.errorlike{
+  margin-left: 10px;
+  color:var(--rouge);
+  font-size: 13px;
+}
+
 .button {
    background: none;
   border: none; 
 }
 
 .fa-thumbs-up{
-  color:greenyellow;
+  color:var(--roseClair);
   cursor: pointer;
+  font-size: 1.5em;
+  transition: font-size ease-in 700ms;
 }
 
 .fa-thumbs-down{
@@ -149,14 +125,19 @@
   gap:1.5em;
 }
 
-
+#totalLikes {
+  position: relative;
+bottom: 1px;
+left: 2px;
+}
 @media screen and (max-width:992px){
   #totalLikes {
     font-size: 11px;
   }
 
   .fa-thumbs-up {
-    font-size: 11px;
+    font-size: 17px;
+    transition: font-size ease-out 700ms;
   }
 
   .button{

@@ -71,7 +71,7 @@ data : new FormData(form),
 
 
 document.cookie=`idsession=${res.data['idSession']};`
-document.cookie=`user=${res.data['user']};`
+// document.cookie=`user=${res.data['user']};`
 document.cookie=`userid=${res.data['userId']};`
 document.cookie=`type=${res.data['typeOfUser']};`
 
@@ -126,7 +126,7 @@ const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(
 const userData = res.data
 const emptyArray = []
 emptyArray.push(userData)
-
+console.log(emptyArray)
 const findCorrectUser = emptyArray.find(user => user.userId === parseInt(cookie.userid))
 
 if(findCorrectUser){

@@ -18,7 +18,7 @@ router.use(express.json())
 router.get('/listsposts',authSession,multer,PostsController.displayPosts)
 router.get('/displaypost/:id',authSession,multer,PostsController.displayPost)
 router.post('/createpost',authSession,multer,PostsController.createPost)
-router.put('/displaypost/like/:id',authSession,multer,PostsController.likeSystem)
+router.post('/displaypost/like/:id',authSession,multer,PostsController.likeSystem)
 router.put('/updatepost/:id',authSession,multer,PostsController.updatePost)
 router.delete('/deletepost/:id',authSession,multer,PostsController.deletePost)
 

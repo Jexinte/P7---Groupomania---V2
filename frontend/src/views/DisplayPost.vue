@@ -37,6 +37,7 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
   const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
   const searchParams = new URLSearchParams(window.location.search)
   const idPost = parseInt(searchParams.get('id'))
+  
   export default {
     mounted: function () {
         user.showThePost(),
@@ -48,7 +49,6 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
     data(){
       return {
         userIdData:'',
-        admin :'',
         type:'',
         render:false
       }
@@ -69,28 +69,23 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
 
         .then(res => {
           const userIdLinkToThePost = res.data['data'].userId 
-         if(this.userIdData === userIdLinkToThePost ){
+
+          if(this.userIdData === userIdLinkToThePost )
           this.render = true
-     
-         }
-         
-          
+   
         })
       },
 
      
      adminCommands(){
-      const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(.*)/s).map(decodeURIComponent)))
-            this.admin = cookie.user
-            this.type = cookie.type
+
+      const cookie = Object.fromEntries(document.cookie.split('; ').map(value=>value.split(/=(.*)/s).map(decodeURIComponent))) 
+
+      this.type = cookie.type
   
-       
-          if(this.admin === "Admin" && this.type === "ADMIN"){
-   
-            this.render = true
-          }
-          
-     
+          if(this.type === "ADMIN")
+              this.render = true
+
      } ,
 
     },
@@ -144,14 +139,12 @@ import UpdateAndDeletePost from '@/components/UpdateAndDeletePost.vue'
   }
 
   .authorBox {
-    display: grid;
+ 
+display: grid;
 grid-template-columns: repeat(2,1fr);
-grid-template-rows: repeat(2,1fr);
-grid-template-areas: 
-"a b"
-"c c"
-;
-gap:1.5em;
+grid-template-rows: repeat(1,1fr);
+grid-template-areas: "a b";
+gap: 1.5em;
 }
 
 #likes {
@@ -166,7 +159,6 @@ gap:1.5em;
 }
 
 .updatedeletepost{
-  grid-area: c;
   place-self: center;
 }
 .comments-informations{

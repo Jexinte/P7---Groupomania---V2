@@ -116,6 +116,7 @@
   #comments{
     width: 100%;
     border: 1px solid black;
+    padding:13px;
   }
 
 

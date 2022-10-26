@@ -36,7 +36,7 @@ const initDbUser = () => {
           imageProfile:'https://c4.wallpaperflare.com/wallpaper/389/857/201/black-moon-werewolf-white-wallpaper-preview.jpg',
           email:`${process.env.EMAILADMIN}`,
           password:hash,
-          type:`${process.env.TYPE}`,
+          type:`${process.env.TYPEADMIN}`,
           descriptionImage:"Un loup fière"
         
       })

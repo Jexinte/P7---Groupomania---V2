@@ -2,10 +2,7 @@
   <div class="container-homepage">
 
     <Menu_Homepage></Menu_Homepage>
-    <!-- <div class="banner">
-      <img class="banner-img" src="@/assets/images/logo.png" alt="Logo Groupomania" >
-     
-    </div> -->
+   
     <div class="everyposts">
       <h1>Derniers posts publiés récemments</h1>
     </div>    

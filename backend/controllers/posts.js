@@ -89,7 +89,7 @@ exports.updatePost = (req,res) => {
 
           const sessionData =JSON.parse(session[0].dataValues['data'])
  
-          if(sessionData.userId === post.userId || sessionData.user === `${process.env.ADMIN}` && sessionData.type === `${process.env.TYPE}`)
+          if(sessionData.userId === post.userId || sessionData.type === `${process.env.TYPEADMIN}`)
           {   
             //* On met au format json le contenu de la requête
             const postData = JSON.stringify(req.body)

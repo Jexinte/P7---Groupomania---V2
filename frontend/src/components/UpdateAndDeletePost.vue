@@ -33,7 +33,7 @@ const user = new Posts()
   }
 
   #update{
-    background-color: lightgreen;
+    background-color: var(--grisFoncé);
     border-radius: 10px;
     font-weight: 900;
     color: white;

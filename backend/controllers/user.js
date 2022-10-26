@@ -152,7 +152,7 @@ exports.login = (req,res) => {
       session = req.session
       session.id = req.session.id
       session.userId = user.id
-      session.user= user.user
+      // session.user= user.user
       session.type = user.type
        res.status(200).json(
         {
@@ -206,7 +206,8 @@ exports.logout = (req,res) => {
 exports.privateProfilData = (req,res) => {
   SESSION.findAll().then(session => {
     const sessionData = JSON.parse(session[0].dataValues['data'])
-    USER.findOne({where:{user:sessionData.user}}).then(user => res.status(200).json({
+    
+    USER.findOne({where:{id:parseInt(sessionData.userId)}}).then(user => res.status(200).json({
       userId:user.id,
       username:user.user,
       imageProfile:user.imageProfile,
