@@ -48,9 +48,9 @@
  
 
   import Error from '@/components/Error.vue'
-  import Login from '@/services/Auth.vue';
+  import AuthService from '@/services/Auth.vue';
 import Menu_Login from '@/components/Menu_Login.vue';
-  const user = new Login()
+  const authService = new AuthService()
   
   export default {
     
@@ -105,7 +105,7 @@ import Menu_Login from '@/components/Menu_Login.vue';
         },
 
         login(){
-          user.login()
+          authService.login()
         },
 
         disabledLoginButton(){

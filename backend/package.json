@@ -1,7 +1,7 @@
 {
   "name": "api-groupomania",
   "version": "1.0.0",
-  "description": "Allow to manage data users depending on their requests",
+  "description": "It is an api that allows the management of user data for the creation of a social network allowing the employees of the company to communicate ",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"

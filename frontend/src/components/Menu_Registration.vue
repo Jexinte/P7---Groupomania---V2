@@ -1,23 +1,23 @@
 <template>
-  <header>
-        <nav>
-          <ul class="left">
-            <li><a href="/"><img class="banner-img-registration" src="@/assets/images/logo.png" alt="Logo Groupomania" ></a></li>
-          </ul>
-        
-          <ul class="right">
-          
-            <li><router-link to="/connexion">Connexion</router-link></li>
-            
-          </ul>
-        </nav>
-      </header>
+<header>
+<nav>
+<ul class="left">
+<li><a href="/"><img class="banner-img-registration" src="@/assets/images/logo.png" alt="Logo Groupomania" ></a></li>
+</ul>
+
+<ul class="right">
+
+<li><router-link to="/connexion">Connexion</router-link></li>
+
+</ul>
+</nav>
+</header>
 </template>
 
 
 <style scoped>
 header{
-  margin-top: 3em;
+margin-top: 3em;
 }
 /* MENU */
 nav {
@@ -34,9 +34,9 @@ color:black
 }
 
 .banner-img-registration{
-  height: 136px;
-  position: relative;
-  bottom:54px;
+height: 136px;
+position: relative;
+bottom:54px;
 }
 
 @media screen and (max-width:340px){

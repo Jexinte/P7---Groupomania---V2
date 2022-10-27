@@ -14,22 +14,22 @@ const { id } = req.params
 
 POSTS.findOne({where:{id:id}}).then(response => {
 
-  const idPostOfUser = response.id
-  const authorOfTheComment = req.body.author
-  const commentOfTheAuthor = req.body.comment
-  
-  COMMENTS.create({
-    id_post:idPostOfUser,
-    author:authorOfTheComment,
-    comment:commentOfTheAuthor
-  })
+const idPostOfUser = response.id
+const authorOfTheComment = req.body.author
+const commentOfTheAuthor = req.body.comment
 
-  .then(data => res.status(201).json({message:data}))
+COMMENTS.create({
+id_post:idPostOfUser,
+author:authorOfTheComment,
+comment:commentOfTheAuthor
+})
 
-  .catch(error => {
-    if(error instanceof ValidationError)
-      res.status(404).json({message:error.message})
-  })
+.then(data => res.status(201).json({message:data}))
+
+.catch(error => {
+if(error instanceof ValidationError)
+res.status(404).json({message:error.message})
+})
 
 })
 
@@ -44,7 +44,7 @@ res.status(500).json({message:`${process.env.CRASHSERVER}`})
 exports.displayComments = (req,res) => {
 
 COMMENTS.findAll().then(response => {
-  res.status(200).json({data1:response})
+res.status(200).json({data1:response})
 })
 }
 

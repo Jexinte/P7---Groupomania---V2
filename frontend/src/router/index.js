@@ -11,71 +11,71 @@ import AccessFailed from '../components/AccessFailed'
 
 import ModifyPost from '../components/Modify.vue'
 const routes = [
-  {
-    path: '/',
-    name: 'inscription',
-    component: Registration
-  },
-  {
-    path: '/connexion',
-    name: 'connexion',
-    component: Login
-  },
+{
+path: '/',
+name: 'inscription',
+component: Registration
+},
+{
+path: '/connexion',
+name: 'connexion',
+component: Login
+},
 
-  {
-    path:'/profil',
-    name:'profil',
-    component: PrivateProfile
-  },
-
-
-  {
-    path: '/accueil',
-    name: 'accueil de l\'ensemble des posts',
-    component: Homepage
-  },
-
-  {
-    path: '/creationpost',
-    name: 'création de post',
-    component: CreatePost
-  },
-
-  {
-    path: '/post',
-    name: 'Affiche un post',
-    component: DisplayPost
-  },
-
-  {
-    path:'/creationCommentaire',
-    name:'Espace pour créer les commentaires',
-    component:CreateComments
-  },
-
-  {
-    path:'/affichageCommentaire',
-    name:'Espace pour afficher les commentaires',
-    component: DisplayComments
-  },
+{
+path:'/profil',
+name:'profil',
+component: PrivateProfile
+},
 
 
-  {
-    path:'/modifierpost',
-    name:'modification de post',
-    component: ModifyPost
-  } ,
+{
+path: '/accueil',
+name: 'accueil de l\'ensemble des posts',
+component: Homepage
+},
 
-  {
-    path:'/noauthorization',
-    name : 'erreur homepage',
-    component:AccessFailed 
-  }
+{
+path: '/creationpost',
+name: 'création de post',
+component: CreatePost
+},
+
+{
+path: '/post',
+name: 'Affiche un post',
+component: DisplayPost
+},
+
+{
+path:'/creationCommentaire',
+name:'Espace pour créer les commentaires',
+component:CreateComments
+},
+
+{
+path:'/affichageCommentaire',
+name:'Espace pour afficher les commentaires',
+component: DisplayComments
+},
+
+
+{
+path:'/modifierpost',
+name:'modification de post',
+component: ModifyPost
+} ,
+
+{
+path:'/noauthorization',
+name : 'erreur homepage',
+component:AccessFailed 
+}
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+history: createWebHistory(process.env.BASE_URL),
+routes
 })
 
 export default router

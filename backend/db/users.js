@@ -6,16 +6,16 @@ dotenv.config()
 
 
 const sequelize = new Sequelize (
- `${process.env.DATABASE}`,
- `${process.env.USER}`,
- `${process.env.MDP}`,
+`${process.env.DATABASE}`,
+`${process.env.USER}`,
+`${process.env.MDP}`,
 
- {
-  host:`${process.env.HOST}`,
-  port : `${process.env.PORT}`,
-  dialect:`${process.env.DIALECT}`,
-  logging:false
- }
+{
+host:`${process.env.HOST}`,
+port : `${process.env.PORT}`,
+dialect:`${process.env.DIALECT}`,
+logging:false
+}
 
 )
 
@@ -23,35 +23,35 @@ const USER = UserModel(sequelize,DataTypes)
 
 const initDbUser = () => {
 
-  sequelize.sync({force:true}).then(_ =>
+sequelize.sync({force:true}).then(_ =>
 
 
-    bcrypt.hash(`${process.env.PASSWORDADMIN}`,10).then(hash => {
-
-   
-      USER.create({
-        
-          user:`${process.env.ADMIN}`,
-          quote : `Celui qui ne progresse pas chaque jour recule chaque jour`,
-          imageProfile:'https://c4.wallpaperflare.com/wallpaper/389/857/201/black-moon-werewolf-white-wallpaper-preview.jpg',
-          email:`${process.env.EMAILADMIN}`,
-          password:hash,
-          type:`${process.env.TYPEADMIN}`,
-          descriptionImage:"Un loup fière"
-        
-      })
-
-      .then(user => console.log(user.toJSON()))
-       
-    })
-
- 
-    
+bcrypt.hash(`${process.env.PASSWORDADMIN}`,10).then(hash => {
 
 
-  )
+USER.create({
+
+user:`${process.env.ADMIN}`,
+quote : `Celui qui ne progresse pas chaque jour recule chaque jour`,
+imageProfile:'https://c4.wallpaperflare.com/wallpaper/389/857/201/black-moon-werewolf-white-wallpaper-preview.jpg',
+email:`${process.env.EMAILADMIN}`,
+password:hash,
+type:`${process.env.TYPEADMIN}`,
+descriptionImage:"Un loup fière"
+
+})
+
+.then(user => console.log(user.toJSON()))
+
+})
+
+
+
+
+
+)
 }
 
 module.exports = {
-  initDbUser,USER
+initDbUser,USER
 }

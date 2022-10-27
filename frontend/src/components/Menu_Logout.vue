@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import Logout from '@/services/Auth.vue';
-  const user = new Logout()
+import AuthService from '@/services/Auth.vue';
+  const authService = new AuthService()
   export default {
     methods : {
       logout() {
-        user.logout()
+        authService.logout()
       }
     }
   }

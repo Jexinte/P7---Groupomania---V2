@@ -4,8 +4,8 @@ const dotenv = require('dotenv')
 dotenv.config()
 const cors = require('cors')
 const corsOptions = {
-  credentials:true,
-  origin:true
+credentials:true,
+origin:true
 }
 const multer = require('../middleware/multerConfig')
 const authSession = require('../middleware/auth-session')

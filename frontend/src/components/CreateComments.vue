@@ -1,23 +1,23 @@
 <template>
 
-  <div class="commentsbeforehand">
-    <h3>Ajouter un commentaire</h3>
-  </div>
-    <form action="/comments" method="post" enctype="multipart/form-data" class="comments-form" @submit.prevent="checkEmptyData">
-      <label for="author" class="author-comments">
-        Auteur <br>
-        <input type="text" v-model="author" name="author" id="author"  class="input" > <br>
-        <span id="authorerrormsg" class="commentserrormsg"></span>
-      </label>
-      <label for="comments">
-        Commentaire : <br>
-        <textarea name="comment" id="comments" v-model="comments" cols="30" rows="10" placeholder="Réagissez au post de l'auteur !"></textarea>
-        <span id="commenterrormsg" class="commentserrormsg"></span>
-      
-      </label>
-      <br>
-      <input type="submit" value="Envoyer" id="submit" class="input">
-    </form>
+<div class="commentsbeforehand">
+<h3>Ajouter un commentaire</h3>
+</div>
+<form action="/comments" method="post" enctype="multipart/form-data" class="comments-form" @submit.prevent="checkEmptyData">
+<label for="author" class="author-comments" hidden>
+Auteur <br>
+<input type="text" v-model="author" name="author" id="author"  class="input" > <br>
+<span id="authorerrormsg" class="commentserrormsg"></span>
+</label>
+<label for="comments">
+Commentaire : <br>
+<textarea name="comment" id="comments" v-model="comments" cols="30" rows="10" placeholder="Réagissez au post de l'auteur !"></textarea>
+<span id="commenterrormsg" class="commentserrormsg"></span>
+
+</label>
+<br>
+<input type="submit" value="Envoyer" id="submit" class="input">
+</form>
 
 
 
@@ -25,137 +25,137 @@
 
 
 <script>
-  import Comments from '@/services/Comments.vue';
- const user = new Comments()
- const axios = require('axios')
-  export default{
+import Comments from '@/services/Comments.vue';
+const user = new Comments()
+const axios = require('axios')
+export default{
 
-    mounted:function(){
-      user.createComments()
-    },
-    data(){
-      return {
-        author : '',
-        comments:''
-      }
-    },
+mounted:function(){
+user.createComments()
+},
+data(){
+return {
+author : '',
+comments:''
+}
+},
 
-    created(){
-      axios({
-        method:'get',
-        url:'http://localhost:3000/api/auth/users',
-        withCredentials:true
-      })
+created(){
+axios({
+method:'get',
+url:'http://localhost:3000/api/auth/users',
+withCredentials:true
+})
 
-      .then(res => this.author = res.data['username'])
-    
-    },
+.then(res => this.author = res.data['username'])
 
-    methods : {
-      checkEmptyData() {
-            const errorOnAuthorComments = document.getElementById("authorerrormsg");
-            const errorOnCommentContent = document.getElementById("commenterrormsg");
-      
-   
-          
-        if(this.author === ""){
-          errorOnAuthorComments.textContent = "Le champ ne peut être vide";
-          errorOnAuthorComments.style.color = "red";
-        }
+},
 
-            else {
-                errorOnAuthorComments.textContent = "";
-            }
+methods : {
+checkEmptyData() {
+const errorOnAuthorComments = document.getElementById("authorerrormsg");
+const errorOnCommentContent = document.getElementById("commenterrormsg");
 
-            if (this.comments === "") {
-                errorOnCommentContent.textContent = "Le champ ne peut être vide";
-                errorOnCommentContent.style.color = "red";
-            }
 
-            else {
-                errorOnCommentContent.textContent = "";
-            }
 
-            
-          
+if(this.author === ""){
+errorOnAuthorComments.textContent = "Le champ ne peut être vide";
+errorOnAuthorComments.style.color = "red";
+}
 
-        },
-    }
-  }
+else {
+errorOnAuthorComments.textContent = "";
+}
+
+if (this.comments === "") {
+errorOnCommentContent.textContent = "Le champ ne peut être vide";
+errorOnCommentContent.style.color = "red";
+}
+
+else {
+errorOnCommentContent.textContent = "";
+}
+
+
+
+
+},
+}
+}
 </script>
 <style scoped>
-  .commentsbeforehand{
-    padding-bottom: 3em;
-  }
-  .commentsbeforehand h3 {
-    border-bottom: 3px solid black;
-    font-size: 2em;
-    padding-bottom: 1em;
-  }
+.commentsbeforehand{
+padding-bottom: 3em;
+}
+.commentsbeforehand h3 {
+border-bottom: 3px solid black;
+font-size: 2em;
+padding-bottom: 1em;
+}
 
-  .comments-form{    
-    display: flex;
-    flex-direction: column;
-    gap:1.5em;
-    padding-bottom: 3em;
-   
-  }
+.comments-form{    
+display: flex;
+flex-direction: column;
+gap:1.5em;
+padding-bottom: 3em;
 
-  .comments-form label {
-    line-height: 1.9em;
-    font-weight: var(--600);
-  }
+}
 
-  .input {
-    width: 100%;
-    border: 1px solid black;
-    padding: 13px;
-   
-  }
+.comments-form label {
+line-height: 1.9em;
+font-weight: var(--600);
+}
 
-  #comments{
-    width: 100%;
-    border: 1px solid black;
-    padding:13px;
-  }
+.input {
+width: 100%;
+border: 1px solid black;
+padding: 13px;
 
+}
 
-  #submit {
-    background: white;
-    font-weight: var(--900);
-    cursor: pointer;
-    padding:.7em
-  }
-
-  @media screen and (max-width:992px) {
-    .commentsbeforehand h3{
-      font-size: 14px;
-      transition: font-size ease-in-out 700ms;
-    }
+#comments{
+width: 100%;
+border: 1px solid black;
+padding:13px;
+}
 
 
-    .input {
-      padding: .4em;
-      transition: font-size ease-in-out 700ms;
-    }
+#submit {
+background: white;
+font-weight: var(--900);
+cursor: pointer;
+padding:.7em
+}
 
-    textarea{
-      padding: .4em;
-    }
+@media screen and (max-width:992px) {
+.commentsbeforehand h3{
+font-size: 14px;
+transition: font-size ease-in-out 700ms;
+}
 
-    ::placeholder{
-      font-size: 11px;
-      transition: font-size ease-in-out 700ms;
-    }
 
-    .comments-form label {
-      font-size: 11px;
-      transition: font-size ease-in-out 700ms;
-    }
+.input {
+padding: .4em;
+transition: font-size ease-in-out 700ms;
+}
 
-    #submit{
-      font-size: 13px;
-      transition: font-size ease-in-out 700ms;
-    }
-  }
+textarea{
+padding: .4em;
+}
+
+::placeholder{
+font-size: 11px;
+transition: font-size ease-in-out 700ms;
+}
+
+.comments-form label {
+font-size: 11px;
+transition: font-size ease-in-out 700ms;
+}
+
+#submit{
+font-size: 13px;
+transition: font-size ease-in-out 700ms;
+}
+}
 </style>

@@ -4,8 +4,8 @@ const dotenv = require('dotenv')
 dotenv.config()
 const cors = require('cors')
 const corsOptions = {
-  credentials:true,
-  origin:true
+credentials:true,
+origin:true
 }
 const multer = require('../middleware/multerConfig')
 const UsersControllers = require('../controllers/user')
@@ -15,23 +15,23 @@ const cookieParser = require('cookie-parser')
 const MySQLStore = require('express-mysql-session')(session)
 const authSession = require('../middleware/auth-session')
 const options = {
-  host : `${process.env.HOST}`,
-  port : `${process.env.PORT}`,
-  user : `${process.env.USER}`,
-  password : `${process.env.MDP}`,
-  database:`${process.env.DATABASE}`,
-  createDatabaseTable:false,
-  clearExpired:true,
+host : `${process.env.HOST}`,
+port : `${process.env.PORT}`,
+user : `${process.env.USER}`,
+password : `${process.env.MDP}`,
+database:`${process.env.DATABASE}`,
+createDatabaseTable:false,
+clearExpired:true,
 }
 
 const sessionStore = new MySQLStore(options)
 
 router.use(session({
-  key:'id_session',
-  secret:`${process.env.SECRETSESSIONCOOKIE}`,
-  store:sessionStore,
-   resave:false,
-  saveUninitialized:false
+key:'id_session',
+secret:`${process.env.SECRETSESSIONCOOKIE}`,
+store:sessionStore,
+resave:false,
+saveUninitialized:false
 }))
 
 router.use(cookieParser())

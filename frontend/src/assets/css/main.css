@@ -3,61 +3,61 @@
 
 :root {
 
-  /* POLICES */
-    --lato : 'Lato',sans-serif;
+/* POLICES */
+--lato : 'Lato',sans-serif;
 
-  /* COULEURS  */
+/* COULEURS  */
 
-    --rouge : #FD2D01;
-    --roseClair : #FFD7D7;
-    --grisFoncé : #4E5166;
+--rouge : #FD2D01;
+--roseClair : #FFD7D7;
+--grisFoncé : #4E5166;
 
-  /* FONT WEIGHT */ 
+/* FONT WEIGHT */ 
 
-    --400 : 400;
-    --600:600;
-    --700 : 700;
-    --900 : 900
+--400 : 400;
+--600:600;
+--700 : 700;
+--900 : 900
 }
 
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing: border-box;
-  font-family: var(--lato);
-  font-size: 18px;
-  outline:none;
-  overflow-x: hidden;
+margin:0;
+padding:0;
+box-sizing: border-box;
+font-family: var(--lato);
+font-size: 18px;
+outline:none;
+overflow-x: hidden;
 }
 
 a{
-  text-decoration: none;
-  color:black;
+text-decoration: none;
+color:black;
 }
 
 
 a:visited{
-  color:black;
+color:black;
 }
 
 textarea{
-  resize: none;
+resize: none;
 }
 
 header{
-  margin-bottom: 3em;
+margin-bottom: 3em;
 }
 
 #asterique {
-  color: var(--grisFoncé);
+color: var(--grisFoncé);
 }
 
 
 .banner{
-  margin-bottom: 1.5em;
+margin-bottom: 1.5em;
 }
 
 .banner img {
-  height: 600px;
+height: 600px;
 }

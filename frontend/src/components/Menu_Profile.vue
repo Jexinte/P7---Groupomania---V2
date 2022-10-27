@@ -1,25 +1,25 @@
 <template>
-  <header class="header-profile">
-        <nav>
-         
-          <ul class="right">
-            <li><router-link to="/accueil"><font-awesome-icon icon="fa-solid fa-house" /></router-link></li>
-            <li><router-link to="/" @click="logout"><font-awesome-icon icon="fa-solid fa-right-from-bracket" /></router-link></li>
-          </ul>
-        </nav>
-      </header>
+<header class="header-profile">
+<nav>
+
+<ul class="right">
+<li><router-link to="/accueil"><font-awesome-icon icon="fa-solid fa-house" /></router-link></li>
+<li><router-link to="/" @click="logout"><font-awesome-icon icon="fa-solid fa-right-from-bracket" /></router-link></li>
+</ul>
+</nav>
+</header>
 </template>
 
 <script>
-  import Logout from '@/services/Auth.vue';
-  const user = new Logout()
-  export default {
-    methods : {
-      logout() {
-        user.logout()
-      }
-    }
-  }
+import Logout from '@/services/Auth.vue';
+const user = new Logout()
+export default {
+methods : {
+logout() {
+user.logout()
+}
+}
+}
 </script>
 <style scoped>
 /* MENU */
@@ -35,11 +35,11 @@ font-weight: var(--700);
 color:black
 }
 ul li {
-  list-style-type: none;
+list-style-type: none;
 }
 .right {
-  padding-top: 1.9em;
-  display: flex;
+padding-top: 1.9em;
+display: flex;
 }
 
 @media screen and (max-width:340px){
@@ -52,13 +52,13 @@ left:9px;
 }
 
 @media screen and (min-width:0px) and (max-width:900px){
-  .right {
-  display: flex;
-  justify-content: space-between;
+.right {
+display: flex;
+justify-content: space-between;
 }
 
 .right a {
-  font-size: .9em;
+font-size: .9em;
 }
 
 }
