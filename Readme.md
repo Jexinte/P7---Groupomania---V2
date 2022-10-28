@@ -12,6 +12,8 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
  3 - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile more details here on the set up here : https://fontawesome.com/docs/web/use-with/vue/  (don't install pro icons it's not required and don't install vuejs2 component this project is done with vuejs3)
 
  4 - Type "npm install " on backend folder 
+ 
+ 5 - Don't forget to create an "images" folder on backend folder without it when you try to create a post it wont happend and generate 403 error
 
  5 - You have to install XAMPP / WampServer in order to use mysql and phpmyadmin
 
