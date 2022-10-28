@@ -4,15 +4,24 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 
 
 # How to use it
- - Clone the repo
- - Type "npm install" on frontend and backend folder
- - You have to install XAMPP / WampServer in order to use mysql and phpmyadmin
- - Once installed create a database in phpmyadmin named "groupomania"
- - There is an env example file for logs
- - Go check in the env_example file on backend folder to see how set yours logs once it's done replace env_example by .env
- - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile more details here on the set up here : https://fontawesome.com/docs/web/use-with/vue/
- - On backend folder "npm start or nodemon" but if you have the latest version of nodejs v-18 just node --watch app 
- - On frontend folder "npm run serve"
+
+ 1 - Clone the repo
+
+ 2 - Type "npm install" on frontend and backend folder
+
+ 3 - You have to install XAMPP / WampServer in order to use mysql and phpmyadmin
+
+ 4 - Once installed create a database in phpmyadmin named "groupomania" or if I already give you the sql file just import it on phpmyadmin !
+
+ 5 - There is an env_example file for logs 
+
+ 6 - Go check in the env_example file on backend folder to see how set yours logs once it's done replace env_example by .env and dont forget to remove all slashes in the file
+ 
+ 7 - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile more details here on the set up here : https://fontawesome.com/docs/web/use-with/vue/  (don't install pro icons it's not required)
+
+ 8 - On backend folder "npm start or nodemon" but if you have the latest version of nodejs v-18 just node --watch app 
+
+ 9 - On frontend folder "npm run serve"
 
 
 # Screenshot ( 12/09/2022 - 17/09/2022)
