@@ -15,18 +15,22 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
  
  5 - Don't forget to create an "images" folder on backend folder without it when you try to create a post it wont happend and generate 403 error
 
- 5 - You have to install XAMPP / WampServer in order to use mysql and phpmyadmin
+ 6 - You have to install XAMPP / WampServer in order to use mysql and phpmyadmin
 
- 6 - Once installed create a database in phpmyadmin named "groupomania" and import the sql file and all tables will be created 
+ 7 - Once installed create a database in phpmyadmin named "groupomania" and import the sql file and all tables will be created 
 
- 7 - There is an env_example file for logs 
+ 8 - There is an env_example file for logs 
 
- 8 - Go check in the env_example file  to see how set yours logs once it's done replace env_example by .env and dont forget to remove all slashes in the file
+ 9 - Go check in the env_example file  to see how set yours logs once it's done replace env_example by .env and dont forget to remove all slashes in the file
   
- 9 - On backend folder "npm start or nodemon" but if you have the latest version of nodejs v-18 just node --watch app 
+ 10 - On backend folder "npm start or nodemon" but if you have the latest version of nodejs v-18 just node --watch app 
 
- 10 - On frontend folder "npm run serve"
+ 11 - On frontend folder "npm run serve"
 
+# Env_example 
+
+Check this short video if you're lost with how to set up the env file 
+https://user-images.githubusercontent.com/88725081/198520646-0a609256-86eb-4d4d-827b-a5ec6c06d5ef.mp4
 
 # Screenshot ( 12/09/2022 - 17/09/2022)
 
