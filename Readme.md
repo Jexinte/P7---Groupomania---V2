@@ -7,21 +7,23 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 
  1 - Clone the repo
 
- 2 - Type "npm install" on frontend and backend folder
-
- 3 - You have to install XAMPP / WampServer in order to use mysql and phpmyadmin
-
- 4 - Once installed create a database in phpmyadmin named "groupomania" or if I already give you the sql file just import it on phpmyadmin !
-
- 5 - There is an env_example file for logs 
-
- 6 - Go check in the env_example file on backend folder to see how set yours logs once it's done replace env_example by .env and dont forget to remove all slashes in the file
+ 2 - Type "npm install" on frontend folder
  
- 7 - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile more details here on the set up here : https://fontawesome.com/docs/web/use-with/vue/  (don't install pro icons it's not required and don't install vuejs2 component this project is done with vuejs3)
+ 3 - You have to install font awesome for vuejs on frontend folder without it vuejs won't compile more details here on the set up here : https://fontawesome.com/docs/web/use-with/vue/  (don't install pro icons it's not required and don't install vuejs2 component this project is done with vuejs3)
 
- 8 - On backend folder "npm start or nodemon" but if you have the latest version of nodejs v-18 just node --watch app 
+ 4 - Type "npm install " on backend folder 
 
- 9 - On frontend folder "npm run serve"
+ 5 - You have to install XAMPP / WampServer in order to use mysql and phpmyadmin
+
+ 6 - Once installed create a database in phpmyadmin named "groupomania" and import the sql file and all tables will be created 
+
+ 7 - There is an env_example file for logs 
+
+ 8 - Go check in the env_example file  to see how set yours logs once it's done replace env_example by .env and dont forget to remove all slashes in the file
+  
+ 9 - On backend folder "npm start or nodemon" but if you have the latest version of nodejs v-18 just node --watch app 
+
+ 10 - On frontend folder "npm run serve"
 
 
 # Screenshot ( 12/09/2022 - 17/09/2022)
