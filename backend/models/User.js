@@ -23,19 +23,7 @@ msg :`Le nom d'utilisateur doit commencer par une lettre majuscule , ne peut con
 }
 }
 },
-quote : {
-type:DataTypes.CHAR,
-allowNull:false,
 
-
-validate : {
-
-is: {
-args:/^[A-Za-z]/,
-msg :`Le champ citation personnelle ne peut être vide et / ou contenir de chiffres`
-}
-}
-},
 
 email : {
 type:DataTypes.CHAR,

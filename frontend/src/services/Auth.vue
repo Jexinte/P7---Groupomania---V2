@@ -126,7 +126,6 @@ const cookie = Object.fromEntries(document.cookie.split('; ').map(v=>v.split(/=(
 const userData = res.data
 const emptyArray = []
 emptyArray.push(userData)
-console.log(emptyArray)
 const findCorrectUser = emptyArray.find(user => user.userId === parseInt(cookie.userid))
 
 if(findCorrectUser){
@@ -165,12 +164,10 @@ const userData = res.data
 
 const emptyArray = []
 emptyArray.push(userData)
-console.log(emptyArray)
 const findCorrectUser = emptyArray.find(user => user.userId === idOfUserConnected)
 if(findCorrectUser){
 
 const nameOfUserInDatabase = findCorrectUser.username
-const quoteOfUserInDatabase = findCorrectUser.quote
 const imageProfileOfUserInDatabase = findCorrectUser.imageProfile
 const imageDescriptionOfUserInDatabase = findCorrectUser.descriptionImage
 
@@ -183,10 +180,6 @@ imgProfileBox.alt = `${imageDescriptionOfUserInDatabase}`
 const nameUserProfileBox = document.querySelector('.userprofilebox--maintitle')
 nameUserProfileBox.textContent = `${nameOfUserInDatabase}`
 
-
-const quoteUserProfileBox = document.querySelector('.userprofile--quote')
-quoteUserProfileBox.textContent = `"${quoteOfUserInDatabase}"`
-quoteUserProfileBox.style.color="slategray"
 }
 posts.map(post => {
 if(post.userId === findCorrectUser.userId && post.author === findCorrectUser.username){

@@ -26,12 +26,6 @@
               <span id="usererrormsg" class="errormsg"></span>
             </label>
 
-            <label for="quote">
-            Citation personnelle <span id="asterique">*</span>  <br>
-              <input type="text" id="quote" class="datasend" name="quote" v-model="quote" placeholder="Celui qui ne progresse pas chaque jour recule chaque jour" @change="disabledSubmitButtonRegistration" >
-              <span id="quoteerrormsg" class="errormsg"></span>
-            </label>
-
             <label for="image" class="imageInput"> 
           Image de profil *   <br>
           <input type="file" id="imageFile" name="imageFile" @change="stateOfFile" required >
@@ -90,7 +84,6 @@
             user: "",
             mail: "",
             password: "",
-            quote:"",
             previewUrl:'',
             descriptionImage:'',
             disabledRegistrationSubmitButton:true
@@ -137,13 +130,7 @@
             }
 
 
-            if (this.quote === "") {
-                errorOnquote.textContent = "Le champ ne peut être vide";
-                errorOnquote.style.color = "red";
-            }
-            else {
-                errorOnquote.textContent = "";
-            }
+       
 
 
             if(this.descriptionImage === ""){
@@ -172,7 +159,7 @@
           const file = e.target.files[0]
     
           if (!file) {
-            //  return false
+              return false
          
           }
           if (!file.type.match('image.*')) {
@@ -188,7 +175,7 @@
           },
 
           disabledSubmitButtonRegistration(){
-            if(this.user != "" && this.quote != "" && this.descriptionImage != "" && this.mail != "" && this.password)
+            if(this.user != "" && this.descriptionImage != "" && this.mail != "" && this.password)
             this.disabledRegistrationSubmitButton = false
       
             else{

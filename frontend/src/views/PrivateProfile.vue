@@ -7,8 +7,6 @@
 <img class="userprofilebox--img" src="" alt="">
 <h1 class="userprofilebox--maintitle"></h1>
 
-<p class="userprofile--quote"></p>
-
 </div>
 
 <div class="posts_user">
@@ -65,12 +63,7 @@ border: 0.4em solid black;
 transition: all ease-in 700ms;
 }
 
-.userprofile--quote{
-font-weight: var(--900);
-font-style:italic;
-font-size: 18px;
-transition: font-size ease-in 700ms;
-}
+
 
 .userprofilebox--maintitle{
 font-size: 3em;
@@ -123,10 +116,6 @@ font-size: 2.5em;
 transition: font-size ease-in-out 700ms;
 }
 
-.userprofile--quote{
-font-size: 12px;
-transition: font-size ease-in-out 700ms;
-}
 
 .posts_user--maintitle{
 font-size: 1.5em;
