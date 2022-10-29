@@ -21,7 +21,7 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 
  8 - There is an env_example file for logs 
 
- 9 - Go check in the env_example file  to see how set yours logs once it's done replace env_example by .env and dont forget to remove all slashes in the file
+ 9 - Go check in the env_example file  to see how set yours logs once it's done replace env_example by .env and dont forget to remove the phrase "let it like this" and all slashes in the file !
   
  10 - On backend folder "npm start or nodemon" but if you have the latest version of nodejs v-18 just node --watch app 
 
