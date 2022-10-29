@@ -27,10 +27,6 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 
  11 - On frontend folder "npm run serve"
 
-# Env_example 
-
-Check this short video if you're lost with how to set up the env file 
-https://user-images.githubusercontent.com/88725081/198520646-0a609256-86eb-4d4d-827b-a5ec6c06d5ef.mp4
 
 # Screenshot ( 12/09/2022 - 17/09/2022)
 
