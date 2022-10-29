@@ -50,7 +50,7 @@ For a many weeks now I train my self to re-learning nodejs and vuejs through man
 ![Commentaires](https://user-images.githubusercontent.com/88725081/191080925-09888209-2e41-4b34-8a85-7701ff4a8afe.png)
 
 
-# Groupomania V2 (10/10/2022 - now )
+# Groupomania V2 (10/10/2022 - 29/10/2022)
 
 After looking at the design from several angles I decided to make it more streamlined
 
@@ -77,6 +77,37 @@ After looking at the design from several angles I decided to make it more stream
 
 ![ProfilV2](https://user-images.githubusercontent.com/88725081/194826929-5988d7e9-6ab7-4c9c-a77f-7abdcb6a153c.png)
 
+
+# Groupomania V2 (29/10/2022 - now)
+
+## Inscription V3
+
+![inscription](https://user-images.githubusercontent.com/88725081/198844884-a19c7613-f72c-463e-950c-c6ddd50a1a9d.PNG)
+
+## Connexion V3
+
+![connexion](https://user-images.githubusercontent.com/88725081/198844878-dd719a33-eb01-43b3-95b5-5c124948a3d0.png)
+
+## Affichage des posts V3
+
+![homepage_v3](https://user-images.githubusercontent.com/88725081/198844883-84c2daf5-9da2-438d-a226-a67ffd74eb24.png)
+
+## Affichage d'un post V3
+
+![displaypost_v3](https://user-images.githubusercontent.com/88725081/198844880-9863ed3c-9098-4d4d-a40f-b949ab0ee59f.png)
+
+## Écrire un post V3
+
+![écrirepost_v3](https://user-images.githubusercontent.com/88725081/198844882-d093d47b-30ec-4d49-a1e2-3eb491fd3819.png)
+
+
+## Modifier un post V3
+
+![modifier_post_v3](https://user-images.githubusercontent.com/88725081/198844887-f7ba6241-4b48-44c9-b033-c3096face88e.png)
+
+## Profil V3
+
+![profil_v3](https://user-images.githubusercontent.com/88725081/198844875-f2d0d429-f683-432a-8c28-bb437ea1dc74.png)
 
 
 # What I learned
