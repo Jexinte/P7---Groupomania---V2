@@ -210,7 +210,6 @@ USER.findOne({where:{id:parseInt(sessionData.userId)}}).then(user => res.status(
 userId:user.id,
 username:user.user,
 imageProfile:user.imageProfile,
-quote:user.quote,
 descriptionImage:user.descriptionImage
 }))
 
