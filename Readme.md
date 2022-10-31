@@ -130,3 +130,7 @@ After looking at the design from several angles I decided to make it more stream
 - Github - [@Jexinte](https://github.com/Jexinte)
 - Frontend Mentor - [@Jexinte](https://www.frontendmentor.io/profile/Jexinte)
 
+# MySQL && Nodejs Version
+  - Sequelize Version 6.21.6
+  - Nodejs Version 18.11.0
+
