@@ -1,7 +1,7 @@
 module.exports = (sequelize,DataTypes) => {
 return sequelize.define('sessions',{
 session_id: {
-type:DataTypes.TEXT,
+type:DataTypes.CHAR,
 unique : true
 },
 
@@ -12,7 +12,7 @@ allowNull:false,
 
 },
 data: {
-type:DataTypes.STRING,
+type:DataTypes.CHAR,
 allowNull:false
 }
 },
